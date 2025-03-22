@@ -1,7 +1,7 @@
-
-import project1 from "../../assets/picture1.png";	
-import project2 from "../../assets/picture2.png";
-import project3 from "../../assets/picture3.png";
+import project1 from "../../assets/docs1.png";
+import project2 from "../../assets/jb2.png";
+import project3 from "../../assets/bistroboss.png";
+import { Link } from "react-router-dom";
 const PortfolioSection = () => {
   return (
     <div>
@@ -20,25 +20,52 @@ const PortfolioSection = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-            {[project1, project2, project3].map((project, index) => (
+            {[
+              {
+                img:project1,
+                projectName: "Docs",
+                projectDescription:
+                  "A document management system for enterprises",
+                link: "https://docs-wallet-93b4b.web.app",
+              },
+              {
+                img:project2,
+                projectName: "Jabir Bhuiyan",
+                projectDescription: "A Profile Portfolio for Jabir Bhuiyan. A Full Stack Developer",
+                link: "https://tourmaline-tiramisu-5a6cb5.netlify.app",
+              },
+              {
+                img:project3,
+                projectName: "Bistro Boss",
+                projectDescription:
+                  "A restaurant management system for small businesses",
+                link: "https://bistro-boss.netlify.app",
+              },
+            ].map((project, index) => (
               <div
                 key={index}
                 className="group relative overflow-hidden rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 ease-out"
               >
                 {/* Image container with hover overlay */}
                 <div className="relative h-80 overflow-hidden">
+                 <Link to={project.link} target="_blank">
                   <img
-                    src={project}
-                    alt={`Project ${index + 1}`}
+                    src={project.img}
+                    alt={`Project ${project.name}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  </Link>
 
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent lg:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                      
+                      <Link to={project.link} target="_blank">
                       <button className="w-full py-3 px-6 bg-amber-500/90 hover:bg-amber-600 text-white font-semibold rounded-xl backdrop-blur-sm">
-                        Case Study →
+                        View Project →
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -54,28 +81,27 @@ const PortfolioSection = () => {
                     </span>
                   ))}
                 </div>
-
+                <Link to={project.link} target="_blank">
                 <div className="bg-white p-6 space-y-3">
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 bg-amber-500 rounded-full"></span>
                     <h3 className="text-xl font-bold text-slate-800">
-                      Project {index + 1}
+                      {project.projectName}
                     </h3>
                   </div>
                   <p className="text-slate-600 leading-relaxed">
-                    Enterprise-grade full-stack solution with dynamic UI
-                    components and real-time analytics integration
+                    {project.projectDescription}
                   </p>
                 </div>
-
+                </Link>
                 {/* Decorative corner */}
                 <div className="absolute top-0 left-0 w-16 h-16 -translate-x-7 -translate-y-7 rotate-45 bg-amber-500/20"></div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <button className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">
+          {/* <div className="text-center mt-12">
+            <button target="_blank" className=" inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl">
               <span>View All Projects</span>
               <svg
                 className="w-4 h-4"
@@ -91,7 +117,7 @@ const PortfolioSection = () => {
                 />
               </svg>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

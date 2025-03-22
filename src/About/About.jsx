@@ -1,6 +1,7 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Whatsapp from "../Components/Whatsapp";
 
 const About = () => {
   return (
@@ -84,11 +85,7 @@ const About = () => {
         <p className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto">
           Let's create something amazing together. Contact us today to get started!
         </p>
-        <Link to="https://wa.me/+8801749424565">
-        <button className="mt-8 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-amber-600 transition-colors duration-300">
-          <FaWhatsapp className="inline-block mr-2 w-10 h-10 " /> Get in Touch
-        </button>
-        </Link>
+       <Whatsapp></Whatsapp>
       </div>
     </div>
   );

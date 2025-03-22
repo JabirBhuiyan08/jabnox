@@ -1,4 +1,7 @@
 import React from "react";
+import { FaWhatsapp } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import Whatsapp from "../../Components/Whatsapp";
 
 const Pricing = () => {
   return (
@@ -59,6 +62,7 @@ const Pricing = () => {
                 popular: false,
               },
             ].map((item, index) => (
+              <Link to="https://wa.me/+8801749424565">
               <div
                 key={index}
                 className={`relative group transition-all duration-300 ${
@@ -126,7 +130,7 @@ const Pricing = () => {
                       ))}
                     </div>
 
-                    <button
+                    {/* <button
                       className={`w-full py-4 font-semibold rounded-xl transition-all duration-300 ${
                         item.popular
                           ? "bg-gradient-to-r from-amber-500 to-orange-500 hover:to-orange-600 text-white shadow-lg shadow-amber-200/50"
@@ -134,21 +138,24 @@ const Pricing = () => {
                       }`}
                     >
                       Start with {item.plan}
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
+          </div>
+          <div className="flex justify-center ">
+          <Whatsapp></Whatsapp>
           </div>
 
           <p className="text-center text-slate-500 mt-12 text-sm">
             Need custom solution?{" "}
-            <a
-              href="#contact"
+            <Link to="/contact"
               className="text-amber-700 hover:text-amber-800 font-semibold underline"
             >
               Let's discuss →
-            </a>
+            </Link>
           </p>
         </div>
       </div>

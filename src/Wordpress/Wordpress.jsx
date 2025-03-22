@@ -1,6 +1,7 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Whatsapp from "../Components/Whatsapp";
 
 const WordpressServices = () => {
   return (
@@ -29,11 +30,7 @@ const WordpressServices = () => {
       <div className="text-center mt-12">
         <h2 className="text-3xl font-bold">Let's Work Together</h2>
         <p className="text-lg mt-2">Contact me for a free consultation and let's build your dream website.</p>
-        <Link to="https://wa.me/+8801749424565">
-        <button className="mt-4 px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-700 transition">
-         <FaWhatsapp className="mr-2 inline w-10 h-10" /> Contact Now
-        </button>
-        </Link>
+        <Whatsapp></Whatsapp>
       </div>
     </div>
   );

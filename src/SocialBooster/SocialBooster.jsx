@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaChartLine, FaBullhorn, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Whatsapp from "../Components/Whatsapp";
 
 const SocialBoost = () => {
   return (
@@ -61,11 +62,7 @@ const SocialBoost = () => {
         <p className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
           Take your brand to the next level with our expert social media growth strategies.
         </p>
-        <Link to="https://wa.me/+8801749424565" >
-        <button className="mt-8 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-          <FaWhatsapp className="inline-block w-10 h-10" /> Contact us
-        </button>
-        </Link>
+        <Whatsapp></Whatsapp>
       </div>
     </div>
   );
