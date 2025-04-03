@@ -15,7 +15,7 @@ const WebsiteBuilder = () => {
           <p className="text-gray-600 mt-2">
             I provide professional website development services using WordPress
             or custom coding, <br />
-            ensuring a premium, responsive, and user-friendly design.
+            ensuring a premium, responsive, and user-friendly design
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-5">
             <Link to="/coding">
