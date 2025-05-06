@@ -7,6 +7,7 @@ import Design from "../Graphic Design/Design";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
 import Wordpress from "../Wordpress/Wordpress";
+import LoginPage from "../Login/LoginPage";
 
 export const router = createBrowserRouter([
    {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
              {
                 path: "contact",
                 element: <Contact></Contact>,
+             },
+             {
+                path: "login",
+                element: <LoginPage></LoginPage>,
              },
         ]
    }
