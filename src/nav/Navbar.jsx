@@ -6,9 +6,12 @@ import { FiMenu, FiX } from 'react-icons/fi'; // Icons for mobile menu
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const [isAboutOpen, setIsAboutOpen] = useState(false);
     const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+    const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
 
     let servicesTimeout; // For hover delay on desktop
+    let aboutTimeout; // For hover delay on desktop
 
     return (
         <nav className="text-white bg-gray-900/90 p-4 md:px-16 lg:px-32 fixed top-0 left-0 w-full z-50">
@@ -29,7 +32,28 @@ const Navbar = () => {
                 {/* Desktop Nav Links */}
                 <ul className="hidden md:flex space-x-8 text-lg font-semibold">
                     <Link to="/" className="hover:text-cyan-400">Home</Link>
-                    <Link to="/about" className="hover:text-cyan-400">About</Link>
+
+                    {/* About us Dropdown - Desktop */}
+                    <div 
+                        className="relative cursor-pointer hover:text-cyan-400"
+                        onMouseEnter={() => {
+                            clearTimeout(aboutTimeout);
+                            setIsAboutOpen(true);
+                        }}
+                        onMouseLeave={() => {
+                            aboutTimeout = setTimeout(() => setIsAboutOpen(false), 300);
+                        }}
+                    >
+                        About us
+                        {isAboutOpen && (
+                            <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+                                <Link to="/about" className="block px-4 py-2 hover:bg-gray-700">About us</Link>
+                                <Link to="/reviews" className="block px-4 py-2 hover:bg-gray-700">Reviews</Link>
+                                <Link to="/review-form" className="block px-4 py-2 hover:bg-gray-700">Review Us</Link>
+                                <Link to="/our-profile" className="block px-4 py-2 hover:bg-gray-700">Our Profile</Link>
+                            </div>
+                        )}
+                    </div>
                     <Link to="/contact" className="hover:text-cyan-400">Contact</Link>
                     
                     {/* Services Dropdown - Desktop */}
@@ -60,17 +84,31 @@ const Navbar = () => {
             {isOpen && (
                 <ul className="bg-gray-800/80 p-6 rounded-xl md:hidden flex flex-col space-y-4 text-center text-lg font-semibold">
                     <Link to="/" className="hover:text-cyan-400" onClick={() => setIsOpen(false)}>Home</Link>
-                    <Link to="/about" className="hover:text-cyan-400" onClick={() => setIsOpen(false)}>About</Link>
+                     {/* About us in Mobile Menu */}
+                    <div 
+                        className="cursor-pointer hover:text-cyan-400"
+                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    >
+                        About us {isMobileServicesOpen ? "▲" : "▼"}
+                    </div>
+                    {isMobileServicesOpen && (
+                        <div className="bg-gray-700/90 rounded-lg text-white mt-2">
+                            <Link to="/about" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>About us</Link>
+                            <Link to="/reviews" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>Reviews</Link>
+                            <Link to="/review-form" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>Review Us</Link>
+                            <Link to="/our-profile" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>Our Profile</Link>
+                        </div>
+                    )}
                     <Link to="/contact" className="hover:text-cyan-400" onClick={() => setIsOpen(false)}>Contact</Link>
                     
                     {/* Services in Mobile Menu */}
                     <div 
                         className="cursor-pointer hover:text-cyan-400"
-                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                        onClick={() => setIsMobileAboutOpen(!isMobileServicesOpen)}
                     >
-                        Services {isMobileServicesOpen ? "▲" : "▼"}
+                        Services {isMobileAboutOpen ? "▲" : "▼"}
                     </div>
-                    {isMobileServicesOpen && (
+                    {isMobileAboutOpen && (
                         <div className="bg-gray-700/90 rounded-lg text-white mt-2">
                             <Link to="/coding" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>Website with Coding</Link>
                             <Link to="/wordpress" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>WordPress Website</Link>

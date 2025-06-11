@@ -4,15 +4,18 @@ import SecondHeader from './SecondHeader';
 import WebsiteBuilder from './WebsiteBuilder';
 import Chat from '../Chat/Chat';
 import ContactForm from './ContactForm';
+import ReviewsCarousel from './ReviewsCarousel';
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
             <SecondHeader></SecondHeader>
-            <Chat></Chat>
+            {/* <Chat></Chat> */}
             <WebsiteBuilder></WebsiteBuilder>
-            <ContactForm></ContactForm>
+            <ReviewsCarousel></ReviewsCarousel>
+            
+            {/* <ContactForm></ContactForm> */}
         </div>
     );
 };

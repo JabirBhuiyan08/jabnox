@@ -2,6 +2,8 @@ import React from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Whatsapp from "../Components/Whatsapp";
+import ReviewsCarousel from "../Home/ReviewsCarousel";
+import Button from "../Home/Button";
 
 const About = () => {
   return (
@@ -30,7 +32,9 @@ const About = () => {
         </div>
 
         <div className="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h2 className="text-2xl font-semibold text-amber-400">Our Expertise</h2>
+          <h2 className="text-2xl font-semibold text-amber-400">
+            Our Expertise
+          </h2>
           <p className="mt-4 text-gray-300">
             We specialize in MERN stack development, WordPress customization,
             graphic design, SEO optimization, and social media marketing. Our
@@ -42,7 +46,9 @@ const About = () => {
 
       {/* Why Choose Us? Section */}
       <div className="max-w-7xl mx-auto mt-16 text-center">
-        <h2 className="text-3xl font-semibold">Why Choose <span className="text-amber-400">JABNOX?</span></h2>
+        <h2 className="text-3xl font-semibold">
+          Why Choose <span className="text-amber-400">JABNOX?</span>
+        </h2>
         <p className="text-lg text-gray-300 mt-4 max-w-4xl mx-auto">
           We believe in delivering quality, affordability, and innovation. Our
           solutions are designed to help your business stand out in the digital
@@ -51,12 +57,26 @@ const About = () => {
 
         <div className="grid md:grid-cols-3 gap-8 mt-12">
           {[
-            { title: "⚡ High Performance", desc: "Optimized for speed and efficiency." },
-            { title: "🎨 Unique Designs", desc: "Custom-crafted for a strong brand identity." },
-            { title: "💼 Professional Support", desc: "Dedicated assistance to ensure success." }
+            {
+              title: "⚡ High Performance",
+              desc: "Optimized for speed and efficiency.",
+            },
+            {
+              title: "🎨 Unique Designs",
+              desc: "Custom-crafted for a strong brand identity.",
+            },
+            {
+              title: "💼 Professional Support",
+              desc: "Dedicated assistance to ensure success.",
+            },
           ].map((item, index) => (
-            <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-amber-400">{item.title}</h3>
+            <div
+              key={index}
+              className="bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <h3 className="text-xl font-semibold text-amber-400">
+                {item.title}
+              </h3>
               <p className="mt-2 text-gray-300">{item.desc}</p>
             </div>
           ))}
@@ -64,28 +84,27 @@ const About = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className="max-w-7xl mx-auto mt-16 text-center">
-        <h2 className="text-3xl font-semibold">What Our Clients Say</h2>
-        <div className="grid md:grid-cols-2 gap-8 mt-12">
-          {[
-            { quote: "JABNOX transformed our online presence with a stunning website and effective SEO strategies. Highly recommended!", author: "John Doe" },
-            { quote: "Their team is professional, creative, and always delivers on time. A pleasure to work with!", author: "Jane Smith" }
-          ].map((testimonial, index) => (
-            <div key={index} className="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <p className="text-gray-300 italic">"{testimonial.quote}"</p>
-              <p className="mt-4 font-semibold text-amber-400">- {testimonial.author}</p>
-            </div>
-          ))}
-        </div>
+      <div className="max-w-7xl mx-auto mt-16">
+        <h2 className="text-3xl font-semibold text-center">
+          What Our Clients Say
+        </h2>
+        <ReviewsCarousel></ReviewsCarousel>
       </div>
-
+      <Link to={"/reviews"} className="flex justify-center">
+        <button className="mt-4 w-44 px-6 py-3 bg-violet-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-700 transition">
+          All Reviews
+        </button>
+      </Link>
       {/* Call-to-Action Section */}
       <div className="max-w-7xl mx-auto mt-16 text-center">
-        <h2 className="text-3xl font-semibold">Ready to Elevate Your Business?</h2>
+        <h2 className="text-3xl font-semibold">
+          Ready to Elevate Your Business?
+        </h2>
         <p className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto">
-          Let's create something amazing together. Contact us today to get started!
+          Let's create something amazing together. Contact us today to get
+          started!
         </p>
-       <Whatsapp></Whatsapp>
+        <Whatsapp></Whatsapp>
       </div>
     </div>
   );

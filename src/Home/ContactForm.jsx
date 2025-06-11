@@ -26,12 +26,14 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
       <label className="block mb-2 font-semibold">Name *</label>
       <input
         type="text"
         name="name"
         value={formData.name}
         onChange={handleChange}
+        placeholder='Your Name'
         required
         className="w-full mb-4 p-2 border rounded"
       />
@@ -42,6 +44,7 @@ const ContactForm = () => {
         name="email"
         value={formData.email}
         onChange={handleChange}
+        placeholder='Your Email'
         required
         className="w-full mb-4 p-2 border rounded"
       />
@@ -63,6 +66,7 @@ const ContactForm = () => {
         value={formData.message}
         onChange={handleChange}
         rows="4"
+        placeholder='Your Message'
         required
         className="w-full mb-4 p-2 border rounded"
       />

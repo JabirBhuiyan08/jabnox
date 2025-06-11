@@ -8,6 +8,9 @@ import About from "../About/About";
 import Contact from "../Contact/Contact";
 import Wordpress from "../Wordpress/Wordpress";
 import LoginPage from "../Login/LoginPage";
+import Reviews from "../About/Reviews";
+import ReviewForm from "../About/ReviewForm/ReviewForm";
+import OurProfile from "../About/OurProfile";
 
 export const router = createBrowserRouter([
    {
@@ -46,6 +49,22 @@ export const router = createBrowserRouter([
                 path: "login",
                 element: <LoginPage></LoginPage>,
              },
+             {
+                path: "login/:id",
+                element: <LoginPage></LoginPage>,
+             },
+             {
+               path: "reviews",
+               element: <Reviews></Reviews>
+             },
+             {
+               path: "review-form",
+               element: <ReviewForm></ReviewForm>
+             },
+             {
+               path: "our-profile",
+               element: <OurProfile></OurProfile>
+             }
         ]
    }
 ]);
