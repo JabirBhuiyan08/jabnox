@@ -11,11 +11,15 @@ import LoginPage from "../Login/LoginPage";
 import Reviews from "../About/Reviews";
 import ReviewForm from "../About/ReviewForm/ReviewForm";
 import OurProfile from "../About/OurProfile";
+import Dashboard from "../layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../ErrorPage";
 
 export const router = createBrowserRouter([
    {
       path: "/",
       element: <Main></Main>,
+      errorElement:<ErrorPage></ErrorPage>,
         children: [
              {
                 path: "/",
@@ -63,8 +67,16 @@ export const router = createBrowserRouter([
              },
              {
                path: "our-profile",
-               element: <OurProfile></OurProfile>
+               element: <PrivateRoute><OurProfile></OurProfile></PrivateRoute>
              }
         ]
+   },{
+      path: "/dashboard",
+      element: <PrivateRoute>
+         <Dashboard></Dashboard></PrivateRoute>,
+      children:[
+
+      ]
+
    }
 ]);
