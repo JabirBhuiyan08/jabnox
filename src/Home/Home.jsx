@@ -21,7 +21,7 @@ const Home = () => {
             <WebsiteBuilder></WebsiteBuilder>
             <ReviewsCarousel></ReviewsCarousel>
             
-            {/* <ContactForm></ContactForm> */}
+            <ContactForm></ContactForm>
         </div>
     );
 };
