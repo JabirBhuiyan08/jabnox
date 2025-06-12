@@ -32,7 +32,7 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
+              <NavLink to="dashboard-reviews">
                 <FaAd></FaAd> Reviews
               </NavLink>
             </li>
@@ -52,7 +52,7 @@ const Dashboard = () => {
           </>
         </ul>
       </div>
-      <div className="flex-1 p-8 bg-slate-500">
+      <div className="flex-1 p-8">
         <Outlet></Outlet>
       </div>
     </div>

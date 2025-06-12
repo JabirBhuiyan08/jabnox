@@ -77,6 +77,7 @@ const Navbar = () => {
                             </div>
                         )}
                     </div>
+                    <Link to="/dashboard">Dashboard</Link>
                 </ul>
             </div>
 
@@ -116,6 +117,7 @@ const Navbar = () => {
                             <Link to="/social-booster" className="block px-4 py-2 hover:bg-gray-600" onClick={() => setIsOpen(false)}>Social Media Boosting</Link>
                         </div>
                     )}
+                    <Link to="/dashboard">Dashboard</Link>
                 </ul>
             )}
         </nav>

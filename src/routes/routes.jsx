@@ -14,6 +14,7 @@ import OurProfile from "../About/OurProfile";
 import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../ErrorPage";
+import DashboardReviews from "../Dashboard Children/DashboardReviews";
 
 export const router = createBrowserRouter([
    {
@@ -67,7 +68,7 @@ export const router = createBrowserRouter([
              },
              {
                path: "our-profile",
-               element: <PrivateRoute><OurProfile></OurProfile></PrivateRoute>
+               element: <OurProfile></OurProfile>
              }
         ]
    },{
@@ -75,7 +76,10 @@ export const router = createBrowserRouter([
       element: <PrivateRoute>
          <Dashboard></Dashboard></PrivateRoute>,
       children:[
-
+         {
+            path:"dashboard-reviews",
+            element:<DashboardReviews></DashboardReviews>
+         }
       ]
 
    }
