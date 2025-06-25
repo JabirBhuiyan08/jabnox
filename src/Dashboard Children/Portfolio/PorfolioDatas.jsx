@@ -1,11 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+
+const PorfolioDatas = ({portfolio, handleDelete}) => {
 
 
-const PorfolioDatas = (Portfolio) => {
-
-    const {portfolioName, portfolioDescription, portfolioNotes,portfolioClientName, portfolioImage,completionDate, projectCategory, portfolioLink, portfolioOwnerName, technologiesUsed} = Portfolio.portfolio;
-    const datas = useLoaderData();
-    console.log(datas);
+    const {portfolioName, portfolioDescription, portfolioNotes,portfolioClientName, portfolioImage,completionDate, projectCategory, portfolioLink, portfolioOwnerName, technologiesUsed, _id} = portfolio;
+    
     return (
         <div>
             <div className="card w-112 bg-base-100 shadow-xl">
@@ -19,8 +17,13 @@ const PorfolioDatas = (Portfolio) => {
                     <p>{completionDate}</p>
                     <p>{portfolioClientName}</p>
                     <p>{portfolioNotes}</p>
+                    <div className="flex justify-between items-center">
                     <div className="card-actions justify-end">
                         <a href={portfolioLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Live Site</a>
+                    </div>
+                    <div>
+                        <button onClick={()=>handleDelete(_id)} className="btn bg-red-500 text-white">Delete PORTFOLIO</button>
+                    </div>
                     </div>
                 </div>
             </div>

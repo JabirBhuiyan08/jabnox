@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
-import { set } from "react-hook-form";
+
 
 
 const DashboardReviews = () => {
@@ -48,7 +48,7 @@ const DashboardReviews = () => {
     <div>
       {reviews.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-          {reviews.map((review) => (
+          {reviews.slice().reverse().map((review) => (
             <div
               key={review._id}
               className="p-6 rounded-2xl shadow-md border bg-white transition-transform hover:scale-[1.1]"

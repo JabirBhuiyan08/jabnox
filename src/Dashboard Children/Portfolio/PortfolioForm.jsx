@@ -8,7 +8,6 @@ const PortfolioForm = () => {
 
   const onSubmit = async (data) => {
     const formData = {...data };
-    console.log(formData);
     const response = await axiosPublic.post('/portfolios', formData);
     if (response.data.insertedId) {
       alert("Portfolio added successfully");
