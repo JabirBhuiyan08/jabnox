@@ -20,6 +20,7 @@ import PortfolioForm from "../Dashboard Children/Portfolio/PortfolioForm";
 import BlogForm from "../Dashboard Children/Blog/BlogForm";
 import Blogs from "../Dashboard Children/Blog/Blogs";
 import DashboardContacts from "../Dashboard Children/Contacts/DashboardContacts";
+import axiosPublic from "../hooks/axiosPublic";
 
 export const router = createBrowserRouter([
    {
@@ -87,12 +88,12 @@ export const router = createBrowserRouter([
       children:[
          {
             path:"dashboard-reviews",
-            loader: () => fetch("http://localhost:5000/reviews"),
+            loader: () => axiosPublic.get('/reviews').then(res => res.data),
             element:<DashboardReviews></DashboardReviews>
          },
          {
             path:"portfolios",
-            loader:() =>fetch("http://localhost:5000/portfolios"),
+            loader: () => axiosPublic.get('/portfolios').then(res => res.data),
             element:<Portfolios></Portfolios>
          },
          {
