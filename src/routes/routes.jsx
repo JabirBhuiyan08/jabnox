@@ -15,6 +15,11 @@ import Dashboard from "../layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../ErrorPage";
 import DashboardReviews from "../Dashboard Children/DashboardReviews";
+import Portfolios from "../Dashboard Children/Portfolio/Portfolios";
+import PortfolioForm from "../Dashboard Children/Portfolio/PortfolioForm";
+import BlogForm from "../Dashboard Children/Blog/BlogForm";
+import Blogs from "../Dashboard Children/Blog/Blogs";
+import DashboardContacts from "../Dashboard Children/Contacts/DashboardContacts";
 
 export const router = createBrowserRouter([
    {
@@ -69,6 +74,10 @@ export const router = createBrowserRouter([
              {
                path: "our-profile",
                element: <OurProfile></OurProfile>
+             },
+             {
+               path: "portfolios",
+               element: <Portfolios></Portfolios>
              }
         ]
    },{
@@ -78,7 +87,33 @@ export const router = createBrowserRouter([
       children:[
          {
             path:"dashboard-reviews",
+            loader: () => fetch("http://localhost:5000/reviews"),
             element:<DashboardReviews></DashboardReviews>
+         },
+         {
+            path:"portfolios",
+            loader:() =>fetch("http://localhost:5000/portfolios"),
+            element:<Portfolios></Portfolios>
+         },
+         {
+            path:"portfolio-form",
+            element:<PortfolioForm></PortfolioForm>
+         },
+         {
+            path:"blog-form",
+            element:<BlogForm></BlogForm>
+         },
+         {
+            path:"blogs",
+            element:<Blogs></Blogs>
+         },
+         {
+            path:"dashboard-reviews",
+            element:<DashboardReviews></DashboardReviews>
+         },
+         {
+            path:"dashboard-contacts",
+            element:<DashboardContacts></DashboardContacts>
          }
       ]
 

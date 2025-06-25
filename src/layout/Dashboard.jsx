@@ -19,31 +19,46 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <div className="w-65 min-h-screen bg-violet-800 ">
-        <ul className="menu p-4 text-lg text-white">
+        <ul className="menu p-4 text-lg text-white gap-2">
           <>
             <li>
               <NavLink to="">
-                <FaHome></FaHome> Dashboard
+                 Dashboard
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
-                <FaCalendar></FaCalendar> Portfolios
+              <NavLink to="portfolios">
+               Portfolios
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="portfolio-form">
+               Portfolio Form
               </NavLink>
             </li>
             <li>
               <NavLink to="dashboard-reviews">
-                <FaAd></FaAd> Reviews
+               Reviews
               </NavLink>
             </li>
             <li>
               <NavLink to="">
-                <FaShoppingCart></FaShoppingCart> Clients Certificates
+              Clients Certificates
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
-                <FaList></FaList> contacts
+              <NavLink to="blog-form">
+              Post a Blog
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="blogs">
+              Blogs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="dashboard-contacts">
+              contacts
               </NavLink>
             </li>
             <li>

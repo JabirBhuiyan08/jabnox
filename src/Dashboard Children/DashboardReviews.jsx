@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
+import { set } from "react-hook-form";
 
 
 const DashboardReviews = () => {
   const axiosPublic = useAxiosPublic();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const datas = useLoaderData();
+
 
   useEffect(() => {
-    axiosPublic
-      .get("reviews")
-      .then((res) => {
-        setReviews(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch reviews:", err);
-        setLoading(false);
-      });
-  }, [axiosPublic]);
+   if(datas){
+    setReviews(datas);
+    setLoading(false);
+   }
+  }, [datas]);
 
   const handleDelete = async (id) => {
     const confirmDelete = await Swal.fire({
@@ -34,6 +32,7 @@ const DashboardReviews = () => {
     if (!confirmDelete) return;
 
    const response = await axiosPublic.delete(`/reviews/${id}`);
+   console.log(id)
    if (response.status === 200) {
         Swal.fire({
             title:'Review Delete Successfully'
