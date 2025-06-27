@@ -16,39 +16,44 @@ const Portfolios = () => {
     }
   }, [datas]);
 
-const handleDelete = async (id) => {
-  const confirmDelete = window.confirm("Are you sure you want to delete this portfolio?");
-  if (!confirmDelete) return;
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this portfolio?"
+    );
+    if (!confirmDelete) return;
 
-  try {
-    const response = await axiosPublic.delete(`portfolios/${id}`);
+    try {
+      const response = await axiosPublic.delete(`portfolios/${id}`);
 
-    if (response.status === 200) {
-      // Remove the deleted portfolio from state
-      setPortfolios((prevPortfolios) =>
-        prevPortfolios.filter((portfolio) => portfolio._id !== id)
-      );
-      
-    } else {
-      alert("Failed to delete the portfolio");
+      if (response.status === 200) {
+        // Remove the deleted portfolio from state
+        setPortfolios((prevPortfolios) =>
+          prevPortfolios.filter((portfolio) => portfolio._id !== id)
+        );
+      } else {
+        alert("Failed to delete the portfolio");
+      }
+    } catch (error) {
+      console.error("Error deleting portfolio:", error);
+      alert("Something went wrong. Check console for details.");
     }
-  } catch (error) {
-    console.error("Error deleting portfolio:", error);
-    alert("Something went wrong. Check console for details.");
-  }
-};
-
-
+  };
 
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
-      {portfolios.slice().reverse().map((portfolio) => (
-        <div key={portfolio._id} className="">
-            <PortfolioData  portfolio={portfolio} handleDelete={handleDelete}></PortfolioData>
-        </div>
-      ))}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-4">
+      {portfolios
+        .slice()
+        .reverse()
+        .map((portfolio) => (
+          <div
+            key={portfolio._id}
+            className="transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          >
+            <PortfolioData portfolio={portfolio} handleDelete={handleDelete} />
+          </div>
+        ))}
     </div>
   );
 };

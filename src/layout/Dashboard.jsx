@@ -25,113 +25,111 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Mobile Nav Toggle Button */}
-      <div className="bg-violet-800 p-4 md:hidden flex justify-between items-center text-white">
-        <div className="flex flex-col items-center justify-center py-4 bg-violet-800 text-white">
-          <img src={logo} alt="Logo" className="w-28 sm:w-32 mb-2" />
-          <h1 className="text-base sm:text-lg font-semibold tracking-wide uppercase">
-            Dashboard
-          </h1>
-        </div>
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
+  {/* Mobile Nav Toggle Button - Enhanced */}
+ <div className="bg-violet-900 p-4 md:hidden flex justify-between items-center text-white sticky top-0 z-50">
+  <div className="flex flex-col items-center ">
+    <img src={logo} alt="Logo" className="w-24 mb-1" />
+    <h1 className="text-lg font-semibold">Dashboard</h1>
+  </div>
+  
+  {/* Toggle Button - Fixed */}
+  <button 
+    onClick={() => setIsMenuOpen(!isMenuOpen)}
+    className="p-2 rounded-md hover:bg-violet-700 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+  >
+    {isMenuOpen ? (
+      <FaTimes className="text-white text-4xl" />  // Using text-4xl instead of size prop
+    ) : (
+      <FaBars className="text-white text-4xl" />
+    )}
+  </button>
+</div>
 
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+  {/* Sidebar - Enhanced */}
+  <div
+    className={`${
+      isMenuOpen ? "block fixed inset-0 z-20 pt-28" : "hidden"
+    } md:block md:fixed md:top-0 md:bottom-0 md:left-0 w-full md:w-64 bg-violet-800 text-white shadow-xl`}
+  >
+    <ul className="menu p-4 text-lg gap-2 h-full flex flex-col">
+      <li>
+        <NavLink
+          to="portfolios"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Portfolios
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="portfolio-form"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Portfolio Form
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="dashboard-reviews"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Reviews
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="blog-form"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Post a Blog
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="blogs"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Blogs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="dashboard-contacts"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div className="flex items-center gap-2">
+            <div>Contacts</div>
+            <span className="flex items-center justify-center bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+              <IoIosNotifications className="mr-1" /> 
+              {unreadCount > 0 && unreadCount}
+            </span>
+          </div>
+        </NavLink>
+      </li>
+      <li className="mt-auto">
+        <button
+          onClick={handleLogout}
+          className="btn bg-red-600 hover:bg-red-700 text-white mt-6 w-full transition-colors duration-200 shadow-md"
+        >
+          Logout
         </button>
-      </div>
+      </li>
+    </ul>
+  </div>
 
-      {/* Sidebar */}
-      <div
-        className={`${
-          isMenuOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-violet-800 text-white`}
-      >
-        <ul className="menu p-4 text-lg gap-2">
-          {/* <li>
-            <NavLink className={handleActiveClass} to="" onClick={() => setIsMenuOpen(false)}>
-              Profile
-            </NavLink>
-          </li> */}
-          <li>
-            <NavLink
-              to="portfolios"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Portfolios
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="portfolio-form"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Portfolio Form
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="dashboard-reviews"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Reviews
-            </NavLink>
-          </li>
-          {/* <li>
-            <NavLink to="" className={handleActiveClass} onClick={() => setIsMenuOpen(false)}>
-              Clients Certificates
-            </NavLink>
-          </li> */}
-          <li>
-            <NavLink
-              to="blog-form"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Post a Blog
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="blogs"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Blogs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="dashboard-contacts"
-              className={handleActiveClass}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <div className="flex items-center gap-2">
-                <div>Contacts </div>
-                <span className="flex items-center justify-center text-red-400 text-sm">
-                  <IoIosNotifications /> {unreadCount > 0 && `(${unreadCount})`}
-                </span>
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <button
-              onClick={handleLogout}
-              className="btn bg-red-500 hover:bg-red-600 text-white mt-6"
-            >
-              Logout
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 p-4 md:p-8 bg-gray-50">
-        <Outlet />
-      </div>
-    </div>
+  {/* Main Content - Enhanced */}
+  <div className="flex-1 p-4 md:p-8 bg-gray-50 min-h-screen md:ml-64">
+    <Outlet />
+  </div>
+</div>
   );
 };
 
