@@ -43,7 +43,7 @@ const handleDelete = async (id) => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className=" grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+    <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
       {portfolios.slice().reverse().map((portfolio) => (
         <div key={portfolio._id} className="">
             <PortfolioData  portfolio={portfolio} handleDelete={handleDelete}></PortfolioData>

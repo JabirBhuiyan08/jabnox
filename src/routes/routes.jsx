@@ -21,102 +21,110 @@ import BlogForm from "../Dashboard Children/Blog/BlogForm";
 import Blogs from "../Dashboard Children/Blog/Blogs";
 import DashboardContacts from "../Dashboard Children/Contacts/DashboardContacts";
 import axiosPublic from "../hooks/axiosPublic";
+import { ContactsProvider } from "../hooks/ContactsContext";
 
 export const router = createBrowserRouter([
-   {
-      path: "/",
-      element: <Main></Main>,
-      errorElement:<ErrorPage></ErrorPage>,
-        children: [
-             {
-                path: "/",
-                element: <Home></Home>,
-             },
-             {
-                path: "coding",
-                element: <Coding></Coding>,
-             },
-             {
-                path: "wordpress",
-                element: <Wordpress></Wordpress>,
-             },
-             {
-                path: "social-booster",
-                element: <SocialBooster></SocialBooster>,
-             },
-             {
-                path: "graphic-design",
-                element: <Design></Design>,
-             },
-             {
-                path: "about",
-                element: <About></About>,
-             },
-             {
-                path: "contact",
-                element: <Contact></Contact>,
-             },
-             {
-                path: "login",
-                element: <LoginPage></LoginPage>,
-             },
-             {
-                path: "login/:id",
-                element: <LoginPage></LoginPage>,
-             },
-             {
-               path: "reviews",
-               element: <Reviews></Reviews>
-             },
-             {
-               path: "review-form",
-               element: <ReviewForm></ReviewForm>
-             },
-             {
-               path: "our-profile",
-               element: <OurProfile></OurProfile>
-             },
-             {
-               path: "portfolios",
-               element: <Portfolios></Portfolios>
-             }
-        ]
-   },{
-      path: "/dashboard",
-      element: <PrivateRoute>
-         <Dashboard></Dashboard></PrivateRoute>,
-      children:[
-         {
-            path:"dashboard-reviews",
-            loader: () => axiosPublic.get('/reviews').then(res => res.data),
-            element:<DashboardReviews></DashboardReviews>
-         },
-         {
-            path:"portfolios",
-            loader: () => axiosPublic.get('/portfolios').then(res => res.data),
-            element:<Portfolios></Portfolios>
-         },
-         {
-            path:"portfolio-form",
-            element:<PortfolioForm></PortfolioForm>
-         },
-         {
-            path:"blog-form",
-            element:<BlogForm></BlogForm>
-         },
-         {
-            path:"blogs",
-            element:<Blogs></Blogs>
-         },
-         {
-            path:"dashboard-reviews",
-            element:<DashboardReviews></DashboardReviews>
-         },
-         {
-            path:"dashboard-contacts",
-            element:<DashboardContacts></DashboardContacts>
-         }
-      ]
-
-   }
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "coding",
+        element: <Coding></Coding>,
+      },
+      {
+        path: "wordpress",
+        element: <Wordpress></Wordpress>,
+      },
+      {
+        path: "social-booster",
+        element: <SocialBooster></SocialBooster>,
+      },
+      {
+        path: "graphic-design",
+        element: <Design></Design>,
+      },
+      {
+        path: "about",
+        element: <About></About>,
+      },
+      {
+        path: "contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "login",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "login/:id",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "reviews",
+        element: <Reviews></Reviews>,
+      },
+      {
+        path: "review-form",
+        element: <ReviewForm></ReviewForm>,
+      },
+      {
+        path: "our-profile",
+        element: <OurProfile></OurProfile>,
+      },
+      {
+        path: "portfolios",
+        element: <Portfolios></Portfolios>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    loader: () => axiosPublic.get("/contact").then((res) => res.data),
+    element: (
+      <PrivateRoute>
+        <ContactsProvider>
+          <Dashboard></Dashboard>
+        </ContactsProvider>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "dashboard-reviews",
+        loader: () => axiosPublic.get("/reviews").then((res) => res.data),
+        element: <DashboardReviews></DashboardReviews>,
+      },
+      {
+        path: "portfolios",
+        loader: () => axiosPublic.get("/portfolios").then((res) => res.data),
+        element: <Portfolios></Portfolios>,
+      },
+      {
+        path: "portfolio-form",
+        element: <PortfolioForm></PortfolioForm>,
+      },
+      {
+        path: "blog-form",
+        element: <BlogForm></BlogForm>,
+      },
+      {
+        path: "blogs",
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "dashboard-reviews",
+        element: <DashboardReviews></DashboardReviews>,
+      },
+      {
+        path: "dashboard-contacts",
+        loader: () => axiosPublic.get("/contact").then((res) => res.data),
+        element: <DashboardContacts></DashboardContacts>,
+      },
+    ],
+  },
 ]);

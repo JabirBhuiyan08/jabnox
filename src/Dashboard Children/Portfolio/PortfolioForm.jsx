@@ -7,15 +7,14 @@ const PortfolioForm = () => {
   const axiosPublic = useAxiosPublic();
 
   const onSubmit = async (data) => {
-    const formData = {...data };
-    const response = await axiosPublic.post('/portfolios', formData);
+    const formData = { ...data };
+    const response = await axiosPublic.post("/portfolios", formData);
     if (response.data.insertedId) {
       alert("Portfolio added successfully");
-    }
-    else {
+    } else {
       alert("Failed to add portfolio");
     }
-    
+
     reset();
   };
   return (
@@ -31,25 +30,6 @@ const PortfolioForm = () => {
               type="text"
               name="portfolioName"
               placeholder="Enter portfolio name"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">2. Description</label>
-            <input
-              {...register("portfolioDescription")}
-              type="text"
-              name="portfolioDescription"
-              placeholder="Portfolio Description"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">3. Upload Portfolio Image</label>
-            <input
-              {...register("portfolioImage")}
-              type="file"
-              name="portfolioImage"
               className="input input-bordered w-full mb-4"
             />
           </div>
@@ -115,6 +95,30 @@ const PortfolioForm = () => {
               name="portfolioClientName"
               placeholder="Client Name (Optional)"
               className="input input-bordered w-full mb-4"
+            />
+          </div>
+          <div>
+            <label className="block mb-2">2. Description</label>
+            <input
+              {...register("portfolioDescription")}
+              type="text"
+              name="portfolioDescription"
+              placeholder="Portfolio Description"
+              className="input input-bordered w-full mb-4"
+            />
+          </div>
+          <div>
+            <label className="block mb-2">3. Upload Portfolio Image</label>
+            <input
+              {...register("portfolioImage")}
+              type="file"
+              name="portfolioImage"
+              className="block w-full text-sm text-black file:mr-4 file:py-2 file:px-4
+               file:rounded-md file:border-0
+               file:text-sm file:font-semibold
+               file:bg-violet-700 file:text-white
+               hover:file:bg-violet-800
+               cursor-pointer bg-transparent input input-bordered mb-4"
             />
           </div>
           <div>

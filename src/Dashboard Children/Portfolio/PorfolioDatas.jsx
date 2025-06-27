@@ -6,7 +6,7 @@ const PorfolioDatas = ({portfolio, handleDelete}) => {
     
     return (
         <div>
-            <div className="card w-112 bg-base-100 shadow-xl">
+            <div className="card w-86 bg-base-100 shadow-xl">
                 <figure><img src={portfolioImage} alt="Portfolio Image" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{portfolioName}</h2>
