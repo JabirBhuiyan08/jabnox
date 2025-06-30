@@ -22,6 +22,9 @@ import Blogs from "../Dashboard Children/Blog/Blogs";
 import DashboardContacts from "../Dashboard Children/Contacts/DashboardContacts";
 import axiosPublic from "../hooks/axiosPublic";
 import { ContactsProvider } from "../hooks/ContactsContext";
+import ShowSingleBlog from "../Dashboard Children/Blog/ShowSingleBlog";
+import Projects from "../Dashboard Children/Project/Projects";
+import ProjectsForm from "../Dashboard Children/Project/ProjectsForm";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +84,11 @@ export const router = createBrowserRouter([
         path: "portfolios",
         element: <Portfolios></Portfolios>,
       },
+      {
+        path: "blogs/:id",
+        loader: ({params}) => axiosPublic.get(`/blogs/${params.id}`).then((res) => res.data),
+        element: <ShowSingleBlog></ShowSingleBlog>,
+      },
     ],
   },
   {
@@ -114,7 +122,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "blogs",
+        loader: () => axiosPublic.get("/blogs").then((res) => res.data),
         element: <Blogs></Blogs>,
+      },
+      {
+        path: "projects",
+        loader: () => axiosPublic.get("/projects").then((res) => res.data),
+        element: <Projects></Projects>,
+      },
+      {
+        path: "projects-form",
+        element: <ProjectsForm></ProjectsForm>,
       },
       {
         path: "dashboard-reviews",

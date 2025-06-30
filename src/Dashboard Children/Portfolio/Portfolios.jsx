@@ -17,10 +17,10 @@ const Portfolios = () => {
   }, [datas]);
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this portfolio?"
-    );
-    if (!confirmDelete) return;
+    // const confirmDelete = window.confirm(
+    //   "Are you sure you want to delete this portfolio?"
+    // );
+    // if (!confirmDelete) return;
 
     try {
       const response = await axiosPublic.delete(`portfolios/${id}`);
@@ -40,7 +40,7 @@ const Portfolios = () => {
   };
 
   if (loading) return <div>Loading...</div>;
-
+  if(portfolios.length === 0) return <div>No portfolios found</div>
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-4">
       {portfolios

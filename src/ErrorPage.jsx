@@ -11,7 +11,7 @@ const ErrorPage = () => {
           Sorry, the page you're looking for doesn't exist or has been moved.
         </p>
         <Link
-          to="/"
+          to={-1}
           className="inline-block mt-6 px-6 py-2 text-white bg-violet-600 rounded-lg hover:bg-blue-700 transition"
         >
           Go Home

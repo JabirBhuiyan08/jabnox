@@ -101,6 +101,24 @@ const Dashboard = () => {
       </li>
       <li>
         <NavLink
+          to="projects"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Projects
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="projects-form"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Projects Form
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="dashboard-contacts"
           className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
           onClick={() => setIsMenuOpen(false)}

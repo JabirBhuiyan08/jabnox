@@ -61,7 +61,7 @@ const PortfolioData = ({ portfolio, handleDelete }) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-between md:gap-2 items-center mt-4">
                     <a 
                         href={portfolioLink} 
                         target="_blank" 

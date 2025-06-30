@@ -35,6 +35,8 @@ const DashboardContacts = () => {
 
   if (loading) return <div>Loading...</div>;
 
+  if(contacts.length === 0) return <div className="text-center text-2xl font-bold mt-10">No contacts found</div>;
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
