@@ -1,24 +1,71 @@
-
-.neumorphic{
-    background: #e0e5ec;
-    border-radius: 20px;
-    box-shadow: 9px 9px 20px #a3b1c6,
-                -9px -9px 20px #ffffff;
+/* Overall page styling */
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.neumorphic-inset{
-    background: #e0e5ec;
-    border-radius: 20px;
-    box-shadow: inset 9px 9px 20px #a3b1c6,
-                inset -9px -9px 20px #ffffff;
+/* Card container */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem 2rem;
+  text-align: center;
 }
 
-.neumorphic-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
+/* Title */
+.login-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Input fields */
+.neumorphic-input {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  background: #e0e5ec;
+  box-shadow: inset 6px 6px 12px #c5c9d3, inset -6px -6px 12px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.neumorphic-input:focus {
+  box-shadow: inset 3px 3px 6px #c5c9d3, inset -3px -3px 6px #ffffff;
+}
+
+/* Button */
+.neumorphic-button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: #e0e5ec;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.neumorphic-button:hover {
+  box-shadow: inset 3px 3px 6px #c5c9d3, inset -3px -3px 6px #ffffff;
+}
+
+/* Divider */
+.divider {
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #777;
 }

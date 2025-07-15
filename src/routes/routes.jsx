@@ -25,6 +25,7 @@ import { ContactsProvider } from "../hooks/ContactsContext";
 import ShowSingleBlog from "../Dashboard Children/Blog/ShowSingleBlog";
 import Projects from "../Dashboard Children/Project/Projects";
 import ProjectsForm from "../Dashboard Children/Project/ProjectsForm";
+import Users from "../Dashboard Children/Users/Users";
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +144,11 @@ export const router = createBrowserRouter([
         loader: () => axiosPublic.get("/contact").then((res) => res.data),
         element: <DashboardContacts></DashboardContacts>,
       },
+      {
+        path: "dashboard-users",
+        loader: () => axiosPublic.get("/users").then((res) => res.data),
+        element: <Users></Users>,
+      }
     ],
   },
 ]);

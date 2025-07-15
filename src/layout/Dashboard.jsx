@@ -132,6 +132,17 @@ const Dashboard = () => {
           </div>
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="dashboard-users"
+          className={({isActive}) => `${handleActiveClass({isActive})} transition-colors duration-200 hover:bg-violet-700 rounded-lg`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div className="flex items-center gap-2">
+            <div>Users</div> 
+          </div>
+        </NavLink>
+      </li>
       <li className="mt-auto">
         <button
           onClick={handleLogout}

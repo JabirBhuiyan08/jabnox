@@ -1,63 +1,68 @@
-import { useContext } from "react";
-import "./loginPage.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../Providers/AuthProvider";
-import Swal from "sweetalert2";
+import GoogleSignIn from "../Components/GoogleSignIn/GoogleSignIn";
+// import { useContext } from "react";
+// import { AuthContext } from "../Providers/AuthProvider";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import Swal from "sweetalert2";
 
 const LoginPage = () => {
-  const { signIn } = useContext(AuthContext);
-  const navigation = useNavigate();
-  const location = useLocation();
+  // const { signIn } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const username = form.username.value;
-    const password = form.password.value;
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const username = form.username.value;
+  //   const password = form.password.value;
 
-    signIn(username, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      Swal.fire({
-        title: "User login successfully",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-      });
-      form.reset();
-      navigation(location?.state?.from?.pathname || "");
-    });
-  };
+  //   signIn(username, password).then((result) => {
+  //     Swal.fire({
+  //       title: "Login Successful",
+  //       icon: "success",
+  //       timer: 1500,
+  //       showConfirmButton: false,
+  //     });
+  //     form.reset();
+  //     navigate(location?.state?.from?.pathname || "/");
+  //   });
+  // };
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div
-        className="neumorphic neumorphic-card text-black 
-  flex flex-col items-center justify-center 
-    "
+        className="bg-[#e0e5ec] rounded-2xl p-10 w-full max-w-md shadow-[9px_9px_20px_#a3b1c6,-9px_-9px_20px_#ffffff]
+        flex flex-col items-center"
       >
-        <h1 className="text-3xl font-bold mb-8">Login</h1>
-        <form onSubmit={handleLogin} className="card-body">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-8">Login</h2>
+
+        {/* <form onSubmit={handleLogin} className="w-full flex flex-col gap-4">
           <input
             type="text"
             name="username"
             placeholder="Username"
-            className="neumorphic neumorphic-input p-4 mb-4"
+            className="p-4 rounded-xl bg-[#e0e5ec] shadow-inner shadow-[inset_6px_6px_12px_#c5c9d3,inset_-6px_-6px_12px_#ffffff] focus:outline-none"
+            required
           />
 
           <input
             type="password"
             name="password"
             placeholder="Password"
-            className="neumorphic neumorphic-input p-4 mb-4"
+            className="p-4 rounded-xl bg-[#e0e5ec] shadow-inner shadow-[inset_6px_6px_12px_#c5c9d3,inset_-6px_-6px_12px_#ffffff] focus:outline-none"
+            required
           />
-          <button type="submit" className="neumorphic neumorphic-button p-4 mb-3">
+
+          <button
+            type="submit"
+            className="p-4 mt-2 bg-[#e0e5ec] rounded-xl font-medium shadow-[6px_6px_12px_#a3b1c6,-6px_-6px_12px_#ffffff] hover:shadow-inner transition"
+          >
             Login
           </button>
-        </form>
+        </form> */}
+
+        
+
+        <GoogleSignIn />
       </div>
     </div>
   );
