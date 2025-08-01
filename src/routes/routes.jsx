@@ -19,13 +19,14 @@ import Portfolios from "../Dashboard Children/Portfolio/Portfolios";
 import PortfolioForm from "../Dashboard Children/Portfolio/PortfolioForm";
 import BlogForm from "../Dashboard Children/Blog/BlogForm";
 import Blogs from "../Dashboard Children/Blog/Blogs";
-import DashboardContacts from "../Dashboard Children/Contacts/DashboardContacts";
 import axiosPublic from "../hooks/axiosPublic";
-import { ContactsProvider } from "../hooks/ContactsContext";
+import { axiosSecure } from "../hooks/axiosSecure";
 import ShowSingleBlog from "../Dashboard Children/Blog/ShowSingleBlog";
 import Projects from "../Dashboard Children/Project/Projects";
 import ProjectsForm from "../Dashboard Children/Project/ProjectsForm";
 import Users from "../Dashboard Children/Users/Users";
+import NewDashboardContact from "../Dashboard Children/Contacts/NewDashboardContact";
+import { NewContact, NewContactContext } from "../hooks/NewContactContext";
 
 export const router = createBrowserRouter([
   {
@@ -87,19 +88,18 @@ export const router = createBrowserRouter([
       },
       {
         path: "blogs/:id",
-        loader: ({params}) => axiosPublic.get(`/blogs/${params.id}`).then((res) => res.data),
+        loader: ({ params }) =>
+          axiosSecure.get(`/blogs/${params.id}`).then((res) => res.data),
         element: <ShowSingleBlog></ShowSingleBlog>,
       },
     ],
   },
   {
     path: "/dashboard",
-    loader: () => axiosPublic.get("/contact").then((res) => res.data),
+
     element: (
       <PrivateRoute>
-        <ContactsProvider>
           <Dashboard></Dashboard>
-        </ContactsProvider>
       </PrivateRoute>
     ),
     children: [
@@ -140,15 +140,17 @@ export const router = createBrowserRouter([
         element: <DashboardReviews></DashboardReviews>,
       },
       {
-        path: "dashboard-contacts",
-        loader: () => axiosPublic.get("/contact").then((res) => res.data),
-        element: <DashboardContacts></DashboardContacts>,
+        path: "new-dashboard-contact",
+        element: (
+          <NewContact>
+            <NewDashboardContact></NewDashboardContact>
+          </NewContact>
+        ),
       },
       {
         path: "dashboard-users",
-        loader: () => axiosPublic.get("/users").then((res) => res.data),
         element: <Users></Users>,
-      }
+      },
     ],
   },
 ]);

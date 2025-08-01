@@ -2,12 +2,15 @@ import React from "react";
 import img1 from "../assets/img1.jpg";
 import logo from "../assets/logo.png";
 import { Typewriter } from "react-simple-typewriter";
+import { Helmet } from "react-helmet-async";
 
 
 const Header = () => {
 
   return (
     <div className="flex flex-col-reverse  md:flex-row items-center justify-center md:justify-evenly text-center p-4 md:p-8 gap-4 md:gap-10">
+      <Helmet><title>JABNOX | Digital Services, Web Design & SEO Solutions</title></Helmet>
+      
       {/* Image on the Left */}
       <img
         src={img1}

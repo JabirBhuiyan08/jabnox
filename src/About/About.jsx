@@ -4,10 +4,25 @@ import { Link } from "react-router-dom";
 import Whatsapp from "../Components/Whatsapp";
 import ReviewsCarousel from "../Home/ReviewsCarousel";
 import Button from "../Home/Button";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   return (
     <div className="bg-gradient-to-b from-blue-900 to-gray-500 text-white py-16 px-6 lg:px-16">
+      <Helmet>
+        <title>JABNOX | About Us</title>
+        <meta
+          name="description"
+          content="At JABNOX, we are passionate about helping businesses thrive in the digital world. Founded with the vision to bridge the gap between creativity and technology, JABNOX delivers innovative and effective digital solutions tailored to meet the unique needs of each client.
+          Whether you're a startup looking to establish your online presence or an established brand aiming to scale your digital strategy, we bring the expertise, insight, and commitment necessary to achieve measurable results."
+        />
+        <meta
+          name="keywords"
+          content="jabnox, JABNOX digital services, jabnox about us, jabnox web design, jabnox SEO, jabnox branding, jabnox.com, digital marketing jabnox"
+        />
+      </Helmet>
+
+
       <div className="max-w-7xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
           About <span className="text-amber-400">JABNOX</span>

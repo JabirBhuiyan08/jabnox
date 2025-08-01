@@ -20,7 +20,7 @@ const GoogleSignIn = () => {
             }
             
             if (user) {
-              navigation("/dashboard");
+              navigation("/dashboard/projects");
             }
             console.log(user);
             Swal.fire({

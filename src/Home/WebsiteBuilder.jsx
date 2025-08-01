@@ -61,7 +61,7 @@ const WebsiteBuilder = () => {
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-bold">Designer</h1>
           <p className="text-gray-600 mt-2">
-            JABNOX.com creates professional logo designs, posters, online
+            jabnox.com creates professional logo designs, posters, online
             posters and <br />
             book covers with premium and unique designs.
           </p>
