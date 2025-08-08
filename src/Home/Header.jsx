@@ -9,7 +9,17 @@ const Header = () => {
 
   return (
     <div className="flex flex-col-reverse  md:flex-row items-center justify-center md:justify-evenly text-center p-4 md:p-8 gap-4 md:gap-10">
-      <Helmet><title>JABNOX | Digital Services, Web Design & SEO Solutions</title></Helmet>
+      <Helmet>
+              <title>JABNOX | Digital Services, Web Design & SEO Solutions</title>
+              <meta
+                name="description"
+                content="JABNOX offers expert digital services including custom web design, SEO, and branding solutions to help businesses grow online. Discover why JABNOX is your trusted digital partner."
+              />
+              <meta
+                name="keywords"
+                content="jabnox,JABNOX, Jabnox, JABNOX digital services, jabnox web design, jabnox SEO, jabnox branding, jabnox.com, digital marketing jabnox, Jabir Bhuiyan, Sabbir Md Nayan Khan"
+              />
+            </Helmet>
       
       {/* Image on the Left */}
       <img

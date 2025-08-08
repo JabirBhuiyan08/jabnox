@@ -5,6 +5,7 @@ const MapProject = ({ project, handleDelete }) => {
     _id,
     projectName,
     ownerName,
+    Email,
     shortDescription,
     projectDescription,
     tags,
@@ -75,6 +76,7 @@ const MapProject = ({ project, handleDelete }) => {
               </p>
             </div>
           )}
+          {Email}
 
           {projectDescription && (
             <div>

@@ -54,6 +54,17 @@ const ProjectsForm = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <input 
+                            type="text" 
+                            {...register("Email", { required: true })} 
+                            id="Email" 
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            required 
+                        />
+                    </div>
+
+                    <div>
                         <label htmlFor="shortDescription" className="block text-sm font-medium text-gray-700">Short Description*</label>
                         <textarea 
                             {...register("shortDescription", { required: true })} 
@@ -72,6 +83,16 @@ const ProjectsForm = () => {
                             rows="4"
                             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         ></textarea>
+                    </div>
+                    <div>
+                        <label htmlFor="projectPorgress" className="block text-sm font-medium text-gray-700">Project Porgress</label>
+                        <input 
+                            type="number" 
+                            {...register("projectPorgress")} 
+                            id="projectPorgress" 
+                            rows="4"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        ></input>
                     </div>
                 </div>
 

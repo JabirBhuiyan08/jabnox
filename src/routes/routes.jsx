@@ -27,6 +27,9 @@ import ProjectsForm from "../Dashboard Children/Project/ProjectsForm";
 import Users from "../Dashboard Children/Users/Users";
 import NewDashboardContact from "../Dashboard Children/Contacts/NewDashboardContact";
 import { NewContact, NewContactContext } from "../hooks/NewContactContext";
+import AdminRoute from "./AdminRoute";
+import DashboardHome from "../Dashboard Children/DashboardHome/DashboardHome";
+import NoteForm from "../Dashboard Children/Note For User/NoteForm";
 
 export const router = createBrowserRouter([
   {
@@ -96,13 +99,17 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-
     element: (
       <PrivateRoute>
-          <Dashboard></Dashboard>
+        <Dashboard></Dashboard>
+        
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: <DashboardHome></DashboardHome>
+      },
       {
         path: "dashboard-reviews",
         loader: () => axiosPublic.get("/reviews").then((res) => res.data),
@@ -113,44 +120,64 @@ export const router = createBrowserRouter([
         loader: () => axiosPublic.get("/portfolios").then((res) => res.data),
         element: <Portfolios></Portfolios>,
       },
-      {
-        path: "portfolio-form",
-        element: <PortfolioForm></PortfolioForm>,
-      },
-      {
-        path: "blog-form",
-        element: <BlogForm></BlogForm>,
-      },
+      
       {
         path: "blogs",
         loader: () => axiosPublic.get("/blogs").then((res) => res.data),
         element: <Blogs></Blogs>,
       },
-      {
-        path: "projects",
-        loader: () => axiosPublic.get("/projects").then((res) => res.data),
-        element: <Projects></Projects>,
-      },
-      {
-        path: "projects-form",
-        element: <ProjectsForm></ProjectsForm>,
-      },
-      {
+     
+       {
         path: "dashboard-reviews",
         element: <DashboardReviews></DashboardReviews>,
+      },
+
+      //admins only routes
+      {
+        path: "portfolio-form",
+        element: 
+        <AdminRoute>
+          <PortfolioForm></PortfolioForm>
+        </AdminRoute>
+        
+      },
+      {
+        path: "projects",
+        // loader: async() =>await axiosSecure.get("/projects").then((res) => res.data),
+        element: <AdminRoute><Projects></Projects></AdminRoute>,
+      },
+      {
+        path: "blog-form",
+        element: 
+        <AdminRoute>
+          <BlogForm></BlogForm>
+        </AdminRoute>,
+        
+      },
+     {
+        path: "projects-form",
+        element: <AdminRoute><ProjectsForm></ProjectsForm></AdminRoute>,
       },
       {
         path: "new-dashboard-contact",
         element: (
-          <NewContact>
-            <NewDashboardContact></NewDashboardContact>
-          </NewContact>
+          <AdminRoute>
+            <NewContact>
+              <NewDashboardContact></NewDashboardContact>
+            </NewContact>
+          </AdminRoute>
         ),
       },
       {
         path: "dashboard-users",
-        element: <Users></Users>,
+        element: <AdminRoute>
+          <Users></Users>
+        </AdminRoute>,
       },
+      {
+        path:"note-form",
+        element: <NoteForm></NoteForm>
+      }
     ],
   },
 ]);

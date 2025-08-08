@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+
+// import { useLoaderData } from "react-router-dom";
 import MapProject from "./MapProject";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/axiosSecure";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const loader = useLoaderData();
-  const axiosPublic = useAxiosPublic();
 
-const handleDelete = async (id) => {
-    // const confirmDelete = window.confirm(
-    //   "Are you sure you want to delete this project? This action cannot be undone."
-    // );
-    // if (!confirmDelete) return;
-    try {
-        const res = await axiosPublic.delete(`/projects/${id}`);
-        if (res.status === 200) {
-            setProjects(prevProjects => prevProjects.filter(project => project._id !== id));
-        } else {
-            alert("Failed to delete the project. Please try again.");
-        }
-    } catch (error) {
-        console.error("Error deleting project:", error);
-        alert("Something went wrong. Please check the console for details.");
-    }
-}
+  // const loader = useLoaderData();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (loader) {
-      setProjects(loader);
+  const {data: projectsData = [], refetch} = useQuery({
+    queryKey:["projects"],
+    queryFn: async()=>{
+      const res = await axiosSecure.get("/projects");
+      return res.data;
     }
-  }, [loader]);
+  })
+  const handleDelete = useMutation({
+    mutationFn: async (id) =>{
+      const res = await axiosSecure.delete(`/projects/${id}`);
+      return res.data;
+    },
+    onSuccess: () =>{
+      queryClient.invalidateQueries(["projects"]);
+      refetch();
+    },
+    onError: (error) => {
+      console.error("Error deleting project:", error);
+      alert("Failed to delete project. Please try again.");
+    } 
+  })
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -47,13 +47,13 @@ const handleDelete = async (id) => {
           <p className="text-sm font-medium text-gray-700">
             Total Projects:{" "}
             <span className="text-indigo-600 font-bold text-lg">
-              {projects.length}
+              {projectsData.length}
             </span>
           </p>
         </div>
       </div>
 
-      {projects.length === 0 ? (
+      {projectsData.length === 0 ? (
         /* Enhanced empty state */
         <div className="text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300">
           <svg
@@ -79,12 +79,12 @@ const handleDelete = async (id) => {
       ) : (
         /* Enhanced grid with subtle hover effects */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+          {projectsData.map((project) => (
             <div
               key={project._id}
               className="h-full transition-all duration-200 hover:-translate-y-1"
             >
-              <MapProject project={project} handleDelete={handleDelete}/>
+              <MapProject project={project} handleDelete={()=>{handleDelete.mutate(project._id)}}/>
             </div>
           ))}
         </div>

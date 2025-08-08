@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../hooks/axiosSecure";
 
 
 
 const DashboardReviews = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const datas = useLoaderData();
@@ -31,7 +31,7 @@ const DashboardReviews = () => {
   });
     if (!confirmDelete) return;
 
-   const response = await axiosPublic.delete(`/reviews/${id}`);
+   const response = await axiosSecure.delete(`/reviews/${id}`);
    console.log(id)
    if (response.status === 200) {
         Swal.fire({

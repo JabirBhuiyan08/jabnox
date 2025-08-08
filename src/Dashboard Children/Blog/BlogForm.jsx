@@ -1,16 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Form } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/axiosSecure";
 
 const BlogForm = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-const axiosPublic = useAxiosPublic();
+
+const axiosSecure = useAxiosSecure();
 
 
   const onSubmit = async (data) => {
     try{
-      const res = await  axiosPublic.post('/blogs', data);
+      const res = await  axiosSecure.post('/blogs', data);
         if(res.data.insertedId){
           alert('Blog added successfully');
         }
