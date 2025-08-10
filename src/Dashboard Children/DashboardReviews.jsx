@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../hooks/axiosSecure";
+import useAdmin from "../hooks/useAdmin";
 
 
 
@@ -10,6 +11,7 @@ const DashboardReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const datas = useLoaderData();
+  const [isAdmin] = useAdmin();
 
 
   useEffect(() => {
@@ -75,7 +77,12 @@ const DashboardReviews = () => {
                   {review.role}
                 </p>
               </div>
-              <button className="btn bg-violet-700 text-white mt-5" onClick={() => handleDelete(review._id)}>Delete</button>
+
+              {isAdmin && (
+                <button className="btn bg-violet-700 text-white mt-5" 
+              onClick={() => handleDelete(review._id)}>Delete</button>)
+              }
+
             </div>
           ))}
         </div>

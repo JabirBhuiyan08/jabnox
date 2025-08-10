@@ -3,11 +3,13 @@ import { useLoaderData, Link } from "react-router-dom";
 
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../hooks/axiosSecure";
+import useAdmin from "../../hooks/useAdmin";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const loader = useLoaderData();
   const axiosSecure = useAxiosSecure();
+  const [isAdmin] = useAdmin();
 
   useEffect(() => {
     setBlogs(loader);
@@ -111,13 +113,13 @@ const Blogs = () => {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <button
+                  {isAdmin && (<button
                     onClick={() => handleBlogDelete(blog._id)}
                     className="text-red-500 hover:text-red-700 p-1.5 rounded-full hover:bg-red-50 transition-colors"
                     aria-label="Delete blog"
                   >
                     <MdDelete className="w-5 h-5" />
-                  </button>
+                  </button>)}
                   <Link
                     target="_blank"
                     to={`/blogs/${blog._id}`}

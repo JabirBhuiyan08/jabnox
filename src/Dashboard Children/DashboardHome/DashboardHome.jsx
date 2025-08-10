@@ -16,11 +16,9 @@ const DashboardHome = () => {
       </h1>
       <div className="lg:flex lg:flex-row lg:justify-around mt-5 flex flex-col gap-10">
         <div className="">
-          <div className="text-center">My Projects</div>
           <UserProjects></UserProjects>
         </div>
         <div>
-          <div className="text-center">Note From Jabnox</div>
           <NoteFromJabnox></NoteFromJabnox>
         </div>
       </div>

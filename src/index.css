@@ -1,2 +1,38 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Override AwesomeButton secondary theme for Admin buttons */
+.admin-btn {
+  --button-secondary-color: #0899b3 !important;
+  --button-secondary-color-dark: #7a0014 !important;
+  --button-secondary-color-hover: #b4001e !important;
+  --button-secondary-color-active: #7a0014 !important;
+  --button-secondary-border: none !important;
+  --button-secondary-border-dark: none !important;
+}
+
+/* Custom Carmine secondary theme for AwesomeButton */
+.aws-btn.cartman-secondary {
+  --button-secondary-color: #ec052c;       /* Carmine main */
+  --button-secondary-color-dark: #fdf8f9; /* Dark Carmine */
+  --button-secondary-color-hover: #c90425;/* Hover Carmine */
+  --button-secondary-color-active: #bb0926;
+    /* This controls the text color */
+  --button-secondary-color-light: #ffffff; 
+}
+
+.swal2-premium-popup {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.swal2-premium-confirm-btn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5) !important;
+}
+
+.swal2-premium-cancel-btn {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+}

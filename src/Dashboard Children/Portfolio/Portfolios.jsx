@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import PortfolioData from "./PorfolioDatas";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/axiosSecure";
+import useAdmin from "../../hooks/useAdmin";
 
 const Portfolios = () => {
   const [portfolios, setPortfolios] = useState([]);
   const [loading, setLoading] = useState(true);
   const datas = useLoaderData();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const [isAdmin] = useAdmin();
 
   useEffect(() => {
     if (datas) {
@@ -23,7 +26,7 @@ const Portfolios = () => {
     // if (!confirmDelete) return;
 
     try {
-      const response = await axiosPublic.delete(`portfolios/${id}`);
+      const response = await axiosSecure.delete(`portfolios/${id}`);
 
       if (response.status === 200) {
         // Remove the deleted portfolio from state
@@ -51,7 +54,7 @@ const Portfolios = () => {
             key={portfolio._id}
             className="transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
           >
-            <PortfolioData portfolio={portfolio} handleDelete={handleDelete} />
+            <PortfolioData portfolio={portfolio} handleDelete={handleDelete} isAdmin={isAdmin}/>
           </div>
         ))}
     </div>

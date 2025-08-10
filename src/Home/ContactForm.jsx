@@ -20,17 +20,17 @@ const ContactForm = () => {
 
   return (
     <div>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white">
+      <h1 className="text-center text-3xl font-bold mb-4 ">
         Send us a message
       </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-md mx-auto p-6 bg-white rounded-2xl shadow-lg space-y-5"
+        className="max-w-md mx-auto p-6 rounded-2xl shadow-lg space-y-5"
       >
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium  mb-1"
           >
             Name:
           </label>
@@ -38,14 +38,14 @@ const ContactForm = () => {
             type="text"
             id="name"
             {...register("name")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             Email:
           </label>
@@ -53,14 +53,14 @@ const ContactForm = () => {
             type="email"
             id="email"
             {...register("email")}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
           <label
             htmlFor="message"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium mb-1"
           >
             Message:
           </label>
