@@ -81,10 +81,26 @@ const LoginPage = () => {
           </div>
         </div>
 
+          {/* Google Sign-In */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mb-6"
+          >
+            <div className="text-center flex flex-col justify-center items-center mt-8">
+              <p className="text-sm text-orange-400 font-medium mb-4">
+                Sign in with your organization account
+              </p>
+              <GoogleSignIn/>
+            </div>
+            
+          </motion.div>
+
         {/* Content Area */}
         <div className="p-8">
           {/* Benefits Section */}
-          <div className="mb-8 space-y-5">
+          <div className=" space-y-5">
             {[
               { icon: <FiShield className="text-blue-500 mt-1 flex-shrink-0" />, 
                 title: "Enterprise Security", 
@@ -114,20 +130,7 @@ const LoginPage = () => {
             ))}
           </div>
 
-          {/* Google Sign-In */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="mb-6"
-          >
-            <div className="text-center mb-4">
-              <p className="text-sm text-gray-500 font-medium">
-                Sign in with your organization account
-              </p>
-            </div>
-            <GoogleSignIn />
-          </motion.div>
+         
 
           {/* Help Section */}
           <motion.div

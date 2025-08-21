@@ -1,8 +1,8 @@
-
+import { FaEnvelope, FaFacebook, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import ContactForm from "../Home/ContactForm";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
-
   return (
     <div className="bg-white py-16 px-6 lg:px-16 text-black bg-gradient-to-b from-blue-900 to-gray-200">
       <div className="max-w-7xl mx-auto">
@@ -12,15 +12,15 @@ const Contact = () => {
             Contact <span className="text-amber-600">JABNOX</span>
           </h1>
           <p className="text-lg text-white max-w-2xl mx-auto ">
-            Have a question or want to work with us? Fill out the form below, and
-            we'll get back to you as soon as possible.
+            Have a question or want to work with us? Fill out the form below,
+            and we'll get back to you as soon as possible.
           </p>
         </div>
 
         {/* Contact Form and Info */}
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           {/* Contact Form */}
-          <ContactForm></ContactForm> 
+          <ContactForm></ContactForm>
 
           {/* Contact Information */}
           <div className="space-y-8">
@@ -28,23 +28,35 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">
                 Contact Information
               </h2>
-              <div className="space-y-4 text-gray-600">
-                <p>
-                  <span className="font-semibold">Email:</span>{" "}
-                  <a href="mailto:info@jabnox.com" className="hover:text-amber-600">
-                    info@jabnox.com
-                  </a>
-                </p>
-                <p>
-                  <span className="font-semibold">Phone:</span>{" "}
-                  <a href="tel:+1234567890" className="hover:text-amber-600">
-                    +1 (234) 567-890
-                  </a>
-                </p>
-                <p>
-                  <span className="font-semibold">Address:</span> 123 Business
-                  Street, City, Country
-                </p>
+              <div className="space-y-4 text-gray-600 flex">
+                <Link
+                  target="_blank"
+                  to={"https://www.facebook.com/jabnoxdotcom?mibextid=ZbWKwL"}
+                >
+                  <FaFacebook
+                    size={40}
+                    className="text-blue-600 mr-2 "
+                  ></FaFacebook>
+                </Link>
+                <Link target="_blank" to={"t.me/Jabnoxdotcom"}>
+                  <FaTelegram
+                    size={40}
+                    className="text-blue-400 mr-2 "
+                  ></FaTelegram>
+                </Link>
+                <Link target="_blank" to={"https://wa.me/+8801749424565"}>
+                  <FaWhatsapp
+                    size={40}
+                    className="text-green-600 mr-2 "
+                  ></FaWhatsapp>
+                </Link>
+                <a
+                  href="mailto:info.jabnox@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaEnvelope size={40} className="text-blue-400 mr-2" />
+                </a>
               </div>
             </div>
 

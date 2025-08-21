@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>JABNOX | Digital Services, Web Design & SEO Solutions</title>
+        <title>JABNOX.COM</title>
         <meta
           name="description"
           content="JABNOX offers expert digital services including custom web design, SEO, and branding solutions to help businesses grow online. Discover why JABNOX is your trusted digital partner."

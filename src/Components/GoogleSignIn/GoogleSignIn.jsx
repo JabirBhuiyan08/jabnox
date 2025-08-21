@@ -151,14 +151,14 @@ const GoogleSignIn = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-80 mt-4 shadow-xl">
       <motion.button
         onClick={handleGoogleSignIn}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.98 }}
         className="w-full flex items-center justify-center gap-3 px-6 py-3.5
         rounded-xl border border-gray-200 dark:border-gray-600
-        bg-white dark:bg-gray-800 hover:bg-gray-50/90 dark:hover:bg-gray-700/90
+        bg-blue-600 dark:bg-gray-800 hover:bg-blue-500/90 dark:hover:bg-gray-700/90
         transition-all duration-200 ease-out
         shadow-sm hover:shadow-md
         text-gray-800 dark:text-gray-100 font-medium tracking-wide
@@ -174,10 +174,10 @@ const GoogleSignIn = () => {
             transition: { duration: 2, repeat: Infinity }
           }}
         >
-          <FaGoogle className="text-[#4285F4] text-xl" />
+          <FaGoogle className="text-[#4285F4] text-xl bg-white w-10 h-10 p-2 rounded-full " />
         </motion.div>
         
-        <span className="relative">
+        <span className="relative text-white">
           Sign in with Google
           <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 
             group-hover:w-full transition-all duration-300 ease-out" />

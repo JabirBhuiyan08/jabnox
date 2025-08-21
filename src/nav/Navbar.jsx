@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FiArrowDown, FiMenu, FiX } from "react-icons/fi"; // Icons for mobile menu
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const Navbar = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const { user } = useAuth();
 
   let servicesTimeout; // For hover delay on desktop
   let aboutTimeout; // For hover delay on desktop
@@ -80,6 +82,10 @@ const Navbar = () => {
             Contact
           </Link>
 
+          <Link to="/excel">
+            Excel File
+          </Link>
+
           {/* Services Dropdown - Desktop */}
           <div
             className="relative cursor-pointer hover:text-cyan-400"
@@ -123,7 +129,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard">{user ? "Dashboard" : "Login"}</Link>
         </ul>
       </div>
 
@@ -183,6 +189,9 @@ const Navbar = () => {
           >
             Contact
           </Link>
+
+
+          <Link to="/excel">Excel File</Link>
 
           {/* Services in Mobile Menu */}
           <div

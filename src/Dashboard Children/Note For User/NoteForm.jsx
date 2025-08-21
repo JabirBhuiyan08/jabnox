@@ -9,8 +9,6 @@ const NoteForm = () => {
     handleSubmit,
     reset,
   } = useForm();
-
-
   const axiosSecure = useAxiosSecure();
 
   const mutation = useMutation({

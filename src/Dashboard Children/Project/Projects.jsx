@@ -79,7 +79,7 @@ const Projects = () => {
       ) : (
         /* Enhanced grid with subtle hover effects */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectsData.map((project) => (
+          {projectsData.slice().reverse().map((project) => (
             <div
               key={project._id}
               className="h-full transition-all duration-200 hover:-translate-y-1"

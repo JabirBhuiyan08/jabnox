@@ -30,6 +30,11 @@ import { NewContact, NewContactContext } from "../hooks/NewContactContext";
 import AdminRoute from "./AdminRoute";
 import DashboardHome from "../Dashboard Children/DashboardHome/DashboardHome";
 import NoteForm from "../Dashboard Children/Note For User/NoteForm";
+import ExcelFile from "../Excel/ExcelFile";
+import ExcelDetails from "../Excel/ExcelDetails";
+import ReportFrom from "../Dashboard Children/Report a Problem/ReportFrom";
+import ApplyNewService from "../Dashboard Children/ApplyNewService/ApplyNewService";
+import PendingApplication from "../Dashboard Children/PendingApplication/PendingApplication";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +69,14 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "excel",
+        element: <ExcelFile></ExcelFile>
+      },
+      {
+        path: "excelDetails",
+        element: <ExcelDetails></ExcelDetails>
       },
       {
         path: "login",
@@ -109,6 +122,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: "report-problem",
+        element: <ReportFrom></ReportFrom>
+      },
+      {
+        path: "apply-new-service",
+        element: <ApplyNewService></ApplyNewService>
+      },
+      {
+        path: "pending-application",
+        element: <PendingApplication></PendingApplication>
       },
       {
         path: "dashboard-reviews",
