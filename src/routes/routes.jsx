@@ -35,6 +35,7 @@ import ExcelDetails from "../Excel/ExcelDetails";
 import ReportFrom from "../Dashboard Children/Report a Problem/ReportFrom";
 import ApplyNewService from "../Dashboard Children/ApplyNewService/ApplyNewService";
 import PendingApplication from "../Dashboard Children/PendingApplication/PendingApplication";
+import WebsiteTemplate from "../Dashboard Children/Buy Website Template/WebsiteTemplate";
 
 export const router = createBrowserRouter([
   {
@@ -134,6 +135,10 @@ export const router = createBrowserRouter([
       {
         path: "pending-application",
         element: <PendingApplication></PendingApplication>
+      },
+      {
+        path: "website-template",
+        element: <WebsiteTemplate></WebsiteTemplate>
       },
       {
         path: "dashboard-reviews",

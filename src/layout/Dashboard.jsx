@@ -175,7 +175,7 @@ const Dashboard = () => {
                     <span className="mr-2">⏳</span> Pending Application
                   </NavLink>
                   <NavLink
-                    to="personal-website"
+                    to="website-template"
                     onClick={() => setIsMenuOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center px-3 py-2 rounded-md text-sm ${handleActiveClass(
@@ -183,7 +183,7 @@ const Dashboard = () => {
                       )}`
                     }
                   >
-                    <span className="mr-2">🌐</span> Create Personal Website
+                    <span className="mr-2">🌐</span>Buy Website Template
                   </NavLink>
                   <NavLink
                     to="projects-preview"
