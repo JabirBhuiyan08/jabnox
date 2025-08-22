@@ -36,6 +36,7 @@ import ReportFrom from "../Dashboard Children/Report a Problem/ReportFrom";
 import ApplyNewService from "../Dashboard Children/ApplyNewService/ApplyNewService";
 import PendingApplication from "../Dashboard Children/PendingApplication/PendingApplication";
 import WebsiteTemplate from "../Dashboard Children/Buy Website Template/WebsiteTemplate";
+import UploadService from "../Dashboard Children/Upload Service/UploadService";
 
 export const router = createBrowserRouter([
   {
@@ -203,6 +204,10 @@ export const router = createBrowserRouter([
         element: <AdminRoute>
           <Users></Users>
         </AdminRoute>,
+      },
+      {
+        path: "upload-service",
+        element: <UploadService></UploadService>
       },
       {
         path:"note-form",

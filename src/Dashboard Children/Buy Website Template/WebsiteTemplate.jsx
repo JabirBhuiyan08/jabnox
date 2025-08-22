@@ -2,7 +2,7 @@ import logo from "../../assets/LogoDesign/logo1.jpg";
 
 const WebsiteTemplate = () => {
   return (
-    <div className="px-5 py-10 min-h-screen">
+    <div className="px-5 py-10 min-h-screen text-black">
       <h1 className="text-4xl font-bold text-center mb-10">
         Choose Your Website Template
       </h1>

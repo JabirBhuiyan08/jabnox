@@ -186,7 +186,7 @@ const Dashboard = () => {
                     <span className="mr-2">🌐</span>Buy Website Template
                   </NavLink>
                   <NavLink
-                    to="projects-preview"
+                    to="portfolios"
                     onClick={() => setIsMenuOpen(false)}
                     className={({ isActive }) =>
                       `flex items-center px-3 py-2 rounded-md text-sm ${handleActiveClass(
@@ -383,6 +383,17 @@ const Dashboard = () => {
                         }
                       >
                         <span className="mr-2">🏢</span> Owners Project Upload
+                      </NavLink>
+                      <NavLink
+                        to="upload-service"
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `flex items-center px-3 py-2 rounded-md text-sm ${handleActiveClass(
+                            { isActive }
+                          )}`
+                        }
+                      >
+                        <span className="mr-2">😊</span> Upload Service
                       </NavLink>
                       <NavLink
                         to="dashboard-users"
