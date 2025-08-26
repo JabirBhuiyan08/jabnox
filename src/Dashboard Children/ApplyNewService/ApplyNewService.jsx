@@ -1,17 +1,36 @@
 import { FcCustomerSupport } from "react-icons/fc";
 import { FaStar, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/axiosSecure";
+import useAdmin from "../../hooks/useAdmin";
+import { createRoot } from "react-dom/client";
+import ApplyForm from "./ApplyForm";
 
 const ApplyNewService = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const [isAdmin] = useAdmin();
 
   const { data: services = [], isLoading } = useQuery({
     queryKey: ["service"],
     queryFn: async () => {
       const res = await axiosPublic.get("/service");
       return res.data;
+    },
+  });
+
+  const handleServiceDelete = useMutation({
+    mutationFn: async (id) => {
+      const res = await axiosSecure.delete(`/service/${id}`);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      if (data.deletedCount > 0) {
+        queryClient.invalidateQueries(["services"]);
+      }
     },
   });
 
@@ -22,100 +41,45 @@ const ApplyNewService = () => {
   const applyNewService = (service) => {
     Swal.fire({
       title: `Apply for ${service.name}`,
-      html: `
-      <div style="font-family: 'Segoe UI', sans-serif; color:#111;">
+      html: `<div id="react-swal-form"></div>`, // placeholder
+      showConfirmButton: false, // React form handles submit
+      didOpen: () => {
+        const container = document.getElementById("react-swal-form");
+        const root = createRoot(container);
 
-  <!-- Plan Selection -->
-  <h3 style="font-weight:700; font-size:1.2rem; margin-bottom:15px; text-align:center; color:#2563eb;">
-    💎 Choose Your Plan
-  </h3>
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:25px;">
-
-  <label style="padding:15px; border:2px solid #e5e7eb; border-radius:14px; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px;">
-    <input type="radio" name="plan" value="${service.BasicPrice}" checked style="margin-bottom:6px;" />
-    <div style="font-size:1rem; font-weight:600; color:#2563eb;">Basic</div>
-    <div style="font-size:1.1rem; font-weight:700;">${service.BasicPrice}</div>
-  </label>
-
-  <label style="padding:15px; border:2px solid #e5e7eb; border-radius:14px; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px;">
-    <input type="radio" name="plan" value="${service.StandardPrice}" style="margin-bottom:6px;" />
-    <div style="font-size:1rem; font-weight:600; color:#2563eb;">Standard ⭐</div>
-    <div style="font-size:1.1rem; font-weight:700;">${service.StandardPrice}</div>
-  </label>
-
-  <label style="padding:15px; border:2px solid #e5e7eb; border-radius:14px; cursor:pointer; transition:0.3s; display:flex; flex-direction:column; align-items:center; gap:6px;">
-    <input type="radio" name="plan" value="${service.PremiumPrice}" style="margin-bottom:6px;" />
-    <div style="font-size:1rem; font-weight:600; color:#2563eb;">Premium 🚀</div>
-    <div style="font-size:1.1rem; font-weight:700;">${service.PremiumPrice}</div>
-  </label>
-
-</div>
-
-
-  <!-- User Details -->
-  <h3 style="font-weight:700; font-size:1.1rem; margin-bottom:12px; text-align:center; color:#2563eb;">
-    📝 Your Details
-  </h3>
-  <div style="display:flex; flex-direction:column; gap:12px;">
-    <input id="swal-name" class="swal2-input" placeholder="Your Name"
-           style="border-radius:10px; border:1px solid #cbd5e1; padding:12px; font-size:0.95rem; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05);" />
-    <input id="swal-email" type="email" class="swal2-input" placeholder="Your Email"
-           style="border-radius:10px; border:1px solid #cbd5e1; padding:12px; font-size:0.95rem; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05);" />
-    <textarea id="swal-note" class="swal2-textarea" placeholder="Extra Notes..."
-              style="border-radius:10px; border:1px solid #cbd5e1; padding:12px; font-size:0.95rem; min-height:90px; box-shadow:inset 0 1px 3px rgba(0,0,0,0.05);"></textarea>
-  </div>
-</div>
-
-
-    `,
-      focusConfirm: false,
-      showCancelButton: true,
-      confirmButtonText: "Submit Application",
-      preConfirm: () => {
-        const selectedPlan = document.querySelector(
-          "input[name='plan']:checked"
-        )?.value;
-        const name = document.getElementById("swal-name")?.value;
-        const email = document.getElementById("swal-email")?.value;
-        const note = document.getElementById("swal-note")?.value;
-
-        if (!name || !email) {
-          Swal.showValidationMessage("Please fill out Name and Email!");
-          return false;
-        }
-
-        return { selectedPlan, name, email, note };
+        root.render(
+          <ApplyForm
+            service={service}
+            onSubmit={(data) => {
+              Swal.fire({
+                icon: "success",
+                title: "Application Submitted 🎉",
+                html: `
+                <p><strong>Service:</strong> ${service.name}</p>
+                <p><strong>Plan:</strong> ${data.plan}</p>
+                <p><strong>Name:</strong> ${data.name}</p>
+                <p><strong>Email:</strong> ${data.email}</p>
+                <p><strong>Note:</strong> ${data.note || "N/A"}</p>
+              `,
+              });
+            }}
+          />
+        );
       },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          icon: "success",
-          title: "Application Submitted 🎉",
-          html: `
-          <p><strong>Service:</strong> ${service.name}</p>
-          <p><strong>Plan:</strong> ${result.value.selectedPlan}</p>
-          <p><strong>Name:</strong> ${result.value.name}</p>
-          <p><strong>Email:</strong> ${result.value.email}</p>
-          <p><strong>Note:</strong> ${result.value.note || "N/A"}</p>
-        `,
-        });
-
-        // 👉 Here you can send `result.value` to your backend via Axios/Fetch
-      }
     });
   };
 
-  // view Details
-
   const viewDetails = (service) => {
     Swal.fire({
-      title: "Details",
+      title: service.name,
       html: `
-      <p><strong>Service:</strong> ${service.name}</p>
-      
-    `,
-      confirmButtonText: "Close",
-    });
+        <p><strong>Basic:</strong> ${service.BasicPrice}</p>
+        <p><strong>Standard:</strong> ${service.StandardPrice}</p>
+        <p><strong>Premium:</strong> ${service.PremiumPrice}</p>
+        <p><strong>Details:</strong> ${service.details}</p>
+      `,
+      icon: "question",
+    })
   };
 
   return (
@@ -135,6 +99,15 @@ const ApplyNewService = () => {
             key={service.id}
             className="relative bg-white shadow-xl rounded-2xl p-6 flex flex-col justify-between border hover:scale-105 transform transition duration-300"
           >
+            {isAdmin && (
+              <button
+                className="btn bg-violet-700 text-white mt-5"
+                onClick={() => handleServiceDelete.mutate(service._id)}
+              >
+                Delete
+              </button>
+            )}
+
             {/* Badge */}
             <span className="absolute top-3 right-3 bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow">
               {service.badge}
