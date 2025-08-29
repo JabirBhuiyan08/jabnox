@@ -8,6 +8,7 @@ import useAdmin from "../../hooks/useAdmin";
 import { createRoot } from "react-dom/client";
 import ApplyForm from "./ApplyForm";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const ApplyNewService = () => {
   const { user } = useAuth();
@@ -216,13 +217,13 @@ const ApplyNewService = () => {
                 View Details
               </button>
 
-              <button className="w-full bg-green-500 text-white rounded-2xl px-4 py-3 flex items-center justify-center gap-2 font-semibold hover:bg-green-600 transition transform hover:-translate-y-1">
-                <FaWhatsapp /> WhatsApp
-              </button>
+              <Link to={`https://wa.me/+8801749424565`}>
+                <button className="w-full bg-green-500 text-white rounded-2xl px-4 py-3 flex items-center justify-center gap-2 font-semibold hover:bg-green-600 transition transform hover:-translate-y-1">
+                  <FaWhatsapp /> WhatsApp
+                </button>
+              </Link>
 
-              <button className="w-full bg-gray-700 text-white rounded-2xl px-4 py-3 flex items-center justify-center gap-2 font-semibold hover:bg-gray-800 transition transform hover:-translate-y-1">
-                <FaEnvelope /> Email
-              </button>
+             
             </div>
           </div>
         ))}

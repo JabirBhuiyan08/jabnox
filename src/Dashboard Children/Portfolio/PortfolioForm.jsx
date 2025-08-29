@@ -18,129 +18,166 @@ const PortfolioForm = () => {
     reset();
   };
   return (
-    <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <h1 className="text-2xl font-bold mb-4">Portfolio Form</h1>
-          <p className="mb-4">Add your portfolio details.</p>
-          <div>
-            <label className="block mb-2">1. Portfolio Name</label>
-            <input
-              {...register("portfolioName")}
-              type="text"
-              name="portfolioName"
-              placeholder="Enter portfolio name"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">
-              4. Portfolio Link (Website, GitHub, etc.)
-            </label>
-            <input
-              {...register("portfolioLink")}
-              type="text"
-              name="portfolioLink"
-              placeholder="Portfolio Link"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">5. Portfolio Owner Name</label>
-            <input
-              {...register("portfolioOwnerName")}
-              type="text"
-              name="portfolioOwnerName"
-              placeholder="Owner Name"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">6. Technologies Used</label>
-            <input
-              {...register("technologiesUsed")}
-              type="text"
-              name="technologiesUsed"
-              placeholder="Technologies Used"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">
-              7. Project Category (e.g., Web App, Mobile App, Design, etc.)
-            </label>
-            <input
-              {...register("projectCategory")}
-              type="text"
-              name="projectCategory"
-              placeholder="Project Category"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">8. Completion Date</label>
-            <input
-              {...register("completionDate")}
-              type="text"
-              name="completionDate"
-              placeholder="Completion Date"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">9. Client Name (Optional)</label>
-            <input
-              {...register("portfolioClientName")}
-              type="text"
-              name="portfolioClientName"
-              placeholder="Client Name (Optional)"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">2. Description</label>
-            <input
-              {...register("portfolioDescription")}
-              type="text"
-              name="portfolioDescription"
-              placeholder="Portfolio Description"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">3. Upload Portfolio Image</label>
-            <input
-              {...register("portfolioImage")}
-              type="file"
-              name="portfolioImage"
-              className="block w-full text-sm text-black file:mr-4 file:py-2 file:px-4
-               file:rounded-md file:border-0
-               file:text-sm file:font-semibold
-               file:bg-violet-700 file:text-white
-               hover:file:bg-violet-800
-               cursor-pointer bg-transparent input input-bordered mb-4"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">
-              10. Additional Notes (Optional)
-            </label>
-            <input
-              {...register("portfolioNotes")}
-              type="text"
-              name="portfolioNotes"
-              placeholder="Additional Notes"
-              className="input input-bordered w-full mb-4"
-            />
-          </div>
-          <div className="flex justify-end">
-            <button type="submit" className="btn btn-primary">
-              Submit Portfolio
-            </button>
-          </div>
-        </div>
-      </Form>
+    <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-8 text-black">
+  <Form onSubmit={handleSubmit(onSubmit)}>
+    {/* Header */}
+    <div className="mb-8 text-center">
+      <h1 className="text-3xl font-bold text-gray-800">Portfolio Form</h1>
+      <p className="text-gray-500 mt-2">Add your portfolio details below.</p>
     </div>
+
+    <div className="space-y-6">
+      {/* Portfolio Name */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Portfolio Name
+        </label>
+        <input
+          {...register("portfolioName")}
+          type="text"
+          placeholder="Enter portfolio name"
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Description */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Description
+        </label>
+        <textarea
+          {...register("portfolioDescription")}
+          placeholder="Brief description of the project"
+          rows="3"
+          className="w-full textarea textarea-bordered text-black"
+        />
+      </div>
+
+      {/* Portfolio Image */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Upload Portfolio Image
+        </label>
+        <input
+          {...register("portfolioImage")}
+          type="file"
+          className="block w-full text-sm text-black 
+                     file:mr-4 file:py-2 file:px-4
+                     file:rounded-md file:border-0
+                     file:text-sm file:font-semibold
+                     file:bg-violet-700 file:text-white
+                     hover:file:bg-violet-800
+                     cursor-pointer bg-transparent border border-gray-300 rounded-md"
+        />
+      </div>
+
+      {/* Portfolio Link */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Portfolio Link (Website, GitHub, etc.)
+        </label>
+        <input
+          {...register("portfolioLink")}
+          type="url"
+          placeholder="https://example.com"
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Owner Name */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Owner Name
+        </label>
+        <input
+          {...register("portfolioOwnerName")}
+          type="text"
+          placeholder="Owner name"
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Technologies Used */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Technologies Used
+        </label>
+        <input
+          {...register("technologiesUsed")}
+          type="text"
+          placeholder="React, Node.js, Tailwind, etc."
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Project Category */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Project Category
+        </label>
+        <select
+          {...register("projectCategory")}
+          className="w-full select select-bordered text-black"
+        >
+          <option value="">Select a category</option>
+          <option value="web">Web App</option>
+          <option value="mobile">Mobile App</option>
+          <option value="design">Design</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      {/* Completion Date */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Completion Date
+        </label>
+        <input
+          {...register("completionDate")}
+          type="date"
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Client Name */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Client Name (Optional)
+        </label>
+        <input
+          {...register("portfolioClientName")}
+          type="text"
+          placeholder="Client name"
+          className="w-full input input-bordered text-black"
+        />
+      </div>
+
+      {/* Additional Notes */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Additional Notes (Optional)
+        </label>
+        <textarea
+          {...register("portfolioNotes")}
+          placeholder="Any extra information about this project"
+          rows="3"
+          className="w-full textarea textarea-bordered text-black"
+        />
+      </div>
+    </div>
+
+    {/* Submit Button */}
+    <div className="mt-8 flex justify-end">
+      <button
+        type="submit"
+        className="btn btn-primary px-8 py-2 font-semibold"
+      >
+        Submit Portfolio
+      </button>
+    </div>
+  </Form>
+</div>
+
   );
 };
 

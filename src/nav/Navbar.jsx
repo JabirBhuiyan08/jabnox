@@ -8,12 +8,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const [isMoreMobileOpen, setIsMoreMobileOpen] = useState(false);
   const { user } = useAuth();
 
   let servicesTimeout; // For hover delay on desktop
   let aboutTimeout; // For hover delay on desktop
+  let moreTimeout; // For hover delay on desktop
 
   return (
     <nav className="text-white bg-gray-900/90 p-4 md:px-16 lg:px-32 fixed top-0 left-0 w-full z-50">
@@ -36,54 +39,6 @@ const Navbar = () => {
         <ul className="hidden md:flex space-x-8 text-lg font-semibold">
           <Link to="/" className="hover:text-cyan-400">
             Home
-          </Link>
-
-          {/* About us Dropdown - Desktop */}
-          <div
-            className="relative cursor-pointer hover:text-cyan-400 "
-            onMouseEnter={() => {
-              clearTimeout(aboutTimeout);
-              setIsAboutOpen(true);
-            }}
-            onMouseLeave={() => {
-              aboutTimeout = setTimeout(() => setIsAboutOpen(false), 300);
-            }}
-          >
-            <div className="flex items-center gap-1">
-              About us <FiArrowDown />
-            </div>
-            {isAboutOpen && (
-              <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
-                <Link to="/about" className="block px-4 py-2 hover:bg-gray-700">
-                  About us{" "}
-                </Link>
-                <Link
-                  to="/reviews"
-                  className="block px-4 py-2 hover:bg-gray-700"
-                >
-                  Reviews
-                </Link>
-                <Link
-                  to="/review-form"
-                  className="block px-4 py-2 hover:bg-gray-700"
-                >
-                  Review Us
-                </Link>
-                <Link
-                  to="/our-profile"
-                  className="block px-4 py-2 hover:bg-gray-700"
-                >
-                  Our Profile
-                </Link>
-              </div>
-            )}
-          </div>
-          <Link to="/contact" className="hover:text-cyan-400">
-            Contact
-          </Link>
-
-          <Link to="/excel">
-            Excel File
           </Link>
 
           {/* Services Dropdown - Desktop */}
@@ -129,6 +84,79 @@ const Navbar = () => {
               </div>
             )}
           </div>
+
+          {/* More Dropdown - Desktop */}
+          <div
+            className="relative cursor-pointer hover:text-cyan-400 "
+            onMouseEnter={() => {
+              clearTimeout(moreTimeout);
+              setIsMoreOpen(true);
+            }}
+            onMouseLeave={() => {
+              moreTimeout = setTimeout(() => setIsMoreOpen(false), 300);
+            }}
+          >
+            <Link className="flex items-center gap-1">
+              More <FiArrowDown />
+            </Link>
+            {isMoreOpen && (
+              <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+                <Link
+                  to="/contact"
+                  className="block px-4 py-2 hover:bg-gray-700"
+                >
+                  Contact
+                </Link>
+                <Link to="/excel" className="block px-4 py-2 hover:bg-gray-700">
+                  Excel File
+                </Link>
+                {/* About us Dropdown - Desktop */}
+                <div
+                  className="relative cursor-pointer hover:text-cyan-400 block px-4 py-2 hover:bg-gray-700"
+                  onMouseEnter={() => {
+                    clearTimeout(aboutTimeout);
+                    setIsAboutOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    aboutTimeout = setTimeout(() => setIsAboutOpen(false), 300);
+                  }}
+                >
+                  <div className="flex items-center gap-1">
+                    About us <FiArrowDown />
+                  </div>
+                  {isAboutOpen && (
+                    <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+                      <Link
+                        to="/about"
+                        className="block px-4 py-2 hover:bg-gray-700"
+                      >
+                        About us{" "}
+                      </Link>
+                      <Link
+                        to="/reviews"
+                        className="block px-4 py-2 hover:bg-gray-700"
+                      >
+                        Reviews
+                      </Link>
+                      <Link
+                        to="/review-form"
+                        className="block px-4 py-2 hover:bg-gray-700"
+                      >
+                        Review Us
+                      </Link>
+                      <Link
+                        to="/our-profile"
+                        className="block px-4 py-2 hover:bg-gray-700"
+                      >
+                        Our Profile
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
           <Link to="/dashboard">{user ? "Dashboard" : "Login"}</Link>
         </ul>
       </div>
@@ -143,60 +171,75 @@ const Navbar = () => {
           >
             Home
           </Link>
-          {/* About us in Mobile Menu */}
+
+          {/* More Dropdown - Mobile */}
           <div
             className="cursor-pointer hover:text-cyan-400"
-            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+            onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
           >
-            About us {isMobileServicesOpen ? "▲" : "▼"}
+            More {isMoreMobileOpen ? "▲" : "▼"}
           </div>
-          {isMobileServicesOpen && (
+          {isMoreMobileOpen && (
             <div className="bg-gray-700/90 rounded-lg text-white mt-2">
               <Link
-                to="/about"
+                to="/contact"
                 className="block px-4 py-2 hover:bg-gray-600"
                 onClick={() => setIsOpen(false)}
               >
-                About us
+                Contact
               </Link>
-              <Link
-                to="/reviews"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
+              <Link to="/excel" className="block px-4 py-2 hover:bg-gray-600"
+                onClick={() => setIsOpen(false)}>Excel File</Link>
+
+              {/* About us in Mobile Menu */}
+              <div
+                className="cursor-pointer hover:text-cyan-400 block px-4 py-2 hover:bg-gray-600"
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
               >
-                Reviews
-              </Link>
-              <Link
-                to="/review-form"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
-              >
-                Review Us
-              </Link>
-              <Link
-                to="/our-profile"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
-              >
-                Our Profile
-              </Link>
+                About us {isMobileServicesOpen ? "▲" : "▼"}
+              </div>
+              {/* About us Dropdown - Mobile */}
+              {isMobileServicesOpen && (
+                <div className="bg-gray-700/90 rounded-lg text-white mt-2">
+                  <Link
+                    to="/about"
+                    className="block px-4 py-2 hover:bg-gray-600"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    About us
+                  </Link>
+                  <Link
+                    to="/reviews"
+                    className="block px-4 py-2 hover:bg-gray-600"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Reviews
+                  </Link>
+                  <Link
+                    to="/review-form"
+                    className="block px-4 py-2 hover:bg-gray-600"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Review Us
+                  </Link>
+                  <Link
+                    to="/our-profile"
+                    className="block px-4 py-2 hover:bg-gray-600"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Our Profile
+                  </Link>
+                </div>
+              )}
             </div>
           )}
-          <Link
-            to="/contact"
-            className="hover:text-cyan-400"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
 
-
-          <Link to="/excel">Excel File</Link>
+          
 
           {/* Services in Mobile Menu */}
           <div
             className="cursor-pointer hover:text-cyan-400"
-            onClick={() => setIsMobileAboutOpen(!isMobileServicesOpen)}
+            onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
           >
             Services {isMobileAboutOpen ? "▲" : "▼"}
           </div>
