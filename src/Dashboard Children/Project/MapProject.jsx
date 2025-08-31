@@ -37,28 +37,29 @@ const MapProject = ({ project, handleDelete }) => {
         </div>
 
         {ownerName && (
-
-        <div className="mt-2 flex items-center justify-between">
-          <div className="mt-2 flex items-center text-gray-600">
-            <svg
-              className="w-4 h-4 mr-1.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="text-sm">{ownerName}</span>
-          </div>
-          <div>
-            <button onClick={()=>handleDelete(_id)}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
-            <MdDelete></MdDelete>
-            </button>
-          </div>
+          <div className="mt-2 flex items-center justify-between">
+            <div className="mt-2 flex items-center text-gray-600">
+              <svg
+                className="w-4 h-4 mr-1.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-sm">{ownerName}</span>
+            </div>
+            <div>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+              >
+                <MdDelete></MdDelete>
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -149,10 +150,12 @@ const MapProject = ({ project, handleDelete }) => {
           <h3 className="text-sm font-medium text-gray-700 mb-2">
             Attachments
           </h3>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-            <div className="flex items-center p-2 bg-gray-50 rounded">
+            {/* Project Image */}
+            <div className="flex items-center p-3 bg-gray-50 rounded border border-gray-200 hover:shadow-sm transition">
               <svg
-                className="w-5 h-5 mr-2 text-gray-500 flex-shrink-0"
+                className="w-6 h-6 mr-3 text-blue-500 flex-shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -162,19 +165,20 @@ const MapProject = ({ project, handleDelete }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              <div>
-                <p className="font-medium text-gray-700">Project Image</p>
-                <p className="text-gray-500 text-xs">
-                  {projectImage && Object.keys(projectImage).length > 0
-                    ? "Uploaded"
-                    : "Not uploaded"}
-                </p>
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  src={projectImage}
+                  alt="Project"
+                  className="w-14 h-14 object-cover rounded border"
+                />
+                <span className="text-gray-600 truncate">Project Image</span>
               </div>
             </div>
 
-            <div className="flex items-center p-2 bg-gray-50 rounded">
+            {/* Certificate */}
+            <div className="flex items-center p-3 bg-gray-50 rounded border border-gray-200 hover:shadow-sm transition">
               <svg
-                className="w-5 h-5 mr-2 text-gray-500 flex-shrink-0"
+                className="w-6 h-6 mr-3 text-green-500 flex-shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -184,17 +188,18 @@ const MapProject = ({ project, handleDelete }) => {
                   clipRule="evenodd"
                 />
               </svg>
-              <div>
-                <p className="font-medium text-gray-700">Certificate</p>
-                <p className="text-gray-500 text-xs">
-                  {certificate && Object.keys(certificate).length > 0
-                    ? "Uploaded"
-                    : "Not uploaded"}
-                </p>
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  src={certificate}
+                  alt="Certificate"
+                  className="w-14 h-14 object-cover rounded border"
+                />
+                <span className="text-gray-600 truncate">Certificate</span>
               </div>
             </div>
           </div>
         </div>
+
 
         {/* Notes */}
         {notes && (

@@ -86,7 +86,7 @@ const ReportFrom = () => {
           Your Message
         </label>
         <textarea
-          className="textarea textarea-bordered text-black w-full h-32 rounded-xl focus:ring-2 focus:ring-blue-400"
+          className="textarea textarea-bordered text-black bg-white w-full h-32 rounded-xl focus:ring-2 focus:ring-blue-400"
           placeholder="Describe your problem..."
         ></textarea>
       </div>

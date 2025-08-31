@@ -81,10 +81,10 @@ const ShowSingleBlog = () => {
             </header>
 
             {/* Featured Image */}
-            {blog.featuredImage && Object.keys(blog.featuredImage).length > 0 ? (
+            {blog.featuredImage && Object.keys(blog.image).length > 0 ? (
                 <div className="mb-8 rounded-xl overflow-hidden shadow-lg">
                     <img 
-                        src={blog.featuredImage.url} 
+                        src={blog.image} 
                         alt={blog.title}
                         className="w-full h-auto object-cover"
                     />

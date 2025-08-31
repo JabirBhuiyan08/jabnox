@@ -437,7 +437,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 md:ml-64 bg-[#03233f]">
+      <div className="flex-1 md:ml-64 bg-[#ffffff]">
         <div className="p-4 min-h-screen">
           {/* Content container with elegant styling */}
           <div className="relative rounded-xl border border-gray-200/20 shadow-lg p-6 backdrop-blur-sm bg-white/5">
@@ -446,7 +446,7 @@ const Dashboard = () => {
             <div className="absolute -bottom-1 -left-1 w-16 h-16 border-b-2 border-l-2 border-blue-400/30 rounded-bl-xl"></div>
 
             {/* White text container for Outlet content */}
-            <div className="text-white">
+            <div className="text-black">
               <Outlet />
             </div>
           </div>
