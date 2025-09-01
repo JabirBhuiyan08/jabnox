@@ -295,7 +295,7 @@ const Dashboard = () => {
                       <span className="mr-2">📋</span> Users Report
                     </NavLink>
                     <NavLink
-                      to="new-orders"
+                      to="order"
                       onClick={() => setIsMenuOpen(false)}
                       className={({ isActive }) =>
                         `flex items-center px-3 py-2 rounded-md text-sm ${handleActiveClass(

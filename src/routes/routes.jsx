@@ -37,6 +37,8 @@ import ApplyNewService from "../Dashboard Children/ApplyNewService/ApplyNewServi
 import PendingApplication from "../Dashboard Children/PendingApplication/PendingApplication";
 import WebsiteTemplate from "../Dashboard Children/Buy Website Template/WebsiteTemplate";
 import UploadService from "../Dashboard Children/Upload Service/UploadService";
+import UsersReport from "../Dashboard Children/Report a Problem/Users Reports/UsersReport";
+import OrderPage from "../Dashboard Children/Order/OrderPage";
 
 export const router = createBrowserRouter([
   {
@@ -204,6 +206,14 @@ export const router = createBrowserRouter([
         element: <AdminRoute>
           <Users></Users>
         </AdminRoute>,
+      },
+      {
+        path: 'users-report',
+        element: <AdminRoute><UsersReport></UsersReport></AdminRoute>
+      },
+      {
+        path: 'order',
+        element: <AdminRoute><OrderPage></OrderPage></AdminRoute>
       },
       {
         path: "upload-service",
