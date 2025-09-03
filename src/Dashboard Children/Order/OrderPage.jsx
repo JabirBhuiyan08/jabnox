@@ -52,17 +52,17 @@ const OrderPage = () => {
                     <div
                       key={e._id}
                       className="flex flex-col md:flex-row justify-between items-center 
-                                 bg-white shadow-md border border-gray-200 rounded-xl p-6 hover:shadow-lg transition"
+                                 bg-white/10 shadow-md border border-gray-200/20 rounded-xl p-6 hover:shadow-lg transition"
                     >
                       {/* Left Section */}
                       <div className="flex-1 w-full">
-                        <h2 className="text-xl font-semibold text-gray-800">
+                        <h2 className="text-xl font-semibold text-gray-200">
                           {e.serviceName}
                         </h2>
-                        <p className="text-gray-600">Requested by: {e.name}</p>
-                        <p className="text-gray-600">Plan: <span className="font-medium">{e.plan}</span></p>
+                        <p className="text-gray-200">Requested by: {e.name}</p>
+                        <p className="text-gray-200">Plan: <span className="font-medium">{e.plan}</span></p>
                         {e.note && (
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="text-sm text-gray-200 mt-1">
                             Note: {e.note}
                           </p>
                         )}

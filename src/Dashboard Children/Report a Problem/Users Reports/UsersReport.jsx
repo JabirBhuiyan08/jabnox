@@ -47,17 +47,18 @@ const UsersReport = () => {
       {report.slice().reverse().map((e) => (
         <div
           key={e._id}
-          className="border p-5 rounded-xl shadow-sm bg-white hover:shadow-md transition"
+          className="border border-gray-200/20 p-5 rounded-xl shadow-sm bg-white/10 hover:shadow-md transition"
         >
           
           <div className='flex justify-between'>
-          <p className="mb-1 text-gray-700">
+          <p className="mb-1 text-gray-200">
             <strong>Email:</strong> {e.email}
           </p>
-          <button onClick={() => mutationDelete.mutate(e._id)} className='text-red-600 cursor-pointer text-4xl'><FaDeleteLeft/></button>
+          <button onClick={() => mutationDelete.mutate(e._id)} className='text-red-400 cursor-pointer text-4xl'><FaDeleteLeft/></button>
           </div>
-          <p className="text-gray-700">
-            <strong>Message:</strong> {e.message}
+          <strong>Message:</strong> 
+          <p className="text-violet-400">
+            {e.message}
           </p>
           {e.image && (
             <img

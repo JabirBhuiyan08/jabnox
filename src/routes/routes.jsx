@@ -39,6 +39,7 @@ import WebsiteTemplate from "../Dashboard Children/Buy Website Template/WebsiteT
 import UploadService from "../Dashboard Children/Upload Service/UploadService";
 import UsersReport from "../Dashboard Children/Report a Problem/Users Reports/UsersReport";
 import OrderPage from "../Dashboard Children/Order/OrderPage";
+import TemplateForm from "../Dashboard Children/Upload Template/TemplateForm";
 
 export const router = createBrowserRouter([
   {
@@ -214,6 +215,10 @@ export const router = createBrowserRouter([
       {
         path: 'order',
         element: <AdminRoute><OrderPage></OrderPage></AdminRoute>
+      },
+      {
+        path: 'template-form',
+        element: <AdminRoute><TemplateForm></TemplateForm></AdminRoute>
       },
       {
         path: "upload-service",

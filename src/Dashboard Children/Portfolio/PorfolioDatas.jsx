@@ -19,7 +19,7 @@ const PortfolioData = ({ portfolio, handleDelete, isAdmin }) => {
   console.log(user);  
 
   return (
-    <div className="max-w-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white dark:bg-gray-800">
+    <div className="max-w-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white/10 border border-gray-200/20 dark:bg-gray-800">
       
       {/* Portfolio Image */}
       <div className="relative h-48 overflow-hidden">
@@ -40,19 +40,19 @@ const PortfolioData = ({ portfolio, handleDelete, isAdmin }) => {
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <p className="text-gray-500 dark:text-gray-300 text-sm">
+            <p className="text-gray-200 dark:text-gray-300 text-sm">
               Client: {portfolioClientName}
             </p>
-            <p className="text-gray-500 dark:text-gray-300 text-sm">
+            <p className="text-gray-200 dark:text-gray-300 text-sm">
               By: {portfolioOwnerName}
             </p>
           </div>
-          <p className="text-gray-500 dark:text-gray-300 text-sm">
+          <p className="text-gray-200 dark:text-gray-300 text-sm">
             {new Date(completionDate).toLocaleDateString()}
           </p>
         </div>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+        <p className="text-gray-200 dark:text-gray-300 mb-4 line-clamp-3">
           {portfolioDescription}
         </p>
 

@@ -20,17 +20,17 @@ const MapProject = ({ project, handleDelete }) => {
   return (
     <div
       key={_id}
-      className="h-full flex flex-col bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
+      className="h-full flex flex-col bg-white/10 rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
     >
       {" "}
       {/* Project Header */}
-      <div className="p-6 bg-gray-50 border-b border-gray-200">
+      <div className="p-6 border-b">
         <div className="flex justify-between items-start">
-          <h2 className="text-xl font-bold text-gray-800 truncate">
+          <h2 className="text-xl font-bold text-gray-200 truncate">
             {projectName}
           </h2>
           {tags && (
-            <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+            <span className="bg-indigo-100 text-indigo-900 text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
               {tags}
             </span>
           )}
@@ -38,7 +38,7 @@ const MapProject = ({ project, handleDelete }) => {
 
         {ownerName && (
           <div className="mt-2 flex items-center justify-between">
-            <div className="mt-2 flex items-center text-gray-600">
+            <div className="mt-2 flex items-center text-gray-200">
               <svg
                 className="w-4 h-4 mr-1.5"
                 fill="currentColor"
@@ -69,10 +69,10 @@ const MapProject = ({ project, handleDelete }) => {
         <div className="space-y-4">
           {shortDescription && (
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-1">
+              <h3 className="text-sm font-medium text-gray-200 mb-1">
                 Short Description
               </h3>
-              <p className="text-gray-600 text-sm line-clamp-3">
+              <p className="text-gray-200 text-sm line-clamp-3">
                 {shortDescription}
               </p>
             </div>
@@ -81,10 +81,10 @@ const MapProject = ({ project, handleDelete }) => {
 
           {projectDescription && (
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-1">
+              <h3 className="text-sm font-medium text-gray-200 mb-1">
                 Detailed Description
               </h3>
-              <p className="text-gray-600 text-sm line-clamp-4">
+              <p className="text-gray-200 text-sm line-clamp-4">
                 {projectDescription}
               </p>
             </div>
@@ -94,14 +94,14 @@ const MapProject = ({ project, handleDelete }) => {
         {/* Website Information */}
         {hasWebsite && (
           <div className="mt-4 pt-4 border-t border-gray-100">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">
+            <h3 className="text-sm font-medium text-gray-200 mb-2">
               Website Information
             </h3>
             <div className="space-y-2 text-sm">
               {websiteUrl && (
                 <div className="flex items-center">
                   <svg
-                    className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0"
+                    className="w-4 h-4 mr-2 text-gray-200 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -115,7 +115,7 @@ const MapProject = ({ project, handleDelete }) => {
                     href={websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-600 hover:text-indigo-800 truncate"
+                    className="text-indigo-400 hover:text-indigo-200 truncate"
                   >
                     {websiteUrl}
                   </a>
@@ -123,9 +123,9 @@ const MapProject = ({ project, handleDelete }) => {
               )}
 
               {domainExpiry && (
-                <div className="flex items-center text-gray-700">
+                <div className="flex items-center text-gray-200">
                   <svg
-                    className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0"
+                    className="w-4 h-4 mr-2 text-gray-200 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -147,15 +147,15 @@ const MapProject = ({ project, handleDelete }) => {
 
         {/* Files Information */}
         <div className="mt-4 pt-4 border-t border-gray-100">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
+          <h3 className="text-sm font-medium text-gray-200 mb-2">
             Attachments
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             {/* Project Image */}
-            <div className="flex items-center p-3 bg-gray-50 rounded border border-gray-200 hover:shadow-sm transition">
+            <div className="flex items-center p-3 bg-white/10 rounded border border-gray-200/20 hover:shadow-sm transition">
               <svg
-                className="w-6 h-6 mr-3 text-blue-500 flex-shrink-0"
+                className="w-6 h-6 mr-3 text-blue-200 flex-shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -171,12 +171,12 @@ const MapProject = ({ project, handleDelete }) => {
                   alt="Project"
                   className="w-14 h-14 object-cover rounded border"
                 />
-                <span className="text-gray-600 truncate">Project Image</span>
+                <span className="text-gray-200 truncate">Project Image</span>
               </div>
             </div>
 
             {/* Certificate */}
-            <div className="flex items-center p-3 bg-gray-50 rounded border border-gray-200 hover:shadow-sm transition">
+            <div className="flex items-center p-3 bg-white/10 rounded border border-gray-200/20 hover:shadow-sm transition">
               <svg
                 className="w-6 h-6 mr-3 text-green-500 flex-shrink-0"
                 fill="currentColor"
@@ -194,7 +194,7 @@ const MapProject = ({ project, handleDelete }) => {
                   alt="Certificate"
                   className="w-14 h-14 object-cover rounded border"
                 />
-                <span className="text-gray-600 truncate">Certificate</span>
+                <span className="text-gray-200 truncate">Certificate</span>
               </div>
             </div>
           </div>
@@ -204,8 +204,8 @@ const MapProject = ({ project, handleDelete }) => {
         {/* Notes */}
         {notes && (
           <div className="mt-4 pt-4 border-t border-gray-100">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Notes</h3>
-            <p className="text-gray-600 text-sm bg-gray-50 p-3 rounded">
+            <h3 className="text-sm font-medium text-gray-200 mb-2">Notes</h3>
+            <p className="text-gray-200 text-sm bg-white/10 p-3 rounded">
               {notes}
             </p>
           </div>

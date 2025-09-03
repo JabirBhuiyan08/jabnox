@@ -111,25 +111,26 @@ const ApplyNewService = () => {
   };
 
   return (
-    <div className="text-center p-5 text-gray-900">
+    <div className="text-center p-4 sm:p-5 md:p-6 text-gray-900">
       {/* Header */}
-      <div className="text-6xl sm:text-8xl flex justify-center mb-4 text-purple-600 animate-pulse">
+      <div className="text-5xl sm:text-6xl md:text-7xl flex justify-center mb-3 sm:mb-4 md:mb-5 text-purple-600 animate-pulse">
         <FcCustomerSupport />
       </div>
-      <h1 className="text-3xl sm:text-4xl font-extrabold mb-12 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-8 sm:mb-10 md:mb-12 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
         Apply New Services
       </h1>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
         {services.map((service) => (
           <div
             key={service._id}
-            className="relative bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-gray-200 shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300"
+            className="relative w-full md:w-150 flex flex-col justify-center bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-gray-200/20 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300"
           >
+            {/* Admin Delete */}
             {isAdmin && (
               <button
-                className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow hover:bg-red-700 transition"
+                className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4 bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-1 md:px-3 md:py-1 rounded-full text-xs font-bold shadow hover:bg-red-700 transition"
                 onClick={() => handleServiceDelete.mutate(service._id)}
               >
                 Delete
@@ -138,62 +139,62 @@ const ApplyNewService = () => {
 
             {/* Badge */}
             {service.badge && (
-              <span className="absolute top-3 right-3 bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
+              <span className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-gradient-to-r from-pink-500 to-red-500 text-white px-2 py-1 sm:px-3 sm:py-1 md:px-3 md:py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
                 {service.badge}
               </span>
             )}
 
             {/* Service Content */}
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-indigo-700">
+            <div className="mb-4 sm:mb-5 md:w-120 md:mb-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-indigo-700">
                 {service.name}
               </h2>
-              <p className="text-gray-600 mb-5 text-sm sm:text-base">
+              <p className="text-gray-600 mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base">
                 {service.description}
               </p>
 
               {/* Pricing */}
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+              <div className="grid gap-3 sm:gap-4 md:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:w-120 mt-3 sm:mt-4 md:mt-5">
                 {service.BasicPrice && (
-                  <div className="relative p-4 rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer">
-                    <p className="text-base sm:text-lg font-semibold text-blue-600 mb-1">
+                  <div className="relative w-full p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
+                    <p className="text-sm sm:text-base md:text-lg font-semibold text-blue-600 mb-1">
                       Basic
                     </p>
-                    <p className="text-gray-700 font-bold text-xl sm:text-2xl">
+                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
                       ${service.BasicPrice}
                     </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm">
+                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
                       Perfect for individuals
                     </p>
                   </div>
                 )}
 
                 {service.StandardPrice && (
-                  <div className="relative p-4 rounded-2xl border-2 border-yellow-400 bg-gradient-to-t from-yellow-50 via-white to-yellow-50 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer">
-                    <span className="absolute top-3 right-3 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow">
+                  <div className="relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border-2 border-yellow-400 bg-gradient-to-t from-yellow-50 via-white to-yellow-50 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
+                    <span className="absolute top-1 right-1 sm:top-1 sm:right-1 md:top-2 md:right-2 bg-yellow-500 text-white px-1 py-0.5 sm:px-2 sm:py-1 md:px-2 md:py-1 rounded-full text-[10px] sm:text-xs font-bold shadow">
                       Most Popular
                     </span>
-                    <p className="text-base sm:text-lg font-semibold text-yellow-600 mb-1 flex items-center gap-1">
+                    <p className="text-sm sm:text-base md:text-lg mt-3 sm:mt-4 md:mt-5 font-semibold text-yellow-600 mb-1 flex items-center gap-1">
                       Standard <span className="text-yellow-500">⭐</span>
                     </p>
-                    <p className="text-gray-700 font-bold text-xl sm:text-2xl">
+                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
                       ${service.StandardPrice}
                     </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm">
+                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
                       Best for small teams
                     </p>
                   </div>
                 )}
 
                 {service.PremiumPrice && (
-                  <div className="relative p-4 rounded-2xl border-2 border-purple-400 bg-gradient-to-t from-purple-100 via-white to-purple-100 shadow-md hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer">
-                    <p className="text-base sm:text-lg font-semibold text-purple-700 mb-1 flex items-center gap-1">
+                  <div className="relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border-2 border-purple-400 bg-gradient-to-t from-purple-100 via-white to-purple-100 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
+                    <p className="text-sm sm:text-base md:text-lg font-semibold text-purple-700 mb-1 flex items-center gap-1">
                       Premium <span>🚀</span>
                     </p>
-                    <p className="text-gray-700 font-bold text-xl sm:text-2xl">
+                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
                       ${service.PremiumPrice}
                     </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm">
+                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
                       Ideal for enterprises
                     </p>
                   </div>
@@ -202,28 +203,32 @@ const ApplyNewService = () => {
             </div>
 
             {/* Actions */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="mt-4 sm:mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+              {/* Apply Now Button */}
               <button
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl px-4 py-3 font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition transform hover:-translate-y-1"
+                className="w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 font-bold shadow-lg hover:from-purple-500 hover:to-blue-500 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] backdrop-blur-md text-xs sm:text-sm md:text-sm"
                 onClick={() => applyNewService(service)}
               >
-                Apply Now
+                🚀 Apply Now
               </button>
 
+              {/* View Details Button */}
               <button
-                className="w-full border-2 border-purple-500 text-purple-600 rounded-2xl px-4 py-3 font-semibold hover:bg-purple-50 transition transform hover:-translate-y-1"
+                className="w-full border-2 border-indigo-400 text-black rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 font-bold bg-white shadow-md backdrop-blur-md hover:bg-white/20 hover:text-indigo-600 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] text-xs sm:text-sm md:text-sm"
                 onClick={() => viewDetails(service)}
               >
-                View Details
+                🔍 View Details
               </button>
 
+              {/* WhatsApp Button */}
               <Link to={`https://wa.me/+8801749424565`}>
-                <button className="w-full bg-green-500 text-white rounded-2xl px-4 py-3 flex items-center justify-center gap-2 font-semibold hover:bg-green-600 transition transform hover:-translate-y-1">
-                  <FaWhatsapp /> WhatsApp
+                <button className="w-full bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 flex items-center justify-center gap-1 sm:gap-2 font-bold shadow-lg hover:from-green-600 hover:to-green-400 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] text-xs sm:text-sm md:text-sm">
+                  <FaWhatsapp className="animate-pulse text-xs sm:text-sm md:text-sm" /> 
+                  <div>
+                  <span className="hidden sm:inline">Chat on</span> WhatsApp
+                  </div>
                 </button>
               </Link>
-
-             
             </div>
           </div>
         ))}

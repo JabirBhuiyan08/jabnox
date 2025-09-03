@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../hooks/axiosSecure";
@@ -36,7 +37,7 @@ const Blogs = () => {
   if (blogs.length === 0) {
     return (
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
+        <h1 className="text-4xl font-bold text-center mb-12 text-gray-400">
           No <span className="text-blue-600">Blog</span> Posts Found
         </h1>
       </div>
@@ -45,15 +46,15 @@ const Blogs = () => {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">
+      <h1 className="text-4xl font-bold text-center mb-12 text-gray-400">
         Latest <span className="text-blue-600">Blog</span> Posts
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 gap-8">
         {blogs.map((blog) => (
           <div
             key={blog._id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative"
+            className="bg-white/10 border border-gray-200/20 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group relative"
           >
             {/* Blog Image */}
             <div className="h-48 overflow-hidden relative">
@@ -74,7 +75,7 @@ const Blogs = () => {
                 <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                   {blog.category || "General"}
                 </span>
-                <span className="text-gray-500 text-sm ml-3">
+                <span className="text-gray-200 text-sm ml-3">
                   {new Date(blog.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
@@ -83,7 +84,7 @@ const Blogs = () => {
                 </span>
               </div>
 
-              <h2 className="text-xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition-colors">
+              <h2 className="text-xl font-bold text-gray-200 mb-2 hover:text-blue-600 transition-colors">
                 <Link
                   to={`/blogs/${blog._id}`}
                   className="hover:underline decoration-blue-600 decoration-2 underline-offset-4"
@@ -92,7 +93,7 @@ const Blogs = () => {
                 </Link>
               </h2>
 
-              <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+              <p className="text-gray-200 mb-4 line-clamp-3 leading-relaxed">
                 {blog.summary || blog.content.substring(0, 150) + "..."}
               </p>
 
@@ -101,13 +102,13 @@ const Blogs = () => {
                   <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden mr-2 border border-gray-200">
                     <img
                       src={
-                        blog.authorAvatar || "https://i.pravatar.cc/150?img=3"
+                        blog.authorAvatar || {logo}
                       }
                       alt={blog.author}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-sm text-gray-700 font-medium">
+                  <span className="text-sm text-gray-200 font-medium">
                     {blog.author || "Anonymous"}
                   </span>
                 </div>

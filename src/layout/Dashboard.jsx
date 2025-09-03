@@ -33,8 +33,8 @@ const Dashboard = () => {
 
   const handleActiveClass = ({ isActive }) => {
     return isActive
-      ? "bg-blue-100 text-blue-700 font-medium border-l-4 border-blue-500"
-      : "text-gray-700 hover:bg-gray-100";
+      ? "bg-white/10 text-white font-medium border-l-4 border-blue-500"
+      : "text-gray-200 hover:bg-white/20 hover:text-white transition-colors duration-200";
   };
 
   const handleLogout = async () => {
@@ -70,7 +70,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col lg:flex-row md:flex-row min-h-screen relative">
       {/* Mobile Nav Toggle Button */}
-      <div className="bg-blue-500 p-4 md:hidden flex justify-between items-center text-black sticky top-0 z-30">
+      <div className="bg-blue-500 p-4 md:hidden flex justify-between items-center text-white sticky top-0 z-30">
         <img src={logo} alt="Logo" className="w-32" />
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -97,11 +97,11 @@ const Dashboard = () => {
       <div
         className={`${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 pt-16 lg:pt-0 fixed md:fixed top-0 left-0 z-20 w-64 bg-[#dcefff] shadow-lg transform transition-transform duration-300 ease-in-out h-screen overflow-y-auto`}
+        } md:translate-x-0 pt-16 lg:pt-0 fixed md:fixed top-0 left-0 z-20 w-90 bg-black shadow-lg transform transition-transform duration-300 ease-in-out h-screen overflow-y-auto`}
       >
         <div className="flex flex-col h-full">
           {/* User Profile Section */}
-          <div className="p-4 border-b">
+          <div className="p-4 border-b bg-white/10 border-white/20">
             <div className="flex items-center gap-3">
               <img
                 src={user?.photoURL}
@@ -109,8 +109,8 @@ const Dashboard = () => {
                 className="w-10 h-10 rounded-full border-2 border-gray-200"
               />
               <div>
-                <p className="font-medium text-black">{user?.displayName}</p>
-                <p className="text-sm text-gray-600 truncate">{user?.email}</p>
+                <p className="font-medium text-white">{user?.displayName}</p>
+                <p className="text-sm text-white truncate">{user?.email}</p>
                 {isAdmin && (
                   <span className="inline-block mt-1 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
                     Admin
@@ -121,11 +121,11 @@ const Dashboard = () => {
           </div>
 
           {/* Navigation Menu */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex-1 p-4 ">
             <nav className="space-y-1">
               {/* User Panel */}
-              <div className="mt-2">
-                <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div className="mt-2 bg-white/10 p-3 rounded-lg border border-white/20">
+                <h3 className="px-3 py-2 text-xs font-semibold text-white uppercase tracking-wider">
                   User Panel
                 </h3>
                 <div className="mt-1 space-y-1">
@@ -249,7 +249,8 @@ const Dashboard = () => {
                   <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     Admin Panel
                   </h3>
-                  <div className="mt-1 space-y-1">
+                  <div>
+                  <div className="mt-1 space-y-1 bg-white/10 p-3 rounded-lg border border-white/20">
                     <NavLink
                       to="Admin-Dashboard"
                       onClick={() => setIsMenuOpen(false)}
@@ -345,12 +346,14 @@ const Dashboard = () => {
                         </span>
                       )}
                     </NavLink>
+                    </div>
 
                     {/* Control Panel */}
+              
                     <h3 className="px-3 py-2 mt-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                       Control Panel
                     </h3>
-                    <div className="mt-1 space-y-1">
+                    <div className="mt-1 space-y-1 bg-white/10 p-3 rounded-lg border border-white/20">
                       <NavLink
                         to="portfolio-form"
                         onClick={() => setIsMenuOpen(false)}
@@ -396,6 +399,17 @@ const Dashboard = () => {
                         <span className="mr-2">😊</span> Upload Service
                       </NavLink>
                       <NavLink
+                        to="template-form"
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `flex items-center px-3 py-2 rounded-md text-sm ${handleActiveClass(
+                            { isActive }
+                          )}`
+                        }
+                      >
+                        <span className="mr-2">😎</span> Template Form
+                      </NavLink>
+                      <NavLink
                         to="dashboard-users"
                         onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) =>
@@ -437,7 +451,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 md:ml-64 bg-[#ffffff]">
+      <div className="flex-1 md:ml-90 bg-[#0a0808]">
         <div className="p-4 min-h-screen">
           {/* Content container with elegant styling */}
           <div className="relative rounded-xl border border-gray-200/20 shadow-lg p-6 backdrop-blur-sm bg-white/5">
@@ -446,7 +460,7 @@ const Dashboard = () => {
             <div className="absolute -bottom-1 -left-1 w-16 h-16 border-b-2 border-l-2 border-blue-400/30 rounded-bl-xl"></div>
 
             {/* White text container for Outlet content */}
-            <div className="text-black">
+            <div className="text-white">
               <Outlet />
             </div>
           </div>

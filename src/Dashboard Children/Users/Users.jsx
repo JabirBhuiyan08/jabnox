@@ -25,16 +25,16 @@ const Users = () => {
         {users.map((user, index) => (
           <li
             key={index}
-            className="border border-gray-200 p-4 mb-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+            className="border border-gray-200/20 p-4 mb-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
           >
             {/* User info section */}
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-5">
-              <h3 className="font-semibold text-gray-800 text-lg">
+              <h3 className="font-semibold text-gray-200 text-lg">
                 {user.name}
               </h3>
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 text-gray-400"
+                  className="w-4 h-4 text-gray-200"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ const Users = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="text-gray-600 text-sm">{user.email}</span>
+                <span className="text-violet-400 text-sm">{user.email}</span>
               </div>
             </div>
 

@@ -57,14 +57,14 @@ const ProjectsForm = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-8  rounded-xl shadow-lg">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">
+      <h1 className="text-3xl font-bold mb-8 text-gray-200 border-b pb-4">
         OWNERS PROJECT UPLOAD
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 text-black">
         {/* Basic Information */}
-        <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+        <div className="space-y-6 bg-white/10 border border-gray-200/20 p-6 rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Basic Information
           </h2>
 
@@ -72,7 +72,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="companyname"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Company Name*
               </label>
@@ -80,7 +80,7 @@ const ProjectsForm = () => {
                 type="text"
                 {...register("companyname", { required: true })}
                 id="companyname"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -88,7 +88,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="weblicence"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Web Licence no*
               </label>
@@ -96,7 +96,7 @@ const ProjectsForm = () => {
                 type="text"
                 {...register("weblicence", { required: true })}
                 id="weblicence"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -104,7 +104,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="ownerName"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Project Owner Name*
               </label>
@@ -112,7 +112,7 @@ const ProjectsForm = () => {
                 type="text"
                 {...register("ownerName", { required: true })}
                 id="ownerName"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -120,7 +120,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="countryName"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Country Name*
               </label>
@@ -128,7 +128,7 @@ const ProjectsForm = () => {
                 type="text"
                 {...register("countryName", { required: true })}
                 id="countryName"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -136,7 +136,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="Email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Email*
               </label>
@@ -144,7 +144,7 @@ const ProjectsForm = () => {
                 type="email"
                 {...register("Email", { required: true })}
                 id="Email"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -152,15 +152,15 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="EmailPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 Email's Password*
               </label>
               <input
-                type="password"
+                type="type"
                 {...register("EmailPassword", { required: true })}
                 id="EmailPassword"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -168,7 +168,7 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="wpUsername"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 WP User Name*
               </label>
@@ -176,7 +176,7 @@ const ProjectsForm = () => {
                 type="type"
                 {...register("wpUsername", { required: true })}
                 id="wpUsername"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -184,15 +184,15 @@ const ProjectsForm = () => {
             <div>
               <label
                 htmlFor="wpPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-300 mb-1"
               >
                 WP Password*
               </label>
               <input
-                type="password"
+                type="type"
                 {...register("wpPassword", { required: true })}
                 id="wpPassword"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 required
               />
             </div>
@@ -201,7 +201,7 @@ const ProjectsForm = () => {
           <div>
             <label
               htmlFor="shortDescription"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-300 mb-1"
             >
               Short Description*
             </label>
@@ -209,7 +209,7 @@ const ProjectsForm = () => {
               {...register("shortDescription", { required: true })}
               id="shortDescription"
               rows="3"
-              className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
               required
             ></textarea>
           </div>
@@ -217,7 +217,7 @@ const ProjectsForm = () => {
           <div>
             <label
               htmlFor="projectDescription"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-300 mb-1"
             >
               Detailed Description
             </label>
@@ -225,13 +225,13 @@ const ProjectsForm = () => {
               {...register("projectDescription")}
               id="projectDescription"
               rows="4"
-              className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
             ></textarea>
           </div>
 
           {/* Cost Area */}
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+          <div className="bg-white/10 p-4 rounded-lg border border-gray-200/20">
+            <label className="block text-sm font-medium text-gray-300 mb-3">
               Cost Area
             </label>
             {fields.map((field, index) => (
@@ -241,37 +241,37 @@ const ProjectsForm = () => {
               >
                 {/* Category */}
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                  <label className="block text-xs font-medium text-gray-200 mb-1">
                     Category
                   </label>
                   <input
                     type="text"
                     {...register(`costs.${index}.category`)}
-                    className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
                   />
                 </div>
 
                 {/* Date */}
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                  <label className="block text-xs font-medium text-gray-200 mb-1">
                     Date of the Cost
                   </label>
                   <input
                     type="date"
                     {...register(`costs.${index}.date`)}
-                    className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
 
                 {/* Amount */}
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                  <label className="block text-xs font-medium text-gray-200 mb-1">
                     Amount
                   </label>
                   <input
                     type="number"
                     {...register(`costs.${index}.amount`)}
-                    className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
 
@@ -279,7 +279,7 @@ const ProjectsForm = () => {
                 <button
                   type="button"
                   onClick={() => remove(index)}
-                  className="text-red-500 hover:text-red-700 self-end md:self-center mt-2 md:mt-0"
+                  className="text-red-500 hover:text-red-300 self-end md:self-center mt-2 md:mt-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,7 @@ const ProjectsForm = () => {
             <button
               type="button"
               onClick={() => append({ category: "", date: "", amount: "" })}
-              className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center transition duration-200"
+              className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-300 text-white text-sm font-medium rounded-lg flex items-center transition duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +323,7 @@ const ProjectsForm = () => {
           <div>
             <label
               htmlFor="projectPorgress"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-300 mb-1"
             >
               Project Progress (%)
             </label>
@@ -334,7 +334,7 @@ const ProjectsForm = () => {
                 id="projectPorgress"
                 min="0"
                 max="100"
-                className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+                className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500">
                 %
@@ -344,8 +344,8 @@ const ProjectsForm = () => {
         </div>
 
         {/* Website Information */}
-        <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+        <div className="space-y-6 bg-white/10 border border-gray-200/20 p-6 rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Website Information
           </h2>
 
@@ -354,11 +354,11 @@ const ProjectsForm = () => {
               type="checkbox"
               {...register("hasWebsite")}
               id="hasWebsite"
-              className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-5 w-5 text-gray-200 focus:ring-blue-500 border-gray-300/20 rounded"
             />
             <label
               htmlFor="hasWebsite"
-              className="ml-3 block text-sm text-gray-700"
+              className="ml-3 block text-sm text-gray-300"
             >
               This project has a website
             </label>
@@ -369,7 +369,7 @@ const ProjectsForm = () => {
               <div>
                 <label
                   htmlFor="websiteUrl"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Website URL
                 </label>
@@ -378,14 +378,14 @@ const ProjectsForm = () => {
                   {...register("websiteUrl")}
                   id="websiteUrl"
                   placeholder="https://example.com"
-                  className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                />
+                  className="w-full border  border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                /> 
               </div>
 
               <div>
                 <label
                   htmlFor="domainExpiry"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Domain Expiry Date
                 </label>
@@ -393,7 +393,7 @@ const ProjectsForm = () => {
                   type="date"
                   {...register("domainExpiry")}
                   id="domainExpiry"
-                  className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                  className="w-full border border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
                 />
               </div>
             </div>
@@ -401,16 +401,16 @@ const ProjectsForm = () => {
         </div>
 
         {/* File Uploads */}
-        <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+        <div className="space-y-6 bg-white/10 border border-gray-200/20 p-6 rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Documents & Images
           </h2>
 
           {/* Image Upload Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
             {/* Project Image */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Project Image
               </label>
 
@@ -418,7 +418,7 @@ const ProjectsForm = () => {
                 {!projectImage ? (
                   <label
                     htmlFor="projectImage"
-                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
+                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
                   >
                     <svg
                       className="w-8 h-8 mb-3 text-gray-400"
@@ -469,7 +469,7 @@ const ProjectsForm = () => {
 
             {/* Certificate */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-2">
                 Certificate / Proof Document
               </label>
 
@@ -477,7 +477,7 @@ const ProjectsForm = () => {
                 {!certificate ? (
                   <label
                     htmlFor="certificate"
-                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
+                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
                   >
                     <svg
                       className="w-8 h-8 mb-3 text-gray-400"
@@ -550,15 +550,15 @@ const ProjectsForm = () => {
         </div>
 
         {/* Additional Information */}
-        <div className="space-y-6 bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+        <div className="space-y-6 bg-white/10 p-6 rounded-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Additional Information
           </h2>
 
           <div>
             <label
               htmlFor="tags"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-300 mb-1"
             >
               Tags
             </label>
@@ -567,14 +567,14 @@ const ProjectsForm = () => {
               {...register("tags")}
               id="tags"
               placeholder="comma separated tags (e.g., ecommerce, blog, portfolio)"
-              className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              className="w-full border border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
             />
           </div>
 
           <div>
             <label
               htmlFor="notes"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-300 mb-1"
             >
               Notes
             </label>
@@ -582,7 +582,7 @@ const ProjectsForm = () => {
               {...register("notes")}
               id="notes"
               rows="3"
-              className="w-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              className="w-full border border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
               placeholder="Any additional notes about the project..."
             ></textarea>
           </div>
@@ -592,13 +592,13 @@ const ProjectsForm = () => {
           <button
             type="button"
             onClick={() => reset()}
-            className="px-6 py-2.5 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
+            className="px-6 py-2.5 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-300 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
           >
             Reset
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
+            className="px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
           >
             Submit Project
           </button>

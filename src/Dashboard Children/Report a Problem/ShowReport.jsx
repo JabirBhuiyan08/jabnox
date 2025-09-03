@@ -24,20 +24,20 @@ const ShowReport = () => {
   }
 
   return (
-    <div className="mt-10 max-w-4xl mx-auto space-y-4">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+    <div className="mt-10 max-w-4xl mx-auto space-y-4 text-gray-200">
+      <h2 className="text-2xl font-bold mb-4 text-center">
         Submitted Reports
       </h2>
       {report.slice().reverse().map((e) => (
         <div
           key={e._id}
-          className="border p-5 rounded-xl shadow-sm bg-white hover:shadow-md transition"
+          className="border border-gray-200/20 p-5 rounded-xl shadow-sm  bg-white/10 hover:shadow-md transition"
         >
           
-          <p className="mb-1 text-gray-700">
+          <p className="mb-1 ">
             <strong>Email:</strong> {e.email}
           </p>
-          <p className="text-gray-700">
+          <p className="">
             <strong>Message:</strong> {e.message}
           </p>
           {e.image && (
