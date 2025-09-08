@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import useAxiosSecure from "../hooks/axiosSecure";
 import LoadingSpinner from "../Components/LoadingSpinner";
-import useAdmin from "../hooks/UseAdmin";
+
 import Swal from "sweetalert2";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const { logOut, user } = useAuth();
@@ -306,7 +307,10 @@ const Dashboard = () => {
                     >
                       <span className="mr-2">🛒</span> Check new Order
                     </NavLink>
-                    <NavLink
+
+
+
+                    {/* <NavLink
                       to="check-payment"
                       onClick={() => setIsMenuOpen(false)}
                       className={({ isActive }) =>
@@ -316,8 +320,11 @@ const Dashboard = () => {
                       }
                     >
                       <span className="mr-2">💰</span> Check Payment
-                    </NavLink>
-                    <NavLink
+                    </NavLink> */}
+
+
+
+                    {/* <NavLink
                       to="template-request"
                       onClick={() => setIsMenuOpen(false)}
                       className={({ isActive }) =>
@@ -327,7 +334,10 @@ const Dashboard = () => {
                       }
                     >
                       <span className="mr-2">🎨</span> Web Template Request
-                    </NavLink>
+                    </NavLink> */}
+
+
+
                     <NavLink
                       to="new-dashboard-contact"
                       onClick={() => setIsMenuOpen(false)}
@@ -409,6 +419,8 @@ const Dashboard = () => {
                       >
                         <span className="mr-2">😎</span> Template Form
                       </NavLink>
+
+
                       <NavLink
                         to="dashboard-users"
                         onClick={() => setIsMenuOpen(false)}
@@ -420,7 +432,8 @@ const Dashboard = () => {
                       >
                         <span className="mr-2">👥</span> Users
                       </NavLink>
-                      <NavLink
+
+                      {/* <NavLink
                         to="payment-settings"
                         onClick={() => setIsMenuOpen(false)}
                         className={({ isActive }) =>
@@ -430,7 +443,8 @@ const Dashboard = () => {
                         }
                       >
                         <span className="mr-2">⚙️</span> Payment Settings
-                      </NavLink>
+                      </NavLink> */}
+
                     </div>
                   </div>
                 </div>

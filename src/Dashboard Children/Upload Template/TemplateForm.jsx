@@ -114,7 +114,7 @@ const TemplateForm = () => {
           <input
             type="text"
             placeholder="Description"
-            {...register("disction", { required: true })}
+            {...register("description", { required: true })}
             className="p-4 rounded-2xl border border-white/20 bg-white/10 text-white placeholder-gray-300 focus:ring-2 focus:ring-purple-400 outline-none"
           />
 

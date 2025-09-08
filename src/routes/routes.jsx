@@ -40,6 +40,11 @@ import UploadService from "../Dashboard Children/Upload Service/UploadService";
 import UsersReport from "../Dashboard Children/Report a Problem/Users Reports/UsersReport";
 import OrderPage from "../Dashboard Children/Order/OrderPage";
 import TemplateForm from "../Dashboard Children/Upload Template/TemplateForm";
+import PaymentMethod from "../Dashboard Children/Payment/PaymentMethod";
+import PendingPayment from "../Dashboard Children/Payment/PendingPayment";
+import AdminDashboard from "../Dashboard Children/AdminDashboard/AdminDashboard";
+import TemplateRequest from "../Dashboard Children/Web Template Request/TemplateRequest";
+import CheckNewOrder from "../Dashboard Children/Check New Order/CheckNewOrder";
 
 export const router = createBrowserRouter([
   {
@@ -77,11 +82,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "excel",
-        element: <ExcelFile></ExcelFile>
+        element: <ExcelFile></ExcelFile>,
       },
       {
         path: "excelDetails",
-        element: <ExcelDetails></ExcelDetails>
+        element: <ExcelDetails></ExcelDetails>,
       },
       {
         path: "login",
@@ -120,29 +125,28 @@ export const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Dashboard></Dashboard>
-        
       </PrivateRoute>
     ),
     children: [
       {
         index: true,
-        element: <DashboardHome></DashboardHome>
+        element: <DashboardHome></DashboardHome>,
       },
       {
         path: "report-problem",
-        element: <ReportFrom></ReportFrom>
+        element: <ReportFrom></ReportFrom>,
       },
       {
         path: "apply-new-service",
-        element: <ApplyNewService></ApplyNewService>
+        element: <ApplyNewService></ApplyNewService>,
       },
       {
         path: "pending-application",
-        element: <PendingApplication></PendingApplication>
+        element: <PendingApplication></PendingApplication>,
       },
       {
         path: "website-template",
-        element: <WebsiteTemplate></WebsiteTemplate>
+        element: <WebsiteTemplate></WebsiteTemplate>,
       },
       {
         path: "dashboard-reviews",
@@ -154,43 +158,83 @@ export const router = createBrowserRouter([
         loader: () => axiosPublic.get("/portfolios").then((res) => res.data),
         element: <Portfolios></Portfolios>,
       },
-      
+
       {
         path: "blogs",
         loader: () => axiosPublic.get("/blogs").then((res) => res.data),
         element: <Blogs></Blogs>,
       },
-     
-       {
+
+      {
         path: "dashboard-reviews",
         element: <DashboardReviews></DashboardReviews>,
+      },
+      {
+        path: "payment-method",
+        element: <PaymentMethod></PaymentMethod>,
+      },
+      {
+        path: "pending-payment",
+        element: <PendingPayment></PendingPayment>,
       },
 
       //admins only routes
       {
         path: "portfolio-form",
-        element: 
-        <AdminRoute>
-          <PortfolioForm></PortfolioForm>
-        </AdminRoute>
-        
+        element: (
+          <AdminRoute>
+            <PortfolioForm></PortfolioForm>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin-dashboard",
+        element: (
+          <AdminRoute>
+            <AdminDashboard></AdminDashboard>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "template-request",
+        element: (
+          <AdminRoute>
+            <TemplateRequest></TemplateRequest>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "check-new-order",
+        element: (
+          <AdminRoute>
+            <CheckNewOrder></CheckNewOrder>
+          </AdminRoute>
+        ),
       },
       {
         path: "projects",
         // loader: async() =>await axiosSecure.get("/projects").then((res) => res.data),
-        element: <AdminRoute><Projects></Projects></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <Projects></Projects>
+          </AdminRoute>
+        ),
       },
       {
         path: "blog-form",
-        element: 
-        <AdminRoute>
-          <BlogForm></BlogForm>
-        </AdminRoute>,
-        
+        element: (
+          <AdminRoute>
+            <BlogForm></BlogForm>
+          </AdminRoute>
+        ),
       },
-     {
+      {
         path: "projects-form",
-        element: <AdminRoute><ProjectsForm></ProjectsForm></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ProjectsForm></ProjectsForm>
+          </AdminRoute>
+        ),
       },
       {
         path: "new-dashboard-contact",
@@ -204,30 +248,44 @@ export const router = createBrowserRouter([
       },
       {
         path: "dashboard-users",
-        element: <AdminRoute>
-          <Users></Users>
-        </AdminRoute>,
+        element: (
+          <AdminRoute>
+            <Users></Users>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'users-report',
-        element: <AdminRoute><UsersReport></UsersReport></AdminRoute>
+        path: "users-report",
+        element: (
+          <AdminRoute>
+            <UsersReport></UsersReport>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'order',
-        element: <AdminRoute><OrderPage></OrderPage></AdminRoute>
+        path: "order",
+        element: (
+          <AdminRoute>
+            <OrderPage></OrderPage>
+          </AdminRoute>
+        ),
       },
       {
-        path: 'template-form',
-        element: <AdminRoute><TemplateForm></TemplateForm></AdminRoute>
+        path: "template-form",
+        element: (
+          <AdminRoute>
+            <TemplateForm></TemplateForm>
+          </AdminRoute>
+        ),
       },
       {
         path: "upload-service",
-        element: <UploadService></UploadService>
+        element: <UploadService></UploadService>,
       },
       {
-        path:"note-form",
-        element: <NoteForm></NoteForm>
-      }
+        path: "note-form",
+        element: <NoteForm></NoteForm>,
+      },
     ],
   },
 ]);

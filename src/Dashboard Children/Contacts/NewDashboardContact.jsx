@@ -33,10 +33,10 @@ const NewDashboardContact = () => {
         {contact.map((c) => (
           <div
             key={c._id}
-            className="bg-white shadow-md rounded-xl p-4 border border-gray-200"
+            className="bg-white/10 shadow-md rounded-xl p-4 border border-gray-200/20"
           >
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-bold text-gray-800">{c.name}</h3>
+              <h3 className="text-lg font-bold text-gray-200">{c.name}</h3>
               <span
                 className={`text-sm px-2 py-1 rounded-full ${
                   c.read
@@ -47,10 +47,10 @@ const NewDashboardContact = () => {
                 <button onClick={() => handleToggleReadStatus(c._id, c.read)}>Mark as {c.read ? "Unread" : "Read"}</button>
               </span>
             </div>
-            <p className="text-sm text-gray-600 mb-1">
+            <p className="text-sm text-gray-200 mb-1">
               <strong>Email:</strong> {c.email}
             </p>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-200">
               <strong>Message:</strong> {c.message}
             </p>
           </div>

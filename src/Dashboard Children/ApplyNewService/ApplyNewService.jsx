@@ -121,11 +121,11 @@ const ApplyNewService = () => {
       </h1>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
         {services.map((service) => (
           <div
             key={service._id}
-            className="relative w-full md:w-150 flex flex-col justify-center bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-gray-200/20 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300"
+            className="relative w-full md:w-150 flex flex-col items-center justify-center bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-gray-200/20 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300"
           >
             {/* Admin Delete */}
             {isAdmin && (
@@ -145,7 +145,7 @@ const ApplyNewService = () => {
             )}
 
             {/* Service Content */}
-            <div className="mb-4 sm:mb-5 md:w-120 md:mb-6">
+            <div className="mb-4 sm:mb-5 md:w-120 md:mb-6 flex flex-col items-center">
               <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-indigo-700">
                 {service.name}
               </h2>
@@ -154,7 +154,7 @@ const ApplyNewService = () => {
               </p>
 
               {/* Pricing */}
-              <div className="grid gap-3 sm:gap-4 md:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:w-120 mt-3 sm:mt-4 md:mt-5">
+              <div className="grid gap-3 sm:gap-4 items-center md:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:w-120 mt-3 sm:mt-4 md:mt-5">
                 {service.BasicPrice && (
                   <div className="relative w-full p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
                     <p className="text-sm sm:text-base md:text-lg font-semibold text-blue-600 mb-1">
