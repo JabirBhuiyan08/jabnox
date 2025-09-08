@@ -14,7 +14,7 @@ const DashboardHome = () => {
           {user.displayName}
         </span>
       </h1>
-      <div className="lg:flex lg:flex-row lg:justify-around mt-5 flex flex-col gap-10">
+      <div className="lg:flex lg:flex-col xl:flex-row lg:justify-around mt-5 flex flex-col gap-10">
         <div className="">
           <UserProjects></UserProjects>
         </div>
