@@ -350,9 +350,9 @@ const Dashboard = () => {
                       <span>
                         <span className="mr-2">📩</span> Customer Contacts
                       </span>
-                      {contacts.filter((c) => c.read === false).length > 0 && (
+                      {contacts.filter((c) => c.read === true).length > 0 && (
                         <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                          {contacts.filter((c) => c.read === false).length}
+                          {contacts.filter((c) => c.read === true).length}
                         </span>
                       )}
                     </NavLink>
