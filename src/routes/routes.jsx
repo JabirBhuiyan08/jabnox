@@ -45,6 +45,11 @@ import PendingPayment from "../Dashboard Children/Payment/PendingPayment";
 import AdminDashboard from "../Dashboard Children/AdminDashboard/AdminDashboard";
 import TemplateRequest from "../Dashboard Children/Web Template Request/TemplateRequest";
 import CheckNewOrder from "../Dashboard Children/Check New Order/CheckNewOrder";
+import BusinessCoding from "../Dashboard Children/DashboardHome/PopupService/Business/BusinessCoding";
+import BusinessWordpress from "../Dashboard Children/DashboardHome/PopupService/Business/BusinessWordpress";
+import PersonalCoding from "../Dashboard Children/DashboardHome/PopupService/Personal Website/PersonalCoding";
+import PersonalWordpress from "../Dashboard Children/DashboardHome/PopupService/Personal Website/PersonalWordpress";
+import SeoService from "../Dashboard Children/DashboardHome/PopupService/SEOPopup/SeoService";
 
 export const router = createBrowserRouter([
   {
@@ -176,6 +181,26 @@ export const router = createBrowserRouter([
       {
         path: "pending-payment",
         element: <PendingPayment></PendingPayment>,
+      },
+      {
+        path: "business-coding",
+        element: <BusinessCoding></BusinessCoding>,
+      },
+      {
+        path: "business-wordpress",
+        element: <BusinessWordpress></BusinessWordpress>,
+      },
+      {
+        path: "personal-coding",
+        element: <PersonalCoding></PersonalCoding>,
+      },
+      {
+        path: "personal-wordpress",
+        element: <PersonalWordpress></PersonalWordpress>,
+      },
+      {
+        path: "seo-service",
+        element: <SeoService></SeoService>,
       },
 
       //admins only routes
