@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { FiArrowDown, FiMenu, FiX } from "react-icons/fi"; // Icons for mobile menu
+import { FiArrowDown, FiMenu, FiX } from "react-icons/fi";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
@@ -14,36 +14,39 @@ const Navbar = () => {
   const [isMoreMobileOpen, setIsMoreMobileOpen] = useState(false);
   const { user } = useAuth();
 
-  let servicesTimeout; // For hover delay on desktop
-  let aboutTimeout; // For hover delay on desktop
-  let moreTimeout; // For hover delay on desktop
+  let servicesTimeout;
+  let aboutTimeout;
+  let moreTimeout;
 
   return (
-    <nav className="text-white bg-gray-900/90 p-4 md:px-16 lg:px-32 fixed top-0 left-0 w-full z-50">
-      <div className="flex justify-between items-center">
+    <nav className="bg-gray-900 backdrop-blur-sm bg-opacity-95 border-b border-gray-800 p-4 fixed top-0 left-0 w-full z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/">
-          <img src={logo} alt="Logo" className="w-40 md:w-56" />
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="Logo" className="w-40 md:w-48 transition-all duration-300 hover:opacity-90" />
         </Link>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white text-3xl"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <FiX /> : <FiMenu />}{" "}
-          {/* Toggle between menu and close icon */}
-        </button>
-
-        {/* Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-8 text-lg font-semibold">
-          <Link to="/" className="hover:text-cyan-400">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          <Link 
+            to="/" 
+            className="text-gray-200 hover:text-cyan-400 transition-colors duration-300 font-medium py-2"
+          >
             Home
           </Link>
+          
+          {user && (
+            <Link 
+              to="project-store" 
+              className="text-gray-200 hover:text-cyan-400 transition-colors duration-300 font-medium py-2"
+            >
+              Project Store
+            </Link>
+          )}
 
-          {/* Services Dropdown - Desktop */}
-          <div
-            className="relative cursor-pointer hover:text-cyan-400"
+          {/* Services Dropdown */}
+          <div 
+            className="relative"
             onMouseEnter={() => {
               clearTimeout(servicesTimeout);
               setIsServicesOpen(true);
@@ -52,32 +55,33 @@ const Navbar = () => {
               servicesTimeout = setTimeout(() => setIsServicesOpen(false), 300);
             }}
           >
-            <div className="flex items-center gap-1">
-              Services <FiArrowDown />
-            </div>
+            <button className="flex items-center text-gray-200 hover:text-cyan-400 transition-colors duration-300 font-medium py-2">
+              Services <FiArrowDown className={`ml-1 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
             {isServicesOpen && (
-              <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+              <div className="absolute left-0 mt-2 w-56 bg-gray-800 border border-gray-700 shadow-xl rounded-lg overflow-hidden">
                 <Link
                   to="/coding"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700 last:border-0"
                 >
                   Website with Coding
                 </Link>
                 <Link
                   to="/wordpress"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700 last:border-0"
                 >
                   WordPress Website
                 </Link>
                 <Link
                   to="/graphic-design"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700 last:border-0"
                 >
                   Graphic Design
                 </Link>
                 <Link
                   to="/social-booster"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200"
                 >
                   Social Media Boosting
                 </Link>
@@ -85,9 +89,9 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* More Dropdown - Desktop */}
+          {/* More Dropdown */}
           <div
-            className="relative cursor-pointer hover:text-cyan-400 "
+            className="relative"
             onMouseEnter={() => {
               clearTimeout(moreTimeout);
               setIsMoreOpen(true);
@@ -96,23 +100,28 @@ const Navbar = () => {
               moreTimeout = setTimeout(() => setIsMoreOpen(false), 300);
             }}
           >
-            <Link className="flex items-center gap-1">
-              More <FiArrowDown />
-            </Link>
+            <button className="flex items-center text-gray-200 hover:text-cyan-400 transition-colors duration-300 font-medium py-2">
+              More <FiArrowDown className={`ml-1 transition-transform duration-200 ${isMoreOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
             {isMoreOpen && (
-              <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+              <div className="absolute left-0 mt-2 w-56 bg-gray-800 border border-gray-700 shadow-xl rounded-lg overflow-hidden">
                 <Link
                   to="/contact"
-                  className="block px-4 py-2 hover:bg-gray-700"
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
                 >
                   Contact
                 </Link>
-                <Link to="/excel" className="block px-4 py-2 hover:bg-gray-700">
+                <Link 
+                  to="/excel" 
+                  className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
+                >
                   Excel File
                 </Link>
-                {/* About us Dropdown - Desktop */}
+                
+                {/* About Dropdown inside More */}
                 <div
-                  className="relative cursor-pointer hover:text-cyan-400 block px-4 py-2 hover:bg-gray-700"
+                  className=""
                   onMouseEnter={() => {
                     clearTimeout(aboutTimeout);
                     setIsAboutOpen(true);
@@ -121,32 +130,33 @@ const Navbar = () => {
                     aboutTimeout = setTimeout(() => setIsAboutOpen(false), 300);
                   }}
                 >
-                  <div className="flex items-center gap-1">
-                    About us <FiArrowDown />
-                  </div>
+                  <button className="flex items-center justify-between w-full px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700">
+                    About us <FiArrowDown className={`transition-transform duration-200 ${isAboutOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
                   {isAboutOpen && (
-                    <div className="absolute -left-10 mt-2 w-56 bg-gray-800/90 shadow-lg rounded-lg text-white">
+                    <div>
                       <Link
                         to="/about"
-                        className="block px-4 py-2 hover:bg-gray-700"
+                        className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
                       >
-                        About us{" "}
+                        About us
                       </Link>
                       <Link
                         to="/reviews"
-                        className="block px-4 py-2 hover:bg-gray-700"
+                        className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
                       >
                         Reviews
                       </Link>
                       <Link
                         to="/review-form"
-                        className="block px-4 py-2 hover:bg-gray-700"
+                        className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
                       >
                         Review Us
                       </Link>
                       <Link
                         to="/our-profile"
-                        className="block px-4 py-2 hover:bg-gray-700"
+                        className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200"
                       >
                         Our Profile
                       </Link>
@@ -157,126 +167,172 @@ const Navbar = () => {
             )}
           </div>
 
-          <Link to="/dashboard">{user ? "Dashboard" : "Login"}</Link>
-        </ul>
+          <Link 
+            to="/dashboard" 
+            className="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-lg transition-colors duration-300 font-medium shadow-md hover:shadow-cyan-800/20"
+          >
+            {user ? "Dashboard" : "Login"}
+          </Link>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <ul className="bg-gray-800/80 p-6 rounded-xl md:hidden flex flex-col space-y-4 text-center text-lg font-semibold">
-          <Link
-            to="/"
-            className="hover:text-cyan-400"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-
-          {/* More Dropdown - Mobile */}
-          <div
-            className="cursor-pointer hover:text-cyan-400"
-            onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
-          >
-            More {isMoreMobileOpen ? "▲" : "▼"}
-          </div>
-          {isMoreMobileOpen && (
-            <div className="bg-gray-700/90 rounded-lg text-white mt-2">
-              <Link
-                to="/contact"
-                className="block px-4 py-2 hover:bg-gray-600"
+        <div className="md:hidden bg-gray-800 border-t border-gray-700 mt-2 shadow-xl">
+          <div className="max-w-7xl mx-auto py-4 px-4">
+            <Link
+              to="/"
+              className="block py-3 px-4 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200 font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            
+            {user && (
+              <Link 
+                to="project-store" 
+                className="block py-3 px-4 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200 font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                Project Store
               </Link>
-              <Link to="/excel" className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}>Excel File</Link>
+            )}
 
-              {/* About us in Mobile Menu */}
-              <div
-                className="cursor-pointer hover:text-cyan-400 block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+            {/* Services Accordion */}
+            <div className="border-b border-gray-700 last:border-0">
+              <button
+                className="flex items-center justify-between w-full py-3 px-4 text-gray-200 hover:text-cyan-400 rounded-lg transition-colors duration-200 font-medium"
+                onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
               >
-                About us {isMobileServicesOpen ? "▲" : "▼"}
-              </div>
-              {/* About us Dropdown - Mobile */}
-              {isMobileServicesOpen && (
-                <div className="bg-gray-700/90 rounded-lg text-white mt-2">
+                <span>Services</span>
+                <FiArrowDown className={`transition-transform duration-200 ${isMobileAboutOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isMobileAboutOpen && (
+                <div className="pl-6 pb-2">
                   <Link
-                    to="/about"
-                    className="block px-4 py-2 hover:bg-gray-600"
+                    to="/coding"
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    About us
+                    Website with Coding
                   </Link>
                   <Link
-                    to="/reviews"
-                    className="block px-4 py-2 hover:bg-gray-600"
+                    to="/wordpress"
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    Reviews
+                    WordPress Website
                   </Link>
                   <Link
-                    to="/review-form"
-                    className="block px-4 py-2 hover:bg-gray-600"
+                    to="/graphic-design"
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    Review Us
+                    Graphic Design
                   </Link>
                   <Link
-                    to="/our-profile"
-                    className="block px-4 py-2 hover:bg-gray-600"
+                    to="/social-booster"
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    Our Profile
+                    Social Media Boosting
                   </Link>
                 </div>
               )}
             </div>
-          )}
 
-          
-
-          {/* Services in Mobile Menu */}
-          <div
-            className="cursor-pointer hover:text-cyan-400"
-            onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
-          >
-            Services {isMobileAboutOpen ? "▲" : "▼"}
-          </div>
-          {isMobileAboutOpen && (
-            <div className="bg-gray-700/90 rounded-lg text-white mt-2">
-              <Link
-                to="/coding"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
+            {/* More Accordion */}
+            <div className="border-b border-gray-700 last:border-0">
+              <button
+                className="flex items-center justify-between w-full py-3 px-4 text-gray-200 hover:text-cyan-400 rounded-lg transition-colors duration-200 font-medium"
+                onClick={() => setIsMoreMobileOpen(!isMoreMobileOpen)}
               >
-                Website with Coding
-              </Link>
-              <Link
-                to="/wordpress"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
-              >
-                WordPress Website
-              </Link>
-              <Link
-                to="/graphic-design"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
-              >
-                Graphic Design
-              </Link>
-              <Link
-                to="/social-booster"
-                className="block px-4 py-2 hover:bg-gray-600"
-                onClick={() => setIsOpen(false)}
-              >
-                Social Media Boosting
-              </Link>
+                <span>More</span>
+                <FiArrowDown className={`transition-transform duration-200 ${isMoreMobileOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isMoreMobileOpen && (
+                <div className="pl-6 pb-2">
+                  <Link
+                    to="/contact"
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                  <Link 
+                    to="/excel" 
+                    className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Excel File
+                  </Link>
+                  
+                  {/* About Accordion inside More */}
+                  <div>
+                    <button
+                      className="flex items-center justify-between w-full py-2 px-4 text-gray-300 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                      onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    >
+                      <span>About us</span>
+                      <FiArrowDown className={`transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {isMobileServicesOpen && (
+                      <div className="pl-4">
+                        <Link
+                          to="/about"
+                          className="block py-2 px-4 text-gray-400 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          About us
+                        </Link>
+                        <Link
+                          to="/reviews"
+                          className="block py-2 px-4 text-gray-400 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Reviews
+                        </Link>
+                        <Link
+                          to="/review-form"
+                          className="block py-2 px-4 text-gray-400 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Review Us
+                        </Link>
+                        <Link
+                          to="/our-profile"
+                          className="block py-2 px-4 text-gray-400 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Our Profile
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-          <Link to="/dashboard">Dashboard</Link>
-        </ul>
+
+            <Link
+              to="/dashboard"
+              className="block py-3 px-4 mt-4 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-center transition-colors duration-300 font-medium shadow-md hover:shadow-cyan-800/20"
+              onClick={() => setIsOpen(false)}
+            >
+              {user ? "Dashboard" : "Login"}
+            </Link>
+          </div>
+        </div>
       )}
     </nav>
   );

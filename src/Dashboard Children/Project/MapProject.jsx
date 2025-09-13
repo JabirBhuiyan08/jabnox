@@ -1,4 +1,5 @@
 import { MdDelete } from "react-icons/md";
+import { FiExternalLink, FiCalendar, FiUser, FiFileText, FiImage, FiAward } from "react-icons/fi";
 
 const MapProject = ({ project, handleDelete }) => {
   const {
@@ -18,73 +19,74 @@ const MapProject = ({ project, handleDelete }) => {
   } = project;
 
   return (
-    <div
-      key={_id}
-      className="h-full flex flex-col bg-white/10 rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300"
-    >
-      {" "}
-      {/* Project Header */}
-      <div className="p-6 border-b">
-        <div className="flex justify-between items-start">
-          <h2 className="text-xl font-bold text-gray-200 truncate">
+    <div className="h-full flex flex-col bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700/50 hover:shadow-xl hover:border-gray-600 transition-all duration-300 group">
+      {/* Project Header with Gradient */}
+      <div className="p-6 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-gray-700/50">
+        <div className="flex justify-between items-start mb-3">
+          <h2 className="text-xl font-bold text-white truncate group-hover:text-blue-300 transition-colors">
             {projectName}
           </h2>
           {tags && (
-            <span className="bg-indigo-100 text-indigo-900 text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
+            <span className="bg-blue-500/10 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap border border-blue-500/20">
               {tags}
             </span>
           )}
         </div>
 
         {ownerName && (
-          <div className="mt-2 flex items-center justify-between">
-            <div className="mt-2 flex items-center text-gray-200">
-              <svg
-                className="w-4 h-4 mr-1.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clipRule="evenodd"
-                />
-              </svg>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-gray-300">
+              <FiUser className="w-4 h-4 mr-2 text-blue-400" />
               <span className="text-sm">{ownerName}</span>
             </div>
-            <div>
-              <button
-                onClick={() => handleDelete(_id)}
-                className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-              >
-                <MdDelete></MdDelete>
-              </button>
-            </div>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 rounded-lg border border-red-500/20 transition-all duration-200"
+              title="Delete project"
+            >
+              <MdDelete className="w-5 h-5" />
+            </button>
           </div>
         )}
       </div>
+      
       {/* Project Content */}
-      <div className="p-6">
+      <div className="p-6 flex-1 flex flex-col">
         {/* Descriptions */}
-        <div className="space-y-4">
+        <div className="space-y-4 mb-5">
           {shortDescription && (
             <div>
-              <h3 className="text-sm font-medium text-gray-200 mb-1">
-                Short Description
-              </h3>
-              <p className="text-gray-200 text-sm line-clamp-3">
+              <div className="flex items-center mb-2">
+                <FiFileText className="w-4 h-4 mr-2 text-blue-400" />
+                <h3 className="text-sm font-medium text-gray-300">
+                  Short Description
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm pl-6 line-clamp-2">
                 {shortDescription}
               </p>
             </div>
           )}
-          {Email}
+
+          {Email && (
+            <div className="flex items-center text-gray-400 text-sm">
+              <svg className="w-4 h-4 mr-2 text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              <span className="truncate">{Email}</span>
+            </div>
+          )}
 
           {projectDescription && (
             <div>
-              <h3 className="text-sm font-medium text-gray-200 mb-1">
-                Detailed Description
-              </h3>
-              <p className="text-gray-200 text-sm line-clamp-4">
+              <div className="flex items-center mb-2">
+                <FiFileText className="w-4 h-4 mr-2 text-blue-400" />
+                <h3 className="text-sm font-medium text-gray-300">
+                  Detailed Description
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm pl-6 line-clamp-3">
                 {projectDescription}
               </p>
             </div>
@@ -93,52 +95,30 @@ const MapProject = ({ project, handleDelete }) => {
 
         {/* Website Information */}
         {hasWebsite && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <h3 className="text-sm font-medium text-gray-200 mb-2">
+          <div className="mt-4 pt-4 border-t border-gray-700/50">
+            <h3 className="flex items-center text-sm font-medium text-gray-300 mb-3">
+              <FiExternalLink className="w-4 h-4 mr-2 text-green-400" />
               Website Information
             </h3>
-            <div className="space-y-2 text-sm">
+            <div className="space-y-2 text-sm pl-6">
               {websiteUrl && (
                 <div className="flex items-center">
-                  <svg
-                    className="w-4 h-4 mr-2 text-gray-200 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
                   <a
                     href={websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-400 hover:text-indigo-200 truncate"
+                    className="text-blue-400 hover:text-blue-300 truncate flex items-center transition-colors"
                   >
-                    {websiteUrl}
+                    <FiExternalLink className="w-3 h-3 mr-1" />
+                    {websiteUrl.replace(/^https?:\/\//, '')}
                   </a>
                 </div>
               )}
 
               {domainExpiry && (
-                <div className="flex items-center text-gray-200">
-                  <svg
-                    className="w-4 h-4 mr-2 text-gray-200 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>
-                    Domain expires:{" "}
-                    {new Date(domainExpiry).toLocaleDateString()}
-                  </span>
+                <div className="flex items-center text-gray-400">
+                  <FiCalendar className="w-3 h-3 mr-2 text-purple-400" />
+                  <span>Expires: {new Date(domainExpiry).toLocaleDateString()}</span>
                 </div>
               )}
             </div>
@@ -146,66 +126,54 @@ const MapProject = ({ project, handleDelete }) => {
         )}
 
         {/* Files Information */}
-        <div className="mt-4 pt-4 border-t border-gray-100">
-          <h3 className="text-sm font-medium text-gray-200 mb-2">
+        <div className="mt-4 pt-4 border-t border-gray-700/50">
+          <h3 className="text-sm font-medium text-gray-300 mb-3">
             Attachments
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             {/* Project Image */}
-            <div className="flex items-center p-3 bg-white/10 rounded border border-gray-200/20 hover:shadow-sm transition">
-              <svg
-                className="w-6 h-6 mr-3 text-blue-200 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <div className="flex flex-col items-center gap-2">
+            {projectImage && (
+              <div className="flex flex-col p-3 bg-gray-700/30 rounded-lg border border-gray-600/30 hover:bg-gray-700/50 transition-colors">
+                <div className="flex items-center mb-2">
+                  <FiImage className="w-4 h-4 mr-2 text-blue-400" />
+                  <span className="text-gray-300">Project Image</span>
+                </div>
                 <img
                   src={projectImage}
                   alt="Project"
-                  className="w-14 h-14 object-cover rounded border"
+                  className="w-full h-24 object-cover rounded-md border border-gray-600/50"
                 />
-                <span className="text-gray-200 truncate">Project Image</span>
               </div>
-            </div>
+            )}
 
             {/* Certificate */}
-            <div className="flex items-center p-3 bg-white/10 rounded border border-gray-200/20 hover:shadow-sm transition">
-              <svg
-                className="w-6 h-6 mr-3 text-green-500 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <div className="flex flex-col items-center gap-2">
+            {certificate && (
+              <div className="flex flex-col p-3 bg-gray-700/30 rounded-lg border border-gray-600/30 hover:bg-gray-700/50 transition-colors">
+                <div className="flex items-center mb-2">
+                  <FiAward className="w-4 h-4 mr-2 text-yellow-400" />
+                  <span className="text-gray-300">Certificate</span>
+                </div>
                 <img
                   src={certificate}
                   alt="Certificate"
-                  className="w-14 h-14 object-cover rounded border"
+                  className="w-full h-24 object-cover rounded-md border border-gray-600/50"
                 />
-                <span className="text-gray-200 truncate">Certificate</span>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
-
         {/* Notes */}
         {notes && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <h3 className="text-sm font-medium text-gray-200 mb-2">Notes</h3>
-            <p className="text-gray-200 text-sm bg-white/10 p-3 rounded">
+          <div className="mt-4 pt-4 border-t border-gray-700/50">
+            <h3 className="flex items-center text-sm font-medium text-gray-300 mb-2">
+              <svg className="w-4 h-4 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </svg>
+              Notes
+            </h3>
+            <p className="text-gray-400 text-sm bg-gray-700/30 p-3 rounded-lg border border-gray-600/30">
               {notes}
             </p>
           </div>

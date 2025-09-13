@@ -1,13 +1,20 @@
-import React from "react";
 import useAxiosSecure from "../../hooks/axiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import { FiBook, FiMail, FiFileText, FiMessageSquare, FiCalendar } from "react-icons/fi";
+import {
+  FiBook,
+  FiMail,
+  FiFileText,
+  FiMessageSquare,
+  FiCalendar,
+} from "react-icons/fi";
 import LoadingSpinner from "../../Components/LoadingSpinner";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const NoteFromJabnox = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const { data: noteData = [], isLoading } = useQuery({
     queryKey: ["note", user?.email],
@@ -16,6 +23,19 @@ const NoteFromJabnox = () => {
       return res.data;
     },
     enabled: !!user?.email,
+  });
+
+  const mutationDelete = useMutation({
+    mutationFn: async (id) => {
+      const res = await axiosSecure.delete(`/notes/${id}`);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["note", user?.email] });
+    },
+    onError: (error) => {
+      console.error("Delete failed:", error.response?.data || error.message);
+    },
   });
 
   if (isLoading) return <LoadingSpinner />;
@@ -47,7 +67,9 @@ const NoteFromJabnox = () => {
               <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-gray-700 rounded-xl sm:rounded-2xl mb-3 sm:mb-4">
                 <FiBook className="h-8 w-8 sm:h-10 sm:w-10 text-indigo-400" />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-200 mb-2">No notes found</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-200 mb-2">
+                No notes found
+              </h3>
               <p className="text-gray-400 text-sm sm:text-base max-w-md mx-auto">
                 When Jabnox sends you notifications, they will appear here
               </p>
@@ -61,21 +83,21 @@ const NoteFromJabnox = () => {
                   .map((note) => (
                     <div
                       key={note._id}
-                      className="group relative bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 sm:hover:-translate-y-1"
+                      className="group relative  bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 sm:hover:-translate-y-1"
                     >
                       {/* Corner accent */}
                       <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 overflow-hidden">
                         <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-indigo-500/10 group-hover:bg-indigo-500/20 transition-colors duration-300 transform rotate-45 -translate-y-10 sm:-translate-y-12 translate-x-6 sm:translate-x-8"></div>
                       </div>
-                      
-                      <div className="flex items-start gap-3 sm:gap-4 relative z-10">
+
+                      <div className="flex items-start  gap-3 sm:gap-4 relative z-10">
                         {/* Icon */}
-                        <div className="flex-shrink-0 p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:from-indigo-500/30 group-hover:to-purple-500/30 transition-all duration-300">
+                        <div className="flex-shrink-0 mt-6 p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:from-indigo-500/30 group-hover:to-purple-500/30 transition-all duration-300">
                           <FiFileText className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-indigo-400 group-hover:text-indigo-300" />
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 mt-6">
                           <h3 className="text-base sm:text-lg font-semibold text-white truncate group-hover:text-indigo-300 transition-colors duration-300">
                             {note.title}
                           </h3>
@@ -89,11 +111,30 @@ const NoteFromJabnox = () => {
                               <FiMail className="h-3 w-3 text-indigo-400" />
                               <span className="truncate">Jabnox Team</span>
                             </div>
-                            <span className="hidden xs:inline text-gray-500">•</span>
+                            <span className="hidden xs:inline text-gray-500">
+                              •
+                            </span>
                             <div className="flex items-center gap-1">
                               <FiCalendar className="h-3 w-3 text-indigo-400" />
-                              <span>{new Date(note.createdAt || Date.now()).toLocaleDateString()}</span>
+                              <span>
+                                {new Date(
+                                  note.createdAt || Date.now()
+                                ).toLocaleDateString()}
+                              </span>
                             </div>
+                          </div>
+
+
+                          {/* Delete button */}
+                          <div className="absolute top-0 right-0 text-3xl text-red-500">
+                            <button
+                              onClick={() => {
+                                console.log("Deleting note:", note._id);
+                                mutationDelete.mutate(note._id);
+                              }}
+                            >
+                              <FaDeleteLeft />
+                            </button>
                           </div>
                         </div>
                       </div>
