@@ -1,28 +1,128 @@
 import { useFieldArray, useForm } from "react-hook-form";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useImageUpload from "../../hooks/useImageUpload";
+import { Calendar } from "lucide-react";
+import { redirect, useParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/axiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 
 const ProjectsForm = () => {
   const [projectImage, setProjectImage] = useState(null);
   const [certificate, setCertificate] = useState(null);
+  const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
 
+  const queryClient = useQueryClient();
   const { uploadImage } = useImageUpload();
 
-  const { register, handleSubmit, reset, watch, control } = useForm({
+  const { register, handleSubmit, reset, watch, control, setValue } = useForm({
     defaultValues: {
+      companyname: "",
+      weblicence: "",
+      ownerName: "",
+      countryName: "",
+      Email: "",
+      EmailPassword: "",
+      wpUsername: "",
+      wpPassword: "",
+      WebsiteStartDate: "",
+      WebsiteEndDate: "",
+      projectDescription: "",
       costs: [{ category: "", date: "", amount: "" }],
+      projectPorgress: "",
+      hasWebsite: false,
+      websiteUrl: "",
+      domainExpiry: "",
+      tags: "",
+      notes: "",
     },
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "costs",
   });
 
-  const axiosPublic = useAxiosPublic();
+  const { data: project = {} } = useQuery({
+    queryKey: ["project", id],
+    queryFn: async () => {
+      if (!id) return {};
+      const res = await axiosSecure.get(`/projects/${id}`);
+      return res.data;
+    },
+    enabled: !!id, // Only run if id exists
+  });
+
+  // Populate form with project data when it's available
+  useEffect(() => {
+    
+    if (project && id) {
+      // Reset the form with the project data
+      reset({
+        companyname: project.companyname || "",
+        weblicence: project.weblicence || "",
+        ownerName: project.ownerName || "",
+        countryName: project.countryName || "",
+        Email: project.Email || "",
+        EmailPassword: project.EmailPassword || "",
+        wpUsername: project.wpUsername || "",
+        wpPassword: project.wpPassword || "",
+        WebsiteStartDate: project.WebsiteStartDate || "",
+        WebsiteEndDate: project.WebsiteEndDate || "",
+        projectDescription: project.projectDescription || "",
+        costs: project.costs || [{ category: "", date: "", amount: "" }],
+        projectPorgress: project.projectPorgress || "",
+        hasWebsite: project.hasWebsite || false,
+        websiteUrl: project.websiteUrl || "",
+        domainExpiry: project.domainExpiry || "",
+        tags: project.tags || "",
+        notes: project.notes || "",
+      });
+      
+      // Set image states if they exist
+      if (project.projectImage) {
+        // You might need to handle this differently if you want to show existing images
+        // setProjectImage(project.projectImage);
+      }
+      if (project.certificate) {
+        // setCertificate(project.certificate);
+      }
+    }
+  }, [project, id, reset]);
+
+  const createMutation = useMutation({
+    mutationFn: async (data) => {
+      const res = await axiosSecure.post("/projects", data);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["projects"]);
+      reset();
+      setProjectImage(null);
+      setCertificate(null);
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async (data) => {
+      const res = await axiosSecure.patch(`/projects/${id}`, data);
+      return res.data;
+    },
+    onSuccess: () => {
+      window.alert("Project updated successfully");
+      queryClient.invalidateQueries(["project", id]);
+      queryClient.invalidateQueries(["projects"]);
+      redirect("/dashboard/projects");
+      // Don't reset the form here as we want to keep the updated values
+    },
+  });
 
   const onSubmit = async (data) => {
     console.log("Form submitted", data);
+    
+    // Handle image uploads
     if (projectImage) {
       const projectImgUrl = await uploadImage(projectImage);
       if (!projectImgUrl) {
@@ -31,6 +131,7 @@ const ProjectsForm = () => {
       }
       data.projectImage = projectImgUrl;
     }
+    
     if (certificate) {
       const certificateUrl = await uploadImage(certificate);
       if (!certificateUrl) {
@@ -40,25 +141,23 @@ const ProjectsForm = () => {
       data.certificate = certificateUrl;
     }
 
-    const res = await axiosPublic.post("/projects", data);
-    if (res.data.insertedId) {
-      console.log("Project added successfully", res.data);
-      alert("Project added successfully");
+    // Call the appropriate mutation
+    if (id) {
+      updateMutation.mutate(data); // Pass the form data, not formData state
+      reset();
     } else {
-      console.log("Failed to add project", res.data);
-      alert("Failed to add project");
+      createMutation.mutate(data);
     }
-    // Here you would typically send data to your backend
-    reset();
   };
+
 
   // For conditional rendering based on hasWebsite value
   const hasWebsite = watch("hasWebsite");
 
   return (
-    <div className="max-w-7xl mx-auto p-8  rounded-xl shadow-lg">
+    <div className="max-w-7xl mx-auto p-8 rounded-xl shadow-lg">
       <h1 className="text-3xl font-bold mb-8 text-gray-200 border-b pb-4">
-        OWNERS PROJECT UPLOAD
+        {id ? "EDIT PROJECT" : "OWNERS PROJECT UPLOAD"}
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 text-black">
@@ -157,7 +256,7 @@ const ProjectsForm = () => {
                 Email's Password*
               </label>
               <input
-                type="type"
+                type="text"
                 {...register("EmailPassword", { required: true })}
                 id="EmailPassword"
                 className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
@@ -173,7 +272,7 @@ const ProjectsForm = () => {
                 WP User Name*
               </label>
               <input
-                type="type"
+                type="text"
                 {...register("wpUsername", { required: true })}
                 id="wpUsername"
                 className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
@@ -189,7 +288,7 @@ const ProjectsForm = () => {
                 WP Password*
               </label>
               <input
-                type="type"
+                type="text"
                 {...register("wpPassword", { required: true })}
                 id="wpPassword"
                 className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
@@ -200,18 +299,34 @@ const ProjectsForm = () => {
 
           <div>
             <label
-              htmlFor="shortDescription"
+              htmlFor="WebsiteStartDate"
               className="block text-sm font-medium text-gray-300 mb-1"
             >
-              Short Description*
+              Website Start Date :
             </label>
-            <textarea
-              {...register("shortDescription", { required: true })}
-              id="shortDescription"
-              rows="3"
+            <input
+              type="date"
+              {...register("WebsiteStartDate", { required: true })}
+              id="WebsiteStartDate"
               className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
               required
-            ></textarea>
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="WebsiteEndDate"
+              className="block text-sm font-medium text-gray-300 mb-1"
+            >
+              Website End Date :
+            </label>
+            <input
+              type="date"
+              {...register("WebsiteEndDate", { required: true })}
+              id="WebsiteEndDate"
+              className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              required
+            />
           </div>
 
           <div>
@@ -226,7 +341,7 @@ const ProjectsForm = () => {
               id="projectDescription"
               rows="4"
               className="w-full text-gray-200 border border-gray-300/20 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-            ></textarea>
+            />
           </div>
 
           {/* Cost Area */}
@@ -378,8 +493,8 @@ const ProjectsForm = () => {
                   {...register("websiteUrl")}
                   id="websiteUrl"
                   placeholder="https://example.com"
-                  className="w-full border  border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                /> 
+                  className="w-full border border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                />
               </div>
 
               <div>
@@ -415,7 +530,7 @@ const ProjectsForm = () => {
               </label>
 
               <div className="flex items-center justify-center w-full">
-                {!projectImage ? (
+                {!projectImage && !project?.projectImage ? (
                   <label
                     htmlFor="projectImage"
                     className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
@@ -451,7 +566,11 @@ const ProjectsForm = () => {
                 ) : (
                   <div className="relative w-full h-48">
                     <img
-                      src={URL.createObjectURL(projectImage)}
+                      src={
+                        projectImage
+                          ? URL.createObjectURL(projectImage)
+                          : project?.projectImage
+                      }
                       alt="Preview"
                       className="object-cover w-full h-full rounded-lg"
                     />
@@ -474,7 +593,7 @@ const ProjectsForm = () => {
               </label>
 
               <div className="flex items-center justify-center w-full">
-                {!certificate ? (
+                {!certificate && !project?.certificate ? (
                   <label
                     htmlFor="certificate"
                     className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition duration-200"
@@ -509,31 +628,39 @@ const ProjectsForm = () => {
                   </label>
                 ) : (
                   <div className="relative w-full h-48 border rounded-lg flex items-center justify-center bg-white">
-                    {certificate.type.startsWith("image/") ? (
+                    {certificate ? (
+                      certificate.type.startsWith("image/") ? (
+                        <img
+                          src={URL.createObjectURL(certificate)}
+                          alt="Certificate Preview"
+                          className="object-cover w-full h-full rounded-lg"
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center p-4">
+                          <svg
+                            className="w-10 h-10 text-gray-500 mb-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <p className="text-sm text-gray-600">
+                            {certificate.name}
+                          </p>
+                        </div>
+                      )
+                    ) : (
                       <img
-                        src={URL.createObjectURL(certificate)}
-                        alt="Certificate Preview"
+                        src={project.certificate}
+                        alt="Certificate"
                         className="object-cover w-full h-full rounded-lg"
                       />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center p-4">
-                        <svg
-                          className="w-10 h-10 text-gray-500 mb-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                          />
-                        </svg>
-                        <p className="text-sm text-gray-600">
-                          {certificate.name}
-                        </p>
-                      </div>
                     )}
                     <button
                       type="button"
@@ -584,7 +711,7 @@ const ProjectsForm = () => {
               rows="3"
               className="w-full border border-gray-300/20 text-gray-200 rounded-lg shadow-sm py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
               placeholder="Any additional notes about the project..."
-            ></textarea>
+            />
           </div>
         </div>
 
@@ -598,9 +725,14 @@ const ProjectsForm = () => {
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
+            disabled={createMutation.isLoading || updateMutation.isLoading}
+            className="px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 disabled:opacity-50"
           >
-            Submit Project
+            {createMutation.isLoading || updateMutation.isLoading
+              ? "Submitting..."
+              : id
+              ? "Update Project"
+              : "Submit Project"}
           </button>
         </div>
       </form>

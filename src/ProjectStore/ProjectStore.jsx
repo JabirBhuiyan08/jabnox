@@ -24,6 +24,7 @@ const ProjectStore = () => {
       className="min-h-screen bg-cover bg-fixed bg-center relative"
       style={{ backgroundImage: `url(${img1})` }}
     >
+      
       {/* Dark overlay for better readability */}
       <div className="absolute inset-0 bg-black/60"></div>
       

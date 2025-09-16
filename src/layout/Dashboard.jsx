@@ -83,7 +83,7 @@ const Dashboard = () => {
               <FaBars className="text-white text-xl" />
             )}
           </button>
-          <img src={logo} alt="Logo" className="w-28" />
+          <img src={logo} alt="Logo" className="w-18" />
         </div>
         <div className="flex items-center space-x-2">
           <button 
@@ -117,7 +117,7 @@ const Dashboard = () => {
       >
         {/* Logo and close button for mobile */}
         <div className="p-4 bg-gray-900 flex justify-between items-center lg:hidden">
-          <img src={logo} alt="Logo" className="w-32" />
+          <img src={logo} alt="Logo" className="w-18" />
           <button
             onClick={() => setIsMenuOpen(false)}
             className="p-1 rounded-md hover:bg-gray-700 text-white"
@@ -143,7 +143,9 @@ const Dashboard = () => {
                   Admin
                 </span>
               )}
+              
             </div>
+            
           </div>
         </div>
 
@@ -155,6 +157,7 @@ const Dashboard = () => {
               <h3 className="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                 User Panel
               </h3>
+              
               <div className="mt-1 space-y-1">
                 <NavLink
                   to="/dashboard"

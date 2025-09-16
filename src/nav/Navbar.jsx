@@ -22,8 +22,8 @@ const Navbar = () => {
     <nav className="bg-gray-900 backdrop-blur-sm bg-opacity-95 border-b border-gray-800 p-4 fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="Logo" className="w-40 md:w-48 transition-all duration-300 hover:opacity-90" />
+        <Link to="/" className="flex items-start">
+          <img src={logo} alt="Logo" className="w-18 md:w-48 transition-all duration-300 hover:opacity-90" />
         </Link>
 
         {/* Desktop Navigation */}

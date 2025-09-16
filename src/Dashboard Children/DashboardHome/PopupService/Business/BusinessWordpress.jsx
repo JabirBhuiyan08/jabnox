@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaWordpress } from 'react-icons/fa';
 
 const BusinessWordpress = () => {
   const [activeTab, setActiveTab] = useState('services');
@@ -8,12 +9,10 @@ const BusinessWordpress = () => {
       {/* Header */}
       <header className="bg-gradient-to-b from-violate-600 to-violet-800 text-white py-12">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M21.5 11.5c0 4.136-3.364 7.5-7.5 7.5-4.136 0-7.5-3.364-7.5-7.5 0-1.528.466-2.942 1.257-4.125l-1.257 4.125 2.708.903-2.708-.903c.159.53.247 1.092.247 1.688 0 2.762-2.238 5-5 5s-5-2.238-5-5 2.238-5 5-5c.596 0 1.158.088 1.688.247l-.903-2.708 4.125 1.257c1.183-.791 2.597-1.257 4.125-1.257 4.136 0 7.5 3.364 7.5 7.5z"/>
-            </svg>
+          <div className="flex  justify-center gap-2 mb-4 text-4xl">
+            <FaWordpress></FaWordpress>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">WordPress</h1>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">WordPress Solutions</h1>
           <p className="text-xl opacity-90">Professional WordPress development, customization, and maintenance</p>
         </div>
       </header>

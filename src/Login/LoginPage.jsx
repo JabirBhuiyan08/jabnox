@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import GoogleSignIn from "../Components/GoogleSignIn/GoogleSignIn";
-import jabnoxLogo from "../assets/jabnox logo.png";
 import { Link } from "react-router-dom";
 import { FiShield, FiZap, FiClock } from "react-icons/fi";
+import loginLogo from "../assets/login logo.png";
+import loginBackground from "../assets/loginbg.jpg";
 
 const LoginPage = () => {
   return (
-    <div className="min-h-screen relative flex flex-col items-center justify-center p-4 overflow-hidden">
+    <div 
+    style={{ backgroundImage: `url(${loginBackground})` }}
+    className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden">
       {/* Background Design Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating circles */}
@@ -27,15 +30,14 @@ const LoginPage = () => {
       >
         <div className="relative group">
           {/* Logo shadow effect */}
-          <div className="absolute inset-0 rounded-full bg-blue-500 opacity-0 group-hover:opacity-10 blur-md transition-opacity duration-300 -z-10"></div>
-          
+          <div className="absolute inset-0 rounded-full bg-blue-500 opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-300 -z-10"></div>
           {/* Logo with gradient border */}
          <Link to={"/"}>
-          <div className="p-1 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500">
+          <div className="rounded-full ">
             <motion.img 
-              src={jabnoxLogo} 
+              src={loginLogo} 
               alt="Jabnox Logo" 
-              className="w-48 md:w-56 rounded-full border-4 border-white bg-white p-2 shadow-lg transition-transform duration-500 group-hover:rotate-[5deg]"
+              className="w-48 md:w-56 rounded-full  border-whiteshadow-lg transition-transform duration-500 group-hover:rotate-[5deg]"
               whileHover={{ scale: 1.05 }}
             />
           </div>

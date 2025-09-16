@@ -262,7 +262,15 @@ export const router = createBrowserRouter([
         path: "projects-form",
         element: (
           <AdminRoute>
-            <ProjectsForm></ProjectsForm>
+            <ProjectsForm mode="create"></ProjectsForm>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "projects-form/:id",
+        element: (
+          <AdminRoute>
+            <ProjectsForm mode="edit"></ProjectsForm>
           </AdminRoute>
         ),
       },
