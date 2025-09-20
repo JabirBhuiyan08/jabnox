@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gray-900 backdrop-blur-sm bg-opacity-95 border-b border-gray-800 p-4 fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="max-w-9xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-start">
           <img src={logo} alt="Logo" className="w-18 md:w-48 transition-all duration-300 hover:opacity-90" />
@@ -35,14 +35,13 @@ const Navbar = () => {
             Home
           </Link>
           
-          {user && (
             <Link 
               to="project-store" 
               className="text-gray-200 hover:text-cyan-400 transition-colors duration-300 font-medium py-2"
             >
               Project Store
             </Link>
-          )}
+
 
           {/* Services Dropdown */}
           <div 
@@ -112,12 +111,12 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
-                <Link 
+                {/* <Link 
                   to="/excel" 
                   className="block px-4 py-3 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-700"
                 >
                   Excel File
-                </Link>
+                </Link> */}
                 
                 {/* About Dropdown inside More */}
                 <div
@@ -196,7 +195,7 @@ const Navbar = () => {
               Home
             </Link>
             
-            {user && (
+        
               <Link 
                 to="project-store" 
                 className="block py-3 px-4 text-gray-200 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200 font-medium"
@@ -204,7 +203,6 @@ const Navbar = () => {
               >
                 Project Store
               </Link>
-            )}
 
             {/* Services Accordion */}
             <div className="border-b border-gray-700 last:border-0">
@@ -269,13 +267,13 @@ const Navbar = () => {
                   >
                     Contact
                   </Link>
-                  <Link 
+                  {/* <Link 
                     to="/excel" 
                     className="block py-2 px-4 text-gray-300 hover:bg-cyan-900/20 hover:text-cyan-400 rounded-lg transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     Excel File
-                  </Link>
+                  </Link> */}
                   
                   {/* About Accordion inside More */}
                   <div>

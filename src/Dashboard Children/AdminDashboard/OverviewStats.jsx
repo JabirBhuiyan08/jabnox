@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/axiosSecure";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const OverviewStats = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,7 +13,7 @@ const OverviewStats = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center text-gray-500">Loading...</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <div className="bg-white/10 shadow-lg rounded-2xl p-6 w-full mt-12 mx-auto">

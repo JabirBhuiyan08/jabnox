@@ -23,12 +23,8 @@ const DashboardHome = () => {
       </div>
 
       <UserProjects />
-
       <Popup />
-      {/* Additional Content */}
-      <div className="max-w-9xl mt-10 mx-auto grid grid-cols-1 xl:grid-cols-1 gap-20 xl:justify-center xl:items-center">
-        <NoteFromJabnox />
-      </div>
+    
     </div>
   );
 };

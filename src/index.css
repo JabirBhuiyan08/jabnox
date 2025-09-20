@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
 /* Override AwesomeButton secondary theme for Admin buttons */
 
 .swal2-premium-popup {

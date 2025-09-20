@@ -51,6 +51,8 @@ import PersonalCoding from "../Dashboard Children/DashboardHome/PopupService/Per
 import PersonalWordpress from "../Dashboard Children/DashboardHome/PopupService/Personal Website/PersonalWordpress";
 import SeoService from "../Dashboard Children/DashboardHome/PopupService/SEOPopup/SeoService";
 import ProjectStore from "../ProjectStore/ProjectStore";
+import ShowSingleProject from "../ProjectStore/ShowSingleProject";
+
 
 export const router = createBrowserRouter([
   {
@@ -112,7 +114,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "project-store",
-        element: <PrivateRoute><ProjectStore></ProjectStore></PrivateRoute>
+        element: <ProjectStore></ProjectStore>
+      },
+      {
+        path: "projects-store/:id",
+        element: <ShowSingleProject></ShowSingleProject>
       },
       {
         path: "our-profile",

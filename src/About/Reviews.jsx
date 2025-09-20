@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -19,7 +20,7 @@ const Reviews = () => {
       });
   }, [axiosPublic]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div>
       {reviews.length > 0 ? (

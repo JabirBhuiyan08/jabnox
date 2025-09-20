@@ -1,15 +1,9 @@
 import useAxiosSecure from "../../hooks/axiosSecure";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import {
-  FiBook,
-  FiMail,
-  FiFileText,
-  FiMessageSquare,
-  FiCalendar,
-} from "react-icons/fi";
+import { FiMessageSquare, FiBell } from "react-icons/fi";
 import LoadingSpinner from "../../Components/LoadingSpinner";
-import { FaDeleteLeft } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const NoteFromJabnox = () => {
   const axiosSecure = useAxiosSecure();
@@ -41,113 +35,96 @@ const NoteFromJabnox = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen sm:py-8 sm:px-4 lg:px-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-6 sm:mb-8 md:mb-10">
-          <div className="inline-flex items-center justify-center p-2 sm:p-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl sm:rounded-2xl mb-3 sm:mb-4">
-            <FiMessageSquare className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
-            Your Notes from Jabnox
-          </h1>
-          <p className="text-gray-400 text-sm sm:text-base max-w-md mx-auto px-2">
-            {noteData.length === 0
-              ? "You don't have any notes yet"
-              : `You have ${noteData.length} note${
-                  noteData.length !== 1 ? "s" : ""
-                } from our team`}
-          </p>
+    <div className="w-76 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[400px]">
+      {/* Header */}
+      <div className="bg-blue-600 px-3 py-2 flex items-center justify-between">
+        <div className="flex items-center">
+          <FiBell className="h-4 w-4 text-white mr-2" />
+          <h2 className="text-white font-semibold text-sm">Notifications</h2>
         </div>
-
-        {/* Notes Container */}
-        <div className="space-y-4 sm:space-y-6">
-          {noteData.length === 0 ? (
-            <div className="text-center py-8 sm:py-10 px-4 sm:px-6 rounded-2xl sm:rounded-6xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 shadow-lg">
-              <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-gray-700 rounded-xl sm:rounded-2xl mb-3 sm:mb-4">
-                <FiBook className="h-8 w-8 sm:h-10 sm:w-10 text-indigo-400" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-200 mb-2">
-                No notes found
-              </h3>
-              <p className="text-gray-400 text-sm sm:text-base max-w-md mx-auto">
-                When Jabnox sends you notifications, they will appear here
-              </p>
-            </div>
-          ) : (
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 max-h-[70vh] overflow-y-auto pr-1 sm:pr-2">
-                {noteData
-                  .slice()
-                  .reverse()
-                  .map((note) => (
-                    <div
-                      key={note._id}
-                      className="group relative  bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 sm:hover:-translate-y-1"
-                    >
-                      {/* Corner accent */}
-                      <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 overflow-hidden">
-                        <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-indigo-500/10 group-hover:bg-indigo-500/20 transition-colors duration-300 transform rotate-45 -translate-y-10 sm:-translate-y-12 translate-x-6 sm:translate-x-8"></div>
-                      </div>
-
-                      <div className="flex items-start  gap-3 sm:gap-4 relative z-10">
-                        {/* Icon */}
-                        <div className="flex-shrink-0 mt-6 p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 group-hover:from-indigo-500/30 group-hover:to-purple-500/30 transition-all duration-300">
-                          <FiFileText className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-indigo-400 group-hover:text-indigo-300" />
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1 min-w-0 mt-6">
-                          <h3 className="text-base sm:text-lg font-semibold text-white truncate group-hover:text-indigo-300 transition-colors duration-300">
-                            {note.title}
-                          </h3>
-                          <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-300 whitespace-pre-line break-words max-h-20 overflow-y-auto">
-                            {note.text}
-                          </p>
-
-                          {/* Footer */}
-                          <div className="mt-2 sm:mt-3 flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-2 text-xs text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <FiMail className="h-3 w-3 text-indigo-400" />
-                              <span className="truncate">Jabnox Team</span>
-                            </div>
-                            <span className="hidden xs:inline text-gray-500">
-                              •
-                            </span>
-                            <div className="flex items-center gap-1">
-                              <FiCalendar className="h-3 w-3 text-indigo-400" />
-                              <span>
-                                {new Date(
-                                  note.createdAt || Date.now()
-                                ).toLocaleDateString()}
-                              </span>
-                            </div>
-                          </div>
-
-
-                          {/* Delete button */}
-                          <div className="absolute top-0 right-0 text-3xl text-red-500">
-                            <button
-                              onClick={() => {
-                                console.log("Deleting note:", note._id);
-                                mutationDelete.mutate(note._id);
-                              }}
-                            >
-                              <FaDeleteLeft />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Hover glow effect */}
-                      <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-indigo-500/0 to-purple-500/0 group-hover:from-indigo-500/5 group-hover:to-purple-500/5 transition-all duration-300"></div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          )}
-        </div>
+        <span className="bg-blue-800 text-white text-xs font-medium px-1.5 py-0.5 rounded-full">
+          {noteData.length}
+        </span>
       </div>
+
+      {/* Notification content with fixed height and scroll */}
+      <div className="flex-1 overflow-y-auto p-2">
+        {noteData.length === 0 ? (
+          <div className="text-center py-6 px-2">
+            <FiBell className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+            <p className="text-gray-500 text-xs">No notifications yet</p>
+            <p className="text-gray-400 text-xs mt-1">
+              Notifications from Jabnox will appear here.
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {noteData
+              .slice()
+              .reverse()
+              .map((note) => (
+                <div
+                  key={note._id}
+                  className="bg-gray-50 rounded-md p-2 border border-gray-200 hover:bg-blue-50 transition-colors"
+                >
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 mr-2">
+                      <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                        <FiMessageSquare className="h-3 w-3 text-blue-600" />
+                      </div>
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start mb-1">
+                        <h4 className="text-xs font-semibold text-gray-900 truncate">
+                          {note.title || "Jabnox Notification"}
+                        </h4>
+                        <span className="text-[10px] text-gray-500 whitespace-nowrap ml-1">
+                          {new Date(note.createdAt || Date.now()).toLocaleDateString()}
+                        </span>
+                      </div>
+                      
+                      <div className="text-[11px] text-gray-700 break-words whitespace-pre-line max-h-16 overflow-y-auto">
+                        {note.text}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log("Deleting note:", note._id);
+                        mutationDelete.mutate(note._id);
+                      }}
+                      className="ml-1 opacity-70 hover:opacity-100 transition-opacity p-0.5 rounded-full hover:bg-gray-200 flex-shrink-0"
+                      title="Delete notification"
+                    >
+                      <FaRegTrashAlt className="h-2.5 w-2.5 text-gray-500" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
+
+      {/* Footer with clear all option */}
+      {noteData.length > 0 && (
+        <div className="border-t border-gray-200 px-3 py-1.5 bg-gray-50 flex justify-between items-center">
+          <span className="text-[11px] text-gray-500">
+            {noteData.length} {noteData.length === 1 ? 'note' : 'notes'}
+          </span>
+          <button 
+            className="text-[11px] text-blue-600 hover:text-blue-800 font-medium"
+            onClick={(e) => {
+              e.stopPropagation();
+              // Add clear all functionality here
+              console.log("Clear all clicked");
+            }}
+          >
+            Clear all
+          </button>
+        </div>
+      )}
     </div>
   );
 };

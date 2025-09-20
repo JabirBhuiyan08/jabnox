@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../hooks/axiosSecure";
 import useAdmin from "../hooks/useAdmin";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 
 
@@ -45,7 +46,7 @@ const DashboardReviews = () => {
       }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
   return (
     <div>
       {reviews.length > 0 ? (

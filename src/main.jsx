@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <QueryClientProvider client={queryClient}>
         
         <HelmetProvider>
-          <div className="full-screen">
+          <div className="full-screen w-full">
             <RouterProvider router={router} />
           </div>
         </HelmetProvider>

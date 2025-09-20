@@ -8,11 +8,15 @@ import { QRCodeCanvas } from "qrcode.react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Cursor } from "react-simple-typewriter";
 import { motion } from "framer-motion";
+import { IoIosNotifications } from "react-icons/io";
+import NoteFromJabnox from "./NoteFromJabnox";
+import { IoCloseCircleSharp } from "react-icons/io5";
 
 const UserProjects = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [showLogin, setShowLogin] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const {
     data: projects = [],
@@ -50,15 +54,48 @@ const UserProjects = () => {
       <motion.div
         initial={{ x: 30, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut",}}
-
-        className="flex flex-col p-3 sm:flex-row justify-center items-center sm:items-center mb-2 gap-4 text-white bg-gradient-to-r from-violet-500 to-pink-500 rounded "
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="flex flex-col p-3 sm:flex-row 
+        justify-center items-center sm:items-center mb-2 gap-4 
+        text-white bg-gradient-to-r from-violet-500 to-pink-500 rounded "
       >
         <motion.h1
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut",}}
-        className="text-sm">Your Projects</motion.h1>
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-sm flex items-center gap-5"
+        >
+          Your Projects
+          <div className="z-30 text-black"> 
+            {/* Notification button */}
+            <button
+              className="btn text-red-500 text-2xl"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <IoIosNotifications />
+            </button>
+
+            {/* Dropdown */}
+            {isOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-84  bg-base-100 shadow rounded-box p-3">
+                {/* Close button inside */}
+                <div className="flex flex-col items-end mb-2 ">
+                  
+                  <button
+                    className="btn text-5xl btn-outline text-red-500"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <IoCloseCircleSharp/>
+                  </button>
+                </div>
+
+                <ul className="menu">
+                   <NoteFromJabnox></NoteFromJabnox>
+                </ul>
+              </div>
+            )}
+          </div>
+        </motion.h1>
       </motion.div>
 
       {projects.length === 0 ? (
@@ -368,7 +405,6 @@ const UserProjects = () => {
                       </div>
                     )}
                   </div>
-
                 </div>
               </div>
             ))}

@@ -4,6 +4,7 @@ import PortfolioData from "./PorfolioDatas";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/axiosSecure";
 import useAdmin from "../../hooks/useAdmin";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const Portfolios = () => {
   const [portfolios, setPortfolios] = useState([]);
@@ -42,7 +43,7 @@ const Portfolios = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
   if(portfolios.length === 0) return <div>No portfolios found</div>
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 p-4">

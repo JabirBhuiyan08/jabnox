@@ -9,6 +9,7 @@ import { createRoot } from "react-dom/client";
 import ApplyForm from "./ApplyForm";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
 const ApplyNewService = () => {
   const { user } = useAuth();
@@ -65,7 +66,7 @@ const ApplyNewService = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   const applyNewService = (service) => {
