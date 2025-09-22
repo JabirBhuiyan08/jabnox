@@ -86,7 +86,7 @@ const Dashboard = () => {
           <img src={logo} alt="Logo" className="w-18" />
         </div>
         <div className="flex items-center space-x-2">
-          <button 
+          <button
             onClick={() => navigate("/")}
             className="p-2 rounded-md hover:bg-blue-700 focus:outline-none"
             aria-label="Go to homepage"
@@ -136,16 +136,23 @@ const Dashboard = () => {
               className="w-10 h-10 rounded-full border-2 border-gray-200"
             />
             <div className="overflow-hidden">
-              <p className="font-medium text-white truncate">{user?.displayName}</p>
+              <p className="font-medium text-white truncate">
+                {user?.displayName}
+              </p>
               <p className="text-sm text-gray-300 truncate">{user?.email}</p>
               {isAdmin && (
                 <span className="inline-block mt-1 text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">
                   Admin
                 </span>
               )}
-              
+              <button
+                onClick={() => navigate("/")}
+                className="p-2 rounded-md hover:bg-blue-700 focus:outline-none"
+                aria-label="Go to homepage"
+              >
+                <FaHome className="text-white text-lg" />
+              </button>
             </div>
-            
           </div>
         </div>
 
@@ -157,7 +164,7 @@ const Dashboard = () => {
               <h3 className="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
                 User Panel
               </h3>
-              
+
               <div className="mt-1 space-y-1">
                 <NavLink
                   to="/dashboard"
@@ -442,8 +449,19 @@ const Dashboard = () => {
             onClick={handleLogout}
             className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors flex items-center justify-center"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
             </svg>
             Logout
           </button>
@@ -453,7 +471,6 @@ const Dashboard = () => {
       {/* Main Content Area */}
       <div className="flex-1 lg:ml-0 bg-gray-900 min-h-screen">
         <div className="p-3 lg:p-6">
-
           {/* Content container */}
           <div className="relative rounded-xl border border-gray-700 shadow-lg p-4 lg:p-6 bg-gray-800/50 backdrop-blur-sm">
             {/* Subtle decorative elements */}

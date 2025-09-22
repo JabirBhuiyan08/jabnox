@@ -18,6 +18,14 @@ const UserProjects = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const { data: notes = [], refetch } = useQuery({
+    queryKey: ["notes", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/notes/${user?.email}`);
+      return res.data;
+    },
+  });
+
   const {
     data: projects = [],
     isLoading,
@@ -66,13 +74,13 @@ const UserProjects = () => {
           className="text-sm flex items-center gap-5"
         >
           Your Projects
-          <div className="z-30 text-black"> 
+          <div className="z-30 text-black">
             {/* Notification button */}
             <button
               className="btn text-red-500 text-2xl"
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() =>{ setIsOpen(!isOpen); refetch();}}
             >
-              <IoIosNotifications />
+              <IoIosNotifications /> {notes.length}
             </button>
 
             {/* Dropdown */}
@@ -80,17 +88,18 @@ const UserProjects = () => {
               <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-84  bg-base-100 shadow rounded-box p-3">
                 {/* Close button inside */}
                 <div className="flex flex-col items-end mb-2 ">
-                  
                   <button
                     className="btn text-5xl btn-outline text-red-500"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => 
+                      setIsOpen(!isOpen)
+                    }
                   >
-                    <IoCloseCircleSharp/>
+                    <IoCloseCircleSharp />
                   </button>
                 </div>
 
                 <ul className="menu">
-                   <NoteFromJabnox></NoteFromJabnox>
+                  <NoteFromJabnox></NoteFromJabnox>
                 </ul>
               </div>
             )}

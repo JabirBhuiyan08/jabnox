@@ -32,7 +32,7 @@ const NoteFromJabnox = () => {
     },
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <div className="text-center"> Loading...</div>;
 
   return (
     <div className="w-76 bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[400px]">
