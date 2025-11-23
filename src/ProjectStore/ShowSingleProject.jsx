@@ -91,12 +91,19 @@ const ShowSingleProject = () => {
                 </div>
               </div>
               <div className="flex gap-5 mt-10">
-                <button className="flex items-center gap-2 bg-green-600 px-4 py-2 rounded-3xl">
-                  Whats app <FaWhatsapp />
-                </button>
-                <button className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-3xl">
-                  Facebook <FaFacebook />
-                </button>
+                <Link to={`https://wa.me/+8801749424565`} target="_blank">
+                  <button className="flex items-center gap-2 bg-green-600 px-4 py-2 rounded-3xl">
+                    Whats app <FaWhatsapp />
+                  </button>
+                </Link>
+                <Link
+                  to={`https://www.facebook.com/jabnoxdotcom`}
+                  target="_blank"
+                >
+                  <button className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-3xl">
+                    Facebook <FaFacebook />
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -127,8 +134,12 @@ const ShowSingleProject = () => {
                   <FaShare />
                 </button>
               </div>
-              <button className="flex items-center justify-center w-48 gap-2 mt-2 bg-blue-600 px-4 py-2 rounded-3xl">
-                Certificate <FaDownload /></button>
+              <Link 
+              to={projects.certificate}
+              download={projects.certificate}
+              className="flex items-center justify-center w-48 gap-2 mt-2 bg-blue-600 px-4 py-2 rounded-3xl">
+                Certificate <FaDownload />
+              </Link>
             </div>
           </div>
 

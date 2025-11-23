@@ -18,7 +18,7 @@ const SecondHeader = () => {
     };
 
     return (
-        <div className="flex  justify-center gap-2 p-4 md:p-6">
+        <div className="flex  justify-center gap-2 p-4 md:p-6 bg-gradient-to-br from-slate-900 via-purple-900/30 to-slate-900">
             {/* Visitor Card */}
             <div className="group flex flex-col  items-center border border-cyan-100 bg-gray-900 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow w-20 sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-cyan-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -92,7 +92,6 @@ const Projects = () => {
                 className="transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
               >
                 <MapProject 
-                 
                   project={project} 
                   handleDelete={() => {handleDelete.mutate(project._id)}}
                 />

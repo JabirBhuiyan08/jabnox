@@ -6,6 +6,8 @@ import WebsiteBuilder from "./WebsiteBuilder";
 import ContactForm from "./ContactForm";
 import ReviewsCarousel from "./ReviewsCarousel";
 import { Helmet } from "react-helmet-async";
+import OurServices from "./Our Services/OurServices";
+import OurProduct from "./Our Product/OurProduct";
 
 const Home = () => {
   return (
@@ -22,6 +24,8 @@ const Home = () => {
         />
       </Helmet>
       <Header></Header>
+      <OurServices></OurServices>
+      <OurProduct></OurProduct>
       <SecondHeader></SecondHeader>
       <WebsiteBuilder></WebsiteBuilder>
       <ReviewsCarousel></ReviewsCarousel>
