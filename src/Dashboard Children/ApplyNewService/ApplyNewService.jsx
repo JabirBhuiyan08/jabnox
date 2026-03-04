@@ -34,11 +34,32 @@ const ApplyNewService = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      if (data.deletedCount > 0) {
-        queryClient.invalidateQueries(["service"]);
-      }
-    },
+       if (data.deletedCount > 0) {
+         queryClient.invalidateQueries(["apply"]);
+         Swal.fire({
+           title: "Deleted!",
+           text: "Your file has been deleted.",
+           icon: "success"
+         });
+       }
+     },
   });
+
+  const handleDeleteClick = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleServiceDelete.mutate(id);  // 🔥 Only delete after confirm
+      }
+    });
+  };
 
   // Apply service
   const applyMutation = useMutation({
@@ -122,118 +143,126 @@ const ApplyNewService = () => {
       </h1>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-        {services.map((service) => (
-          <div
-            key={service._id}
-            className="relative w-full md:w-150 flex flex-col items-center justify-center bg-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 border border-gray-200/20 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300"
+      <div className="flex flex-col items-center w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
+  <div className="w-full space-y-3 sm:space-y-4 md:space-y-5">
+    {services.map((service) => (
+      <div
+        key={service._id}
+        className="relative w-full bg-white rounded-xl sm:rounded-2xl border border-gray-200/20 shadow-md hover:shadow-lg transition duration-300 overflow-hidden"
+      >
+        {/* Admin Delete */}
+        {isAdmin && (
+          <button
+            className="absolute top-1 left-1 sm:top-2 sm:left-2 z-10
+             bg-red-600 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 
+             rounded-md text-[10px] sm:text-xs font-bold shadow 
+             hover:bg-red-700 transition"
+            onClick={() => handleDeleteClick(service._id)}
           >
-            {/* Admin Delete */}
-            {isAdmin && (
-              <button
-                className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-4 md:left-4 bg-red-600 text-white px-2 py-1 sm:px-3 sm:py-1 md:px-3 md:py-1 rounded-full text-xs font-bold shadow hover:bg-red-700 transition"
-                onClick={() => handleServiceDelete.mutate(service._id)}
-              >
-                Delete
-              </button>
-            )}
+            Delete
+          </button>
+        )}
 
-            {/* Badge */}
-            {service.badge && (
-              <span className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-gradient-to-r from-pink-500 to-red-500 text-white px-2 py-1 sm:px-3 sm:py-1 md:px-3 md:py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
-                {service.badge}
-              </span>
-            )}
+        {/* Badge */}
+        {service.badge && (
+          <span className="absolute top-1 right-1 sm:top-2 sm:right-2 z-10 bg-gradient-to-r from-pink-500 to-red-500 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md text-[10px] sm:text-xs font-bold shadow-lg animate-pulse">
+            {service.badge}
+          </span>
+        )}
 
-            {/* Service Content */}
-            <div className="mb-4 sm:mb-5 md:w-120 md:mb-6 flex flex-col items-center">
-              <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-indigo-700">
-                {service.name}
-              </h2>
-              <p className="text-gray-600 mb-4 sm:mb-5 md:mb-6 text-xs sm:text-sm md:text-base">
-                {service.description}
-              </p>
-
-              {/* Pricing */}
-              <div className="grid gap-3 sm:gap-4 items-center md:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:w-120 mt-3 sm:mt-4 md:mt-5">
-                {service.BasicPrice && (
-                  <div className="relative w-full p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
-                    <p className="text-sm sm:text-base md:text-lg font-semibold text-blue-600 mb-1">
-                      Basic
-                    </p>
-                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
-                      ${service.BasicPrice}
-                    </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
-                      Perfect for individuals
-                    </p>
-                  </div>
-                )}
-
-                {service.StandardPrice && (
-                  <div className="relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border-2 border-yellow-400 bg-gradient-to-t from-yellow-50 via-white to-yellow-50 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
-                    <span className="absolute top-1 right-1 sm:top-1 sm:right-1 md:top-2 md:right-2 bg-yellow-500 text-white px-1 py-0.5 sm:px-2 sm:py-1 md:px-2 md:py-1 rounded-full text-[10px] sm:text-xs font-bold shadow">
-                      Most Popular
-                    </span>
-                    <p className="text-sm sm:text-base md:text-lg mt-3 sm:mt-4 md:mt-5 font-semibold text-yellow-600 mb-1 flex items-center gap-1">
-                      Standard <span className="text-yellow-500">⭐</span>
-                    </p>
-                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
-                      ${service.StandardPrice}
-                    </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
-                      Best for small teams
-                    </p>
-                  </div>
-                )}
-
-                {service.PremiumPrice && (
-                  <div className="relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl border-2 border-purple-400 bg-gradient-to-t from-purple-100 via-white to-purple-100 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 cursor-pointer">
-                    <p className="text-sm sm:text-base md:text-lg font-semibold text-purple-700 mb-1 flex items-center gap-1">
-                      Premium <span>🚀</span>
-                    </p>
-                    <p className="text-gray-700 font-bold text-lg sm:text-xl md:text-2xl">
-                      ${service.PremiumPrice}
-                    </p>
-                    <p className="text-gray-500 mt-1 text-xs sm:text-sm md:text-sm">
-                      Ideal for enterprises
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="mt-4 sm:mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-              {/* Apply Now Button */}
-              <button
-                className="w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 font-bold shadow-lg hover:from-purple-500 hover:to-blue-500 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] backdrop-blur-md text-xs sm:text-sm md:text-sm"
-                onClick={() => applyNewService(service)}
-              >
-                🚀 Apply Now
-              </button>
-
-              {/* View Details Button */}
-              <button
-                className="w-full border-2 border-indigo-400 text-black rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 font-bold bg-white shadow-md backdrop-blur-md hover:bg-white/20 hover:text-indigo-600 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] text-xs sm:text-sm md:text-sm"
-                onClick={() => viewDetails(service)}
-              >
-                🔍 View Details
-              </button>
-
-              {/* WhatsApp Button */}
-              <Link to={`https://wa.me/+8801749424565`}>
-                <button className="w-full bg-gradient-to-r from-green-400 to-green-600 text-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 flex items-center justify-center gap-1 sm:gap-2 font-bold shadow-lg hover:from-green-600 hover:to-green-400 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] text-xs sm:text-sm md:text-sm">
-                  <FaWhatsapp className="animate-pulse text-xs sm:text-sm md:text-sm" /> 
-                  <div>
-                  <span className="hidden sm:inline">Chat on</span> WhatsApp
-                  </div>
-                </button>
-              </Link>
-            </div>
+        {/* Main Content Container */}
+        <div className="p-3 sm:p-4 md:p-5">
+          {/* Header Section */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-3">
+            <h2 className="text-base sm:text-lg md:text-xl font-bold text-indigo-700">
+              {service.name}
+            </h2>
           </div>
-        ))}
+
+          {/* Description */}
+          <p className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm line-clamp-2">
+            {service.description}
+          </p>
+
+          {/* Pricing Cards - Horizontal Scroll on Mobile, Grid on Larger */}
+          <div className="flex overflow-x-auto sm:grid sm:grid-cols-3 gap-2 pb-2 sm:pb-0 mb-3 sm:mb-4 -mx-1 px-1 sm:mx-0 sm:px-0 scrollbar-hide">
+            {service.BasicPrice && (
+              <div className="flex-shrink-0 w-36 sm:w-auto p-2 sm:p-3 rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow transition">
+                <p className="text-xs sm:text-sm font-semibold text-blue-600 mb-0.5">
+                  Basic
+                </p>
+                <p className="text-gray-700 font-bold text-sm sm:text-base">
+                  ${service.BasicPrice}
+                </p>
+                <p className="text-gray-500 mt-0.5 text-[10px] sm:text-xs truncate">
+                  For individuals
+                </p>
+              </div>
+            )}
+
+            {service.StandardPrice && (
+              <div className="flex-shrink-0 w-36 sm:w-auto p-2 sm:p-3 rounded-lg border-2 border-yellow-400 bg-gradient-to-t from-yellow-50 via-white to-yellow-50 shadow-sm hover:shadow relative">
+                <span className="absolute -top-1 -right-1 sm:top-0 sm:right-0 bg-yellow-500 text-white px-1 py-0.5 rounded-sm text-[8px] sm:text-[10px] font-bold">
+                  Popular
+                </span>
+                <p className="text-xs sm:text-sm font-semibold text-yellow-600 mb-0.5 flex items-center gap-0.5">
+                  Standard <span className="text-yellow-500 text-[10px]">⭐</span>
+                </p>
+                <p className="text-gray-700 font-bold text-sm sm:text-base">
+                  ${service.StandardPrice}
+                </p>
+                <p className="text-gray-500 mt-0.5 text-[10px] sm:text-xs truncate">
+                  For small teams
+                </p>
+              </div>
+            )}
+
+            {service.PremiumPrice && (
+              <div className="flex-shrink-0 w-36 sm:w-auto p-2 sm:p-3 rounded-lg border-2 border-purple-400 bg-gradient-to-t from-purple-100 via-white to-purple-100 shadow-sm hover:shadow">
+                <p className="text-xs sm:text-sm font-semibold text-purple-700 mb-0.5 flex items-center gap-0.5">
+                  Premium <span className="text-[10px]">🚀</span>
+                </p>
+                <p className="text-gray-700 font-bold text-sm sm:text-base">
+                  ${service.PremiumPrice}
+                </p>
+                <p className="text-gray-500 mt-0.5 text-[10px] sm:text-xs truncate">
+                  For enterprises
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Action Buttons - Compact Grid */}
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+            {/* Apply Now Button */}
+            <button
+              className="col-span-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white rounded-lg px-1.5 py-1.5 sm:px-2 sm:py-2 text-[10px] sm:text-xs font-medium shadow hover:from-purple-500 hover:to-blue-500 transition-all duration-300 truncate"
+              onClick={() => applyNewService(service)}
+            >
+              🚀 Apply
+            </button>
+
+            {/* View Details Button */}
+            <button
+              className="col-span-1 border border-indigo-400 text-indigo-700 rounded-lg px-1.5 py-1.5 sm:px-2 sm:py-2 text-[10px] sm:text-xs font-medium bg-white shadow-sm hover:bg-indigo-50 transition-all duration-300 truncate"
+              onClick={() => viewDetails(service)}
+            >
+              🔍 Details
+            </button>
+
+            {/* WhatsApp Button */}
+            <Link to={`https://wa.me/+8801749424565`} className="col-span-1">
+              <button className="w-full bg-gradient-to-r from-green-400 to-green-600 text-white rounded-lg px-1.5 py-1.5 sm:px-2 sm:py-2 flex items-center justify-center gap-0.5 text-[10px] sm:text-xs font-medium shadow hover:from-green-600 hover:to-green-400 transition-all duration-300 truncate">
+                <FaWhatsapp className="text-[10px] sm:text-xs" /> 
+                <span className="truncate">WhatsApp</span>
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
+    ))}
+  </div>
+</div>
     </div>
   );
 };

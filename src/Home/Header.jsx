@@ -1,6 +1,6 @@
 import React from "react";
-import logoX from "../assets/logo X.png";
-import logo from "../assets/logo.png";
+// import logoX from "../assets/logo X.png";
+// import logo from "../assets/logo.png";
 import img from "../../src/assets/loginbg.jpg";
 import { Typewriter } from "react-simple-typewriter";
 import { Helmet } from "react-helmet-async";

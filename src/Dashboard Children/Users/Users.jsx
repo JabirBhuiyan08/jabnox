@@ -22,10 +22,10 @@ const Users = () => {
       
 
       <ul>
-        {users.map((user, index) => (
+        {users.slice().reverse().map((user, index) => (
           <li
             key={index}
-            className="border border-gray-200/20 p-4 mb-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+            className="border border-gray-200 p-4 mb-3 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 bg-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
           >
             {/* User info section */}
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 sm:gap-5">

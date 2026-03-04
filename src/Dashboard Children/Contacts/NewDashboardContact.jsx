@@ -30,7 +30,7 @@ const NewDashboardContact = () => {
         All Contacts ({contact.length})
       </h2>
       <div className="grid gap-4">
-        {contact.map((c) => (
+        {contact.slice().reverse().map((c) => (
           <div
             key={c._id}
             className="bg-white/10 shadow-md rounded-xl p-4 border border-gray-200/20"

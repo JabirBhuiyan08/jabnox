@@ -48,7 +48,7 @@ const PendingApplication = () => {
         </p>
       ) : (
         <div className="space-y-5">
-          {apply.map((e) => (
+          {apply.slice().reverse().map((e) => (
             <div
               key={e._id}
               className="flex flex-col  md:flex-row justify-between items-center 
