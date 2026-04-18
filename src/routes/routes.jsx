@@ -52,6 +52,9 @@ import PersonalWordpress from "../Dashboard Children/DashboardHome/PopupService/
 import SeoService from "../Dashboard Children/DashboardHome/PopupService/SEOPopup/SeoService";
 import ProjectStore from "../ProjectStore/ProjectStore";
 import ShowSingleProject from "../ProjectStore/ShowSingleProject";
+import PrivacyPolicy from "../Legal/PrivacyPolicy";
+import TermsOfService from "../Legal/TermsOfService";
+import CookiePolicy from "../Legal/CookiePolicy";
 
 
 export const router = createBrowserRouter([
@@ -127,6 +130,18 @@ export const router = createBrowserRouter([
       {
         path: "portfolios",
         element: <Portfolios></Portfolios>,
+      },
+      {
+        path: "privacy-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "terms-of-service",
+        element: <TermsOfService></TermsOfService>,
+      },
+      {
+        path: "cookie-policy",
+        element: <CookiePolicy></CookiePolicy>,
       },
       {
         path: "blogs/:id",

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const ReviewForm = () => {
@@ -46,6 +47,11 @@ const ReviewForm = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
+      <Helmet>
+        <title>Write a Review | JABNOX</title>
+        <meta name="description" content="Share your experience with JABNOX. Our web development company values client feedback. Submit your review and help other businesses find the best web developer." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
       <div className="w-full max-w-2xl bg-gray-800 text-white p-8 rounded-xl shadow-lg">
         <h1 className="text-3xl font-semibold mb-6 text-center">
           Review Our Work

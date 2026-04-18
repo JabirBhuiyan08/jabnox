@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 import logo from "../assets/logo.png";
 
 const ExcelFile = () => {
@@ -14,7 +15,6 @@ const ExcelFile = () => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
 
-    // Validate file type
     const validTypes = [
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'application/vnd.ms-excel'
@@ -25,7 +25,6 @@ const ExcelFile = () => {
       return;
     }
 
-    // Validate file size (5MB max)
     if (selectedFile.size > 5 * 1024 * 1024) {
       setError('File size too large (max 5MB)');
       return;
@@ -50,7 +49,7 @@ const ExcelFile = () => {
       
       reader.onload = async (e) => {
         try {
-          const data = e.target.result.split(',')[1]; // Get base64 part
+          const data = e.target.result.split(',')[1];
           const response = await axiosPublic.post('/excel', {
             filename: file.name,
             data: data
@@ -80,7 +79,13 @@ const ExcelFile = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col gap-4 items-center justify-center bg-gray-100 p-6">
+    <>
+      <Helmet>
+        <title>Excel Services | JABNOX</title>
+        <meta name="description" content="JABNOX provides professional Excel services and web development solutions. Contact our web application development company for custom solutions." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
+      <div className="min-h-screen flex flex-col gap-4 items-center justify-center bg-gray-100 p-6">
       <img src={logo} alt="" className="w-90 bg-amber-950 rounded-4xl"/>
       <Link to="/exceldetails">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -164,6 +169,7 @@ const ExcelFile = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

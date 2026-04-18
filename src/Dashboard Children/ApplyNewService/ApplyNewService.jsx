@@ -61,63 +61,86 @@ const ApplyNewService = () => {
     });
   };
 
-  // Apply service
-  const applyMutation = useMutation({
-    mutationFn: async (applicationData) => {
-      const res = await axiosPublic.post("/apply", applicationData);
-      return res.data;
-    },
-    onSuccess: (responseData, variables) => {
-      Swal.fire({
-        icon: "success",
-        title: "Application Submitted 🎉",
-        html: `
-          <div style="text-align:left">
-            <p><b>Service:</b> ${variables.serviceName}</p>
-            <p><b>Plan:</b> ${variables.plan}</p>
-            <p><b>Name:</b> ${variables.name}</p>
-            <p><b>Email:</b> ${variables.email}</p>
-            <p><b>Note:</b> ${variables.note}</p>
-          </div>
-        `,
-        confirmButtonText: "OK",
-        confirmButtonColor: "#3085d6",
-      });
-    },
-  });
 
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
   const applyNewService = (service) => {
-    Swal.fire({
-      title: `Apply for ${service.name}`,
-      html: `<div id="react-swal-form"></div>`,
-      showConfirmButton: false,
-      didOpen: () => {
-        const container = document.getElementById("react-swal-form");
-        const root = createRoot(container);
-        root.render(
-          <ApplyForm
-            key={service._id}
-            email={user.email}
-            service={service}
-            onSubmit={(data) => {
-              const applicationData = {
-                serviceName: service.name,
-                plan: data.plan,
-                name: data.name,
-                email: data.email,
-                note: data.note,
-              };
-              applyMutation.mutate(applicationData);
-            }}
-          />
-        );
-      },
-    });
+  let currentRoot = null;
+  let currentSwal = null;
+  
+  Swal.fire({
+    title: `Apply for ${service.name}`,
+    html: `<div id="react-swal-form"></div>`,
+    showConfirmButton: false,
+    didOpen: () => {
+      const container = document.getElementById("react-swal-form");
+      currentRoot = createRoot(container);
+      
+      const handleSubmit = async (data) => {
+  const applicationData = {
+    serviceName: service.name,
+    plan: data.plan,
+    name: data.name,
+    email: data.email,
+    note: data.note,
   };
+  
+  try {
+    await axiosPublic.post("/apply", applicationData);
+    
+    // Close the form modal
+    if (currentSwal) {
+      currentSwal.close();
+    }
+    
+    // Show success message
+    Swal.fire({
+      icon: "success",
+      title: "Application Submitted 🎉",
+      html: `
+        <div style="text-align:left">
+          <p><b>Service:</b> ${applicationData.serviceName}</p>
+          <p><b>Plan:</b> ${applicationData.plan}</p>
+          <p><b>Name:</b> ${applicationData.name}</p>
+          <p><b>Email:</b> ${applicationData.email}</p>
+          <p><b>Note:</b> ${applicationData.note}</p>
+        </div>
+      `,
+      confirmButtonText: "OK",
+      confirmButtonColor: "#3085d6",
+    });
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: "error",
+      title: "Submission Failed",
+      text: "Please try again later.",
+    });
+    throw error; // Re-throw so the form knows submission failed
+  }
+};
+      
+      currentRoot.render(
+        <ApplyForm
+          key={service._id}
+          email={user?.email}
+          service={service}
+          onSubmit={handleSubmit}
+        />
+      );
+    },
+    didClose: () => {
+      // Cleanup root when modal closes
+      if (currentRoot) {
+        currentRoot.unmount();
+      }
+    },
+  }).then((result) => {
+    currentSwal = result;
+  });
+};
 
   const viewDetails = (service) => {
     Swal.fire({

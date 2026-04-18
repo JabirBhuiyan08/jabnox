@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const Reviews = () => {
@@ -22,7 +23,13 @@ const Reviews = () => {
 
   if (loading) return <LoadingSpinner></LoadingSpinner>
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Client Reviews | JABNOX</title>
+        <meta name="description" content="Read reviews from JABNOX clients. Our web development company is rated as one of the best web development companies. Hire our freelance web developers for your projects." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
+      <div>
       {reviews.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           {reviews.map((review) => (
@@ -56,7 +63,8 @@ const Reviews = () => {
       ) : (
         <p>No reviews available</p>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

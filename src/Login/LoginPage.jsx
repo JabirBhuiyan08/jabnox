@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import GoogleSignIn from "../Components/GoogleSignIn/GoogleSignIn";
 import { Link } from "react-router-dom";
 import { FiShield, FiZap, FiClock } from "react-icons/fi";
+import { Helmet } from "react-helmet-async";
 import loginLogo from "../assets/login logo.png";
 import loginBackground from "../assets/loginbg.jpg";
 
@@ -20,6 +21,11 @@ const LoginPage = () => {
       }}
       className="min-h-screen relative flex flex-col items-center justify-center overflow-hidden -mt-32"
     >
+      <Helmet>
+        <title>Login | JABNOX - Web Development Services</title>
+        <meta name="description" content="Login to JABNOX to access our professional web development services. Hire expert freelance web developers for custom web application development." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
       {/* Background Design Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating circles */}

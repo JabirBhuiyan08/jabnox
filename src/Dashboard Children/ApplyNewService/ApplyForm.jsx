@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const ApplyForm = ({ service, onSubmit, email }) => {
   const { register, handleSubmit } = useForm({
@@ -6,10 +7,23 @@ const ApplyForm = ({ service, onSubmit, email }) => {
       email: email,
     },
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submitHandler = async (data) => {
+    setIsSubmitting(true);
+    try {
+      await onSubmit(data);
+      // onSubmit will close modal on success, no need to reset loading
+    } catch (error) {
+      // If error, stop loading so user can retry
+      setIsSubmitting(false);
+      console.log(error)
+    }
+  };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(submitHandler)}
       className="flex flex-col gap-6 max-w-4xl mx-auto p-8 rounded-xl shadow-xl bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border border-purple-200"
     >
       {/* Plan Selection */}
@@ -91,9 +105,17 @@ const ApplyForm = ({ service, onSubmit, email }) => {
 
       <button
         type="submit"
-        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-xl font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition shadow-lg hover:shadow-xl"
+        disabled={isSubmitting}
+        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-xl font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
       >
-        Submit Application
+        {isSubmitting ? (
+          <>
+            <span className="loading loading-spinner loading-sm"></span>
+            Submitting...
+          </>
+        ) : (
+          "Submit Application"
+        )}
       </button>
     </form>
   );

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { QRCodeCanvas } from "qrcode.react";
 import Reviews from "../About/Reviews";
@@ -22,8 +23,15 @@ const ShowSingleProject = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
+  const projectTitle = projects?.title || "Project Details";
+
   return (
     <div className="min-h-screen bg-gray-900 text-white relative">
+      <Helmet>
+        <title>{projectTitle} | JABNOX</title>
+        <meta name="description" content={`View ${projectTitle} - a project by JABNOX. Our web application development company offers custom web development solutions.`} />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
       {/* Background overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed opacity-20"

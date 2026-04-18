@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import PortfolioData from "./PorfolioDatas";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/axiosSecure";
@@ -46,7 +47,13 @@ const Portfolios = () => {
   if (loading) return <LoadingSpinner></LoadingSpinner>;
   if(portfolios.length === 0) return <div>No portfolios found</div>
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 p-4">
+    <>
+      <Helmet>
+        <title>Portfolio | JABNOX</title>
+        <meta name="description" content="View our portfolio of web development projects. JABNOX is a professional web application development company with a track record of custom web development success." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 p-4">
       {portfolios
         .slice()
         .reverse()
@@ -58,7 +65,8 @@ const Portfolios = () => {
             <PortfolioData portfolio={portfolio} handleDelete={handleDelete} isAdmin={isAdmin}/>
           </div>
         ))}
-    </div>
+      </div>
+    </>
   );
 };
 

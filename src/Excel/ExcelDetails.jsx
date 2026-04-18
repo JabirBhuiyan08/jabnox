@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const ExcelDetails = () => {
   const axiosPublic = useAxiosPublic();
@@ -57,7 +58,13 @@ const ExcelDetails = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <>
+      <Helmet>
+        <title>Excel Details | JABNOX</title>
+        <meta name="description" content="View and manage your Excel data with JABNOX. Our web application development company offers professional data management solutions." />
+        <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+      </Helmet>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Search Box */}
       <div className="mb-8">
         <div className="relative max-w-md">
@@ -203,7 +210,8 @@ const ExcelDetails = () => {
           </p>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

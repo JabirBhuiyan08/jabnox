@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { FaCalendarAlt, FaUser, FaTags } from 'react-icons/fa';
 
 const ShowSingleBlog = () => {
@@ -51,8 +52,16 @@ const ShowSingleBlog = () => {
         </div>
     );
 
+    const blogTitle = blog?.title || "Blog";
+
     return (
-        <article className="max-w-4xl mx-auto p-6">
+        <>
+            <Helmet>
+                <title>{blogTitle} | JABNOX Blog</title>
+                <meta name="description" content={`Read ${blogTitle} on JABNOX blog. Our web development company shares insights on web application development, custom web development, and hiring freelance web developers.`} />
+                <meta name="keywords" content="web application development company, custom web application development company, best web development company, web app development company, custom web development company, need freelance web developer, web developer freelance" />
+            </Helmet>
+            <article className="max-w-4xl mx-auto p-6">
             {/* Blog Header */}
             <header className="mb-8">
                 <div className="flex items-center space-x-4 mb-4">
@@ -117,6 +126,7 @@ const ShowSingleBlog = () => {
                 </Link>
             </div>
         </article>
+        </>
     );
 };
 
