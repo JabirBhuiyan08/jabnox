@@ -55,6 +55,7 @@ import ShowSingleProject from "../ProjectStore/ShowSingleProject";
 import PrivacyPolicy from "../Legal/PrivacyPolicy";
 import TermsOfService from "../Legal/TermsOfService";
 import CookiePolicy from "../Legal/CookiePolicy";
+import PublicPortfolios from "../Legal/Portfolios";
 
 
 export const router = createBrowserRouter([
@@ -142,6 +143,10 @@ export const router = createBrowserRouter([
       {
         path: "cookie-policy",
         element: <CookiePolicy></CookiePolicy>,
+      },
+      {
+        path: "portfolios",
+        element: <PublicPortfolios></PublicPortfolios>,
       },
       {
         path: "blogs/:id",
